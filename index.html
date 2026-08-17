@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rusbelt | Sistemas y Automatizaciones</title>
+    <meta name="description" content="Portafolio profesional de Rusbelt, especialista en sistemas web y automatizaciones.">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-layer-group"></i> Rusbelt<span>.</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#sobre-mi">Sobre Mí</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#contacto" class="btn-primary">Contacto</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">Especialista Tecnológico</span>
+                <h1>Sistemas, Web & <br> <span class="text-blue">Automatizaciones.</span></h1>
+                <p>Ayudo a empresas e individuos a optimizar sus procesos a través de sistemas personalizados, sitios web dinámicos y herramientas de automatización de alto rendimiento.</p>
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn-primary">Ver mis trabajos <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="btn-secondary">Hablemos de tu proyecto</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="about bg-light">
+        <div class="container about-container">
+            <div class="section-header">
+                <h2>Sobre Mi Experiencia</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Desarrollo a Medida</h3>
+                    <p>Creación de interfaces web limpias, modernas y orientadas a resultados para cualquier industria.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Automatización</h3>
+                    <p>Reducción de tareas manuales repetitivas implementando soluciones y bots inteligentes.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Sistemas de Gestión</h3>
+                    <p>Sistemas de reservas, paneles de administración y bases de datos para controlar el negocio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="projects">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label">Portafolio</span>
+                <h2>Proyectos Recientes</h2>
+                <p>Soluciones digitales diseñadas para resolver problemas reales de negocio.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" id="project-1">
+                    <div class="project-number">01</div>
+                    <div class="project-content">
+                        <div class="tags">
+                            <span>Sistema Web</span>
+                            <span>Gestión</span>
+                            <span>Automatización</span>
+                        </div>
+                        <h3>Sistema de Barbería</h3>
+                        <p>Plataforma integral para gestionar citas, clientes y servicios de barberías con panel de administración en tiempo real.</p>
+                        <button class="project-link" onclick="toggleDetails('details-1')">
+                            Ver detalles <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="project-details" id="details-1">
+                        <div class="details-inner">
+                            <h4>¿Qué es?</h4>
+                            <p>Es como una agenda súper inteligente para barberías. En vez de que el cliente llame por teléfono o vaya al local a preguntar si hay turno, simplemente entra a la página web, elige al barbero que quiere, el día y la hora, y listo — queda reservado automáticamente.</p>
+                            
+                            <h4>¿Qué incluye?</h4>
+                            <ul>
+                                <li><strong>Reservas automáticas:</strong> Los clientes eligen fecha y hora desde su celular, sin necesidad de llamar.</li>
+                                <li><strong>Panel de administración:</strong> El dueño de la barbería ve todas las citas del día, semana y mes desde una pantalla fácil de usar.</li>
+                                <li><strong>Gestión de barberos:</strong> Cada barbero tiene su propio horario y sus propios servicios (corte, barba, tinte, etc.).</li>
+                                <li><strong>Historial de clientes:</strong> Se guarda la información de cada cliente para saber qué servicio pidió la última vez.</li>
+                                <li><strong>Notificaciones:</strong> Se envían recordatorios automáticos para que nadie olvide su cita.</li>
+                            </ul>
+
+                            <h4>¿Qué procesos mejora?</h4>
+                            <ul>
+                                <li>Elimina la confusión de las citas escritas en papel o por WhatsApp.</li>
+                                <li>Reduce el tiempo que el barbero pierde contestando llamadas.</li>
+                                <li>Evita citas dobles o cruzadas.</li>
+                                <li>El dueño puede ver los ingresos y las estadísticas del negocio sin hacer cuentas a mano.</li>
+                            </ul>
+
+                            <h4>¿Para quién es?</h4>
+                            <p>Para barberías de cualquier tamaño que quieran organizarse mejor y darle una experiencia moderna a sus clientes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" id="project-2">
+                    <div class="project-number">02</div>
+                    <div class="project-content">
+                        <div class="tags">
+                            <span>Plataforma Social</span>
+                            <span>Mobile</span>
+                        </div>
+                        <h3>Plataforma de Conexiones</h3>
+                        <p>Red social interactiva diseñada para conectar personas con intereses similares, con perfiles personalizados y chat en tiempo real.</p>
+                        <button class="project-link" onclick="toggleDetails('details-2')">
+                            Ver detalles <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="project-details" id="details-2">
+                        <div class="details-inner">
+                            <h4>¿Qué es?</h4>
+                            <p>Es una aplicación donde las personas pueden crear un perfil, buscar a otras personas cercanas y comenzar a conversar. Piensa en ello como un club virtual donde encuentras gente nueva con gustos parecidos a los tuyos.</p>
+                            
+                            <h4>¿Qué incluye?</h4>
+                            <ul>
+                                <li><strong>Perfiles personalizados:</strong> Cada usuario crea su perfil con fotos, intereses y una pequeña biografía.</li>
+                                <li><strong>Sistema de emparejamiento:</strong> Un algoritmo sugiere personas compatibles basándose en intereses, ubicación y preferencias.</li>
+                                <li><strong>Chat en tiempo real:</strong> Mensajes instantáneos sin retardo, como hablar por WhatsApp.</li>
+                                <li><strong>Filtros de búsqueda:</strong> Puedes buscar personas por edad, ciudad, intereses o cualquier criterio.</li>
+                                <li><strong>Sistema de privacidad:</strong> Los usuarios controlan quién puede ver su perfil y enviarles mensajes.</li>
+                            </ul>
+
+                            <h4>¿Qué procesos mejora?</h4>
+                            <ul>
+                                <li>Facilita conocer personas nuevas sin tener que salir de casa.</li>
+                                <li>Ahorra tiempo al mostrar solo personas compatibles.</li>
+                                <li>Las conversaciones quedan guardadas y organizadas.</li>
+                                <li>Protege la identidad del usuario hasta que él decida compartir más información.</li>
+                            </ul>
+
+                            <h4>¿Para quién es?</h4>
+                            <p>Para cualquier persona que quiera ampliar su círculo social o encontrar personas con intereses similares de forma segura y fácil.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" id="project-3">
+                    <div class="project-number">03</div>
+                    <div class="project-content">
+                        <div class="tags">
+                            <span>Aplicación</span>
+                            <span>Interactiva</span>
+                        </div>
+                        <h3>App de Dinámicas de Pareja</h3>
+                        <p>Aplicación de dinámicas e interacciones para relaciones, con cuestionarios, retos y seguimiento de eventos importantes.</p>
+                        <button class="project-link" onclick="toggleDetails('details-3')">
+                            Ver detalles <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="project-details" id="details-3">
+                        <div class="details-inner">
+                            <h4>¿Qué es?</h4>
+                            <p>Es una app divertida hecha para parejas. Imagina un juego donde tú y tu pareja responden preguntas, se hacen retos creativos y la app les recuerda fechas especiales como aniversarios o cumpleaños.</p>
+                            
+                            <h4>¿Qué incluye?</h4>
+                            <ul>
+                                <li><strong>Cuestionarios de compatibilidad:</strong> Preguntas divertidas para conocer mejor a tu pareja.</li>
+                                <li><strong>Retos diarios:</strong> Actividades creativas para hacer juntos y mantener la chispa.</li>
+                                <li><strong>Calendario de eventos:</strong> Recordatorios automáticos de fechas especiales.</li>
+                                <li><strong>Diario compartido:</strong> Un espacio privado donde ambos pueden escribir memorias y momentos especiales.</li>
+                                <li><strong>Estadísticas de relación:</strong> Datos curiosos como cuántos días llevan juntos o cuántas actividades han completado.</li>
+                            </ul>
+
+                            <h4>¿Qué procesos mejora?</h4>
+                            <ul>
+                                <li>Nunca más olvidas un aniversario o fecha importante.</li>
+                                <li>Genera ideas cuando no saben qué hacer juntos.</li>
+                                <li>Ayuda a conocerse mejor a través de preguntas y juegos.</li>
+                                <li>Guarda recuerdos digitales que puedes revisar cuando quieras.</li>
+                            </ul>
+
+                            <h4>¿Para quién es?</h4>
+                            <p>Para parejas que quieren fortalecer su relación de una forma divertida y moderna.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" id="project-4">
+                    <div class="project-number">04</div>
+                    <div class="project-content">
+                        <div class="tags">
+                            <span>E-Commerce</span>
+                            <span>Ventas Online</span>
+                        </div>
+                        <h3>Tienda Virtual de Productos</h3>
+                        <p>Sistema de ventas online con catálogo de productos, carrito de compras inteligente y pasarela de pagos integrada.</p>
+                        <button class="project-link" onclick="toggleDetails('details-4')">
+                            Ver detalles <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="project-details" id="details-4">
+                        <div class="details-inner">
+                            <h4>¿Qué es?</h4>
+                            <p>Es una tienda en internet. En vez de que el cliente vaya a un local físico, entra a la página web, mira los productos con fotos y precios, elige lo que quiere, lo mete al carrito y paga — todo desde su celular o computador.</p>
+                            
+                            <h4>¿Qué incluye?</h4>
+                            <ul>
+                                <li><strong>Catálogo de productos:</strong> Todos los productos organizados con fotos, descripción, precio y categorías.</li>
+                                <li><strong>Carrito de compras:</strong> El cliente agrega productos, cambia cantidades y ve el total antes de pagar.</li>
+                                <li><strong>Pasarela de pagos:</strong> Se puede pagar con tarjeta de crédito, débito o transferencia bancaria de forma segura.</li>
+                                <li><strong>Panel del vendedor:</strong> El dueño ve cuántas ventas tiene, qué producto se vende más y gestiona el inventario.</li>
+                                <li><strong>Sistema de envíos:</strong> Calcula automáticamente el costo del envío según la dirección del cliente.</li>
+                            </ul>
+
+                            <h4>¿Qué procesos mejora?</h4>
+                            <ul>
+                                <li>El negocio puede vender las 24 horas del día, los 7 días de la semana, sin parar.</li>
+                                <li>No necesita un empleado atendiendo todo el tiempo — el sistema cobra y registra solo.</li>
+                                <li>El dueño sabe exactamente cuánto vendió sin hacer cuentas en un cuaderno.</li>
+                                <li>Los clientes compran más rápido y más cómodo desde su casa.</li>
+                            </ul>
+
+                            <h4>¿Para quién es?</h4>
+                            <p>Para cualquier negocio o emprendedor que quiera vender sus productos por internet de forma profesional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" id="project-5">
+                    <div class="project-number">05</div>
+                    <div class="project-content">
+                        <div class="tags">
+                            <span>Corporativo</span>
+                            <span>Logística</span>
+                        </div>
+                        <h3>Portal Empresarial Logístico</h3>
+                        <p>Plataforma corporativa con integración de servicios logísticos y portal de clientes para operaciones a nivel nacional.</p>
+                        <button class="project-link" onclick="toggleDetails('details-5')">
+                            Ver detalles <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="project-details" id="details-5">
+                        <div class="details-inner">
+                            <h4>¿Qué es?</h4>
+                            <p>Es un sitio web profesional para una empresa grande que maneja envíos y logística. Piensa en una empresa que mueve paquetes de un lugar a otro — este sistema les permite a sus clientes hacer seguimiento de pedidos, solicitar servicios y comunicarse con la empresa, todo desde una sola página.</p>
+                            
+                            <h4>¿Qué incluye?</h4>
+                            <ul>
+                                <li><strong>Portal de clientes:</strong> Cada cliente tiene su propia cuenta donde ve sus pedidos, facturas y solicitudes.</li>
+                                <li><strong>Rastreo de envíos:</strong> El cliente sabe en todo momento dónde está su paquete.</li>
+                                <li><strong>Solicitud de servicios:</strong> Los clientes piden cotizaciones y servicios directamente desde la web.</li>
+                                <li><strong>Panel administrativo:</strong> La empresa gestiona todos sus clientes, rutas y operaciones desde un solo lugar.</li>
+                                <li><strong>Reportes automáticos:</strong> Genera informes de ventas, entregas y rendimiento sin trabajo manual.</li>
+                            </ul>
+
+                            <h4>¿Qué procesos mejora?</h4>
+                            <ul>
+                                <li>Los clientes ya no llaman para preguntar dónde está su pedido — lo ven en la web.</li>
+                                <li>La empresa organiza todas sus operaciones desde un solo sistema.</li>
+                                <li>Se reducen errores porque toda la información está digitalizada.</li>
+                                <li>Los reportes se generan solos, ahorrando horas de trabajo administrativo.</li>
+                            </ul>
+
+                            <h4>¿Para quién es?</h4>
+                            <p>Para empresas de logística, transporte o distribución que necesitan un sistema profesional para atender a sus clientes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" id="project-6">
+                    <div class="project-number">06</div>
+                    <div class="project-content">
+                        <div class="tags">
+                            <span>Portal Web</span>
+                            <span>Captación</span>
+                        </div>
+                        <h3>Sitio Web Corporativo</h3>
+                        <p>Sitio web empresarial enfocado en la captación de clientes potenciales y exhibición del portafolio de servicios corporativos.</p>
+                        <button class="project-link" onclick="toggleDetails('details-6')">
+                            Ver detalles <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="project-details" id="details-6">
+                        <div class="details-inner">
+                            <h4>¿Qué es?</h4>
+                            <p>Es la "tarjeta de presentación digital" de una empresa. Un sitio web elegante que muestra quién es la empresa, qué hace, sus servicios, y le permite a cualquier persona interesada enviar un mensaje para pedir información o contratar algo.</p>
+                            
+                            <h4>¿Qué incluye?</h4>
+                            <ul>
+                                <li><strong>Página de presentación:</strong> Muestra la misión, visión y valores de la empresa de forma atractiva.</li>
+                                <li><strong>Catálogo de servicios:</strong> Todos los servicios organizados con descripciones claras.</li>
+                                <li><strong>Formulario de contacto:</strong> Los visitantes envían su nombre, correo y mensaje, y la empresa recibe una notificación al instante.</li>
+                                <li><strong>Sección de testimonios:</strong> Opiniones de clientes anteriores que generan confianza.</li>
+                                <li><strong>Optimización SEO:</strong> El sitio aparece en Google cuando alguien busca los servicios de la empresa.</li>
+                            </ul>
+
+                            <h4>¿Qué procesos mejora?</h4>
+                            <ul>
+                                <li>La empresa se ve más profesional y confiable ante nuevos clientes.</li>
+                                <li>Los clientes encuentran toda la información sin tener que llamar.</li>
+                                <li>El formulario recoge datos de personas interesadas automáticamente.</li>
+                                <li>Al aparecer en Google, la empresa recibe visitas y clientes nuevos sin pagar publicidad constantemente.</li>
+                            </ul>
+
+                            <h4>¿Para quién es?</h4>
+                            <p>Para cualquier empresa que quiera tener presencia en internet y atraer clientes de forma profesional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact bg-light">
+        <div class="container contact-container">
+            <div class="contact-box">
+                <h2>¿Tienes un proyecto en mente?</h2>
+                <p>Podemos automatizar tu negocio o crear el sistema que necesitas. Envíame un mensaje y te asesoraré de forma gratuita.</p>
+                <div class="contact-methods">
+                    <a href="mailto:rusbelt.114@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i> Correo
+                    </a>
+                    <a href="https://wa.me/584241381555" target="_blank" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/sistemasimples.ve" target="_blank" class="contact-btn instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <i class="fas fa-layer-group"></i> Rusbelt<span>.</span>
+            </div>
+            <p>© 2026 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        const body = document.body;
+        
+        // Comprobar si ya había preferencia
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // Scroll Animations (Aparecer suavemente)
+        // Usamos rootMargin de "0px 0px -50px 0px" para que se active muy pronto al bajar
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.05
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Seleccionamos los elementos a animar
+        document.querySelectorAll('.hero-content, .about-card, .project-card, .section-header, .contact-box').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Simple sticky header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle project details
+        function toggleDetails(detailsId) {
+            const details = document.getElementById(detailsId);
+            const card = details.closest('.project-card');
+            const btn = card.querySelector('.project-link');
+            const icon = btn.querySelector('i');
+            const isOpen = details.classList.contains('open');
+
+            // Close all other open details
+            document.querySelectorAll('.project-details.open').forEach(d => {
+                if (d.id !== detailsId) {
+                    d.classList.remove('open');
+                    d.style.maxHeight = '0px';
+                    const otherCard = d.closest('.project-card');
+                    otherCard.classList.remove('expanded');
+                    const otherIcon = otherCard.querySelector('.project-link i');
+                    otherIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+            });
+
+            if (isOpen) {
+                details.classList.remove('open');
+                details.style.maxHeight = '0px';
+                card.classList.remove('expanded');
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            } else {
+                details.classList.add('open');
+                details.style.maxHeight = details.scrollHeight + 'px';
+                card.classList.add('expanded');
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+
+                // Smooth scroll to the card
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
+            }
+        }
+    </script>
+</body>
+</html>
