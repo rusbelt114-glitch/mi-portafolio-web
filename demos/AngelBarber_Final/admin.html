@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Angel Barber</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --surface-color: #111111;
+            --surface-light: #1a1a1a;
+            --purple-main: #7b2cbf;
+            --purple-light: #9d4edd;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --success: #00b4d8;
+            --border-radius: 15px;
+        }
+
+        /* Kill Switch CSS */
+        .license-blocker { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; font-family: 'Outfit', sans-serif; display: none; }
+        .license-blocker h1 { color: #ff3366; font-size: 30px; margin-bottom: 15px; }
+        .license-blocker p { color: #aaa; font-size: 16px; max-width: 80%; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            display: flex; 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Izquierda */
+        .sidebar {
+            width: 250px;
+            background-color: var(--surface-color);
+            border-right: 1px solid #222;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .sidebar-logo h2 {
+            font-size: 20px;
+            color: var(--purple-light);
+            font-weight: 900;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 15px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn:hover { background: #1a1a1a; color: #fff; }
+        .nav-btn.active { background: var(--purple-main); color: #fff; box-shadow: 0 0 10px rgba(157, 78, 221, 0.4); }
+
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 30px 40px;
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Dashboard Header */
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .date-picker { background: var(--surface-color); color: #fff; border: 1px solid #333; padding: 10px 15px; border-radius: 10px; outline: none; }
+        .date-picker::-webkit-calendar-picker-indicator { filter: invert(1); cursor:pointer; }
+
+        /* Metrics */
+        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .metric-card { background: var(--surface-color); padding: 20px; border-radius: var(--border-radius); border: 1px solid #222; text-align: center; }
+        .metric-value { font-size: 32px; font-weight: 900; color: var(--purple-light); margin: 5px 0; }
+        .metric-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Timeline */
+        .timeline { display: flex; flex-direction: column; gap: 15px; }
+        
+        .appointment-card {
+            background: var(--surface-light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border-left: 5px solid var(--purple-main);
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .time-box { text-align: center; font-size: 20px; font-weight: 800; color: var(--purple-light); }
+        .time-box span { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; }
+
+        .client-info h3 { font-size: 18px; margin-bottom: 5px; display: flex; justify-content: space-between; }
+        .client-info .service { color: var(--text-muted); font-size: 14px; margin-bottom: 10px; }
+        
+        .tags { display: flex; gap: 8px; margin-bottom: 15px; }
+        .tag { background: #222; padding: 4px 8px; border-radius: 5px; font-size: 11px; color: #ccc; }
+        .tag.paid { background: rgba(0, 180, 216, 0.1); color: var(--success); border: 1px solid var(--success); cursor: pointer; transition: 0.3s; }
+        .tag.paid:hover { background: var(--success); color: #000; }
+        
+        .actions { display: flex; gap: 10px; }
+        .btn-action { 
+            padding: 8px 15px; text-align: center; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; 
+            text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+        }
+        .btn-wa { background: #25D366; color: #000; }
+        .btn-wa:hover { background: #1ebd5a; }
+        .btn-cancel { background: var(--surface-color); color: var(--error-color); border: 1px solid var(--error-color); }
+        .btn-cancel:hover { background: rgba(255,51,102,0.1); }
+
+        /* Modal Eliminado */
+
+        /* Formulario Simple para Angel */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 14px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border-radius: 10px; background: var(--surface-light); border: 1px solid #333; color: #fff; font-size: 15px; outline: none; }
+        .form-group input:focus, .form-group select:focus { border-color: var(--purple-main); }
+        .btn-submit-form { background: var(--purple-main); color: #fff; padding: 15px; width: 100%; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+
+        /* Botón Hamburguesa (solo móvil) */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 3000;
+            background: var(--purple-main);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            width: 45px;
+            height: 45px;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(123, 44, 191, 0.5);
+        }
+
+        /* Overlay oscuro cuando el menú está abierto */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+        }
+        .sidebar-overlay.active { display: block; }
+
+        /* LOGIN SCREEN */
+        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        .login-box { background: var(--surface-color); padding: 40px; border-radius: var(--border-radius); border: 1px solid #333; text-align: center; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .login-box h2 { color: var(--text-main); margin-bottom: 5px; font-weight: 900; letter-spacing: 1px; }
+        .login-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; }
+        .login-box input { width: 100%; padding: 15px; border-radius: 10px; background: var(--surface-light); border: 1px solid #444; color: #fff; font-size: 16px; outline: none; margin-bottom: 15px; text-align: center; }
+        .login-box input:focus { border-color: var(--purple-main); }
+        .login-box button { width: 100%; padding: 15px; border-radius: 10px; background: var(--purple-main); color: #fff; font-size: 16px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; }
+        .login-box button:hover { background: var(--purple-light); }
+
+        /* RESPONSIVE MÓVIL */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; align-items: center; justify-content: center; }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 2000;
+                width: 260px;
+            }
+            .sidebar.open { transform: translateX(0); }
+
+            .main-content {
+                margin-left: 0;
+                padding: 70px 15px 30px;
+            }
+
+            header { flex-direction: column; gap: 10px; align-items: flex-start; }
+
+            .metrics-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .metric-value { font-size: 24px; }
+
+            .appointment-card {
+                grid-template-columns: 70px 1fr;
+                gap: 12px;
+                padding: 15px;
+            }
+
+            .time-box { font-size: 16px; }
+            .client-info h3 { font-size: 15px; flex-wrap: wrap; }
+            .actions { flex-direction: column; gap: 8px; }
+            .btn-action { font-size: 12px; padding: 8px 10px; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- KILL SWITCH BLOQUEADOR -->
+<div id="licenseBlocker" class="license-blocker">
+    <h1>Servicio Suspendido</h1>
+    <p>Este sitio web se encuentra temporalmente fuera de servicio por mantenimiento o falta de pago. Por favor contacte al administrador.</p>
+</div>
+
+<script>
+    // IMPORTANTE: Aquí va la URL de tu Licencia_Maestra.js cuando lo publiques
+    const MASTER_LICENSE_URL = "https://script.google.com/macros/s/AKfycbw_glKCHTWaChBeDuJTcvU5uy5_nkkrJe2MTSBYqOL5w4j1pSr17lYqIUAmO7A3JVPDaQ/exec"; 
+    const CLIENT_NAME = "ANGEL";
+
+    async function checkLicense() {
+        if (!MASTER_LICENSE_URL) return; // Si no hay link, no bloquea nada por defecto
+        try {
+            const res = await fetch(MASTER_LICENSE_URL + "?cliente=" + CLIENT_NAME);
+            const data = await res.json();
+            if (data.estado === "INACTIVO") {
+                document.getElementById('licenseBlocker').style.display = "flex";
+                document.body.style.overflow = "hidden";
+            } else {
+                document.getElementById('licenseBlocker').style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        } catch(e) { console.error("Error verificando licencia"); }
+    }
+    checkLicense();
+    setInterval(checkLicense, 10000); // Verifica cada 10 segundos
+</script>
+
+<!-- PANTALLA DE LOGIN -->
+<div id="loginScreen" class="login-overlay">
+    <div class="login-box">
+        <div style="font-size: 40px; margin-bottom: 15px;">💈</div>
+        <h2>ANGEL BARBER</h2>
+        <p>Panel de Administración VIP</p>
+        <input type="password" id="passInput" placeholder="Contraseña de acceso" onkeypress="if(event.key === 'Enter') doLogin()">
+        <button onclick="doLogin()">Ingresar al Sistema</button>
+        <p id="loginError" style="color: var(--error-color); margin-top: 15px; display: none;">Contraseña incorrecta.</p>
+    </div>
+</div>
+
+<!-- Contenedor Principal de la App -->
+<div id="appContainer" style="display: none; width: 100%;">
+    <!-- Botón Hamburguesa (solo se ve en celular) -->
+<button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</button>
+
+<!-- Overlay para cerrar menú al tocar fuera -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
+
+<!-- Menú Lateral -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <h2>ANGEL BARBER</h2>
+        <p style="color:var(--text-muted); font-size: 12px; margin-top:5px;">Panel de Control</p>
+    </div>
+    
+    <button class="nav-btn active" onclick="switchView('agendaView', this); closeMenu()">
+        📅 Mi Agenda
+    </button>
+    <button class="nav-btn" onclick="switchView('nuevaCitaView', this); closeMenu()">
+        ➕ Nueva Cita (Manual)
+    </button>
+    <div style="flex-grow: 1;"></div>
+    <button class="nav-btn" style="color: #ff4d4d; justify-self: flex-end;" onclick="logout()">
+        🚪 Cerrar Sesión
+    </button>
+</div>
+
+<!-- Contenido Principal -->
+<div class="main-content">
+    
+    <!-- VISTA 1: AGENDA -->
+    <div id="agendaView" class="view-section active">
+        <header>
+            <h2 style="font-size: 24px;">Agenda 💼</h2>
+            <input type="date" id="adminDate" class="date-picker" onchange="loadData()">
+        </header>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Cortes Estimados</div>
+                <div class="metric-value" id="valCortes">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Ingresos del Día</div>
+                <div class="metric-value" id="valIngresos">$0</div>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom: 15px; color: var(--text-muted); font-size: 16px;" id="tituloLista">Citas del Día</h3>
+        
+        <div class="timeline" id="agendaList">
+            <!-- Generado por JS -->
+        </div>
+    </div>
+
+    <!-- VISTA 2: NUEVA CITA MANUAL -->
+    <div id="nuevaCitaView" class="view-section">
+        <header>
+            <h2 style="font-size: 24px;">➕ Registrar Cliente Manual</h2>
+        </header>
+        <p style="color:var(--text-muted); margin-bottom: 25px;">Usa este formulario si un cliente te llama por teléfono o llega directo al local sin agendar por la web.</p>
+        
+        <div style="background: var(--surface-color); padding: 25px; border-radius: var(--border-radius); border: 1px solid #222; max-width: 500px;">
+            <div class="form-group">
+                <label>Nombre del Cliente</label>
+                <input type="text" id="manualNombre" placeholder="Ej: Roberto">
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" id="manualFecha">
+            </div>
+            <div class="form-group">
+                <label>Hora</label>
+                <select id="manualHora">
+                    <option>08:00 AM</option><option>09:00 AM</option><option>10:00 AM</option>
+                    <option>11:00 AM</option><option>12:00 PM</option><option>01:00 PM</option>
+                    <option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option>
+                    <option>05:00 PM</option><option>06:00 PM</option><option>07:00 PM</option>
+                    <option>08:00 PM</option><option>09:00 PM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Servicio</label>
+                <select id="manualServicio">
+                    <option value="15">Corte Premium ($15)</option>
+                    <option value="20">Corte + Barba ($20)</option>
+                    <option value="35">Colorimetría ($35)</option>
+                </select>
+            </div>
+            <button class="btn-submit-form" onclick="guardarCitaManual()">Guardar en Agenda</button>
+        </div>
+    </div>
+
+</div> <!-- Fin Contenido Principal -->
+</div> <!-- Fin App Container -->
+
+<script>
+    // Inicializar fechas
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('adminDate').value = today;
+    document.getElementById('manualFecha').value = today;
+
+    // Seguridad Básica y LocalStorage
+    function checkAuth() {
+        const savedAuth = localStorage.getItem('angelAdminAuth');
+        if (savedAuth === "true") {
+            document.getElementById('loginScreen').style.display = "none";
+            document.getElementById('appContainer').style.display = "flex";
+            loadData(false); // Carga inicial
+            startPolling();  // Inicia el auto-refresh
+        }
+    }
+
+    function doLogin() {
+        const pass = document.getElementById('passInput').value;
+        if (pass === "AngelVIP2026") {
+            localStorage.setItem('angelAdminAuth', 'true');
+            checkAuth();
+        } else {
+            document.getElementById('loginError').style.display = "block";
+            document.getElementById('passInput').value = "";
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('angelAdminAuth');
+        location.reload(); // Recarga la página para volver al login
+    }
+
+    window.onload = checkAuth;
+
+    // Navegación Sidebar
+    function switchView(viewId, btnElement) {
+        document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(viewId).classList.add('active');
+        btnElement.classList.add('active');
+    }
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8Y_D2Xgmm0_bn_azX5tWHo8UHUKx4XPV7qZEKdd_BSj8Ykyq7eqmXrQOiOqCIUlmraQ/exec";
+    let pollInterval;
+
+    function startPolling() {
+        if(pollInterval) clearInterval(pollInterval);
+        pollInterval = setInterval(() => {
+            // Solo hace polling si estamos en la vista de Agenda
+            if (document.getElementById('agendaView').classList.contains('active')) {
+                loadData(true); // isSilent = true
+            }
+        }, 5000); // 5 segundos
+    }
+
+    async function loadData(isSilent = false) {
+        let dateSelected = document.getElementById('adminDate').value;
+        const list = document.getElementById('agendaList');
+        
+        if (!isSilent) {
+            list.innerHTML = `<p style="color:var(--purple-light); text-align:center; padding: 30px;">Cargando base de datos...</p>`;
+            document.getElementById('valCortes').innerText = "...";
+            document.getElementById('valIngresos').innerText = "...";
+        }
+
+        try {
+            const response = await fetch(SCRIPT_URL);
+            const allCitas = await response.json();
+            
+            // Filtrar las citas de este día
+            const citasDelDia = allCitas.filter(c => {
+                if(!c.fecha) return false;
+                let d = new Date(c.fecha);
+                let fechaFormateada = String(c.fecha).split('T')[0].trim();
+                if (!isNaN(d.getTime())) {
+                    let yyyy = d.getFullYear();
+                    let mm = String(d.getMonth() + 1).padStart(2, '0');
+                    let dd = String(d.getDate()).padStart(2, '0');
+                    fechaFormateada = `${yyyy}-${mm}-${dd}`;
+                }
+                return fechaFormateada === dateSelected || String(c.fecha).includes(dateSelected);
+            });
+            
+            let newHtml = '';
+            let totalIngresos = 0;
+
+            if(citasDelDia.length === 0) {
+                document.getElementById('valCortes').innerText = "0";
+                document.getElementById('valIngresos').innerText = "$0";
+                list.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding: 30px; background:var(--surface-color); border-radius:10px;">No hay citas agendadas para esta fecha.</p>`;
+                return;
+            }
+
+            citasDelDia.forEach((cita, index) => {
+                totalIngresos += Number(cita.precio);
+                
+                let ampm = cita.hora.includes("AM") ? "AM" : "PM";
+                let horaLimpia = cita.hora.replace(" AM", "").replace(" PM", "");
+                
+                // Formatear precio con separador de miles
+                let precioFormateado = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(cita.precio);
+
+                let btnComprobanteHTML = `<span class="tag">${cita.pago}</span>`;
+
+                let card = `
+                    <div class="appointment-card">
+                        <div class="time-box">
+                            ${horaLimpia}<span>${ampm}</span>
+                        </div>
+                        <div class="client-info">
+                            <h3>${cita.nombre} <span style="color:var(--purple-light)">${precioFormateado}</span></h3>
+                            <div class="service">${cita.servicio} • ${cita.modalidad}</div>
+                            <div class="tags">
+                                <span class="tag">🍹 ${cita.bebida || 'N/A'}</span>
+                                ${btnComprobanteHTML}
+                            </div>
+                            <div class="actions">
+                                <button class="btn-action btn-cancel" onclick="cancelarCita('${dateSelected}', '${cita.hora}', '${cita.nombre}')">❌ Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                newHtml += card;
+            });
+
+            // Reemplazamos todo solo si estamos silenciosos, para evitar el parpadeo de "Cargando..." pero sí actualizar el contenido final
+            list.innerHTML = newHtml;
+
+            document.getElementById('valCortes').innerText = citasDelDia.length;
+            const formatCLP = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(totalIngresos);
+            document.getElementById('valIngresos').innerText = formatCLP;
+
+        } catch(e) {
+            if(!isSilent) {
+                list.innerHTML = `<p style="color:var(--error-color); text-align:center; padding: 30px;">Error al conectar con la base de datos.</p>`;
+            }
+        }
+    }
+
+    // Modal logic eliminado
+
+    // Cita Manual Logic
+    async function guardarCitaManual() {
+        const nombre = document.getElementById('manualNombre').value;
+        const fecha = document.getElementById('manualFecha').value;
+        const hora = document.getElementById('manualHora').value;
+        const servicioSel = document.getElementById('manualServicio');
+        const servicioTexto = servicioSel.options[servicioSel.selectedIndex].text;
+        const precio = servicioSel.value;
+
+        if(!nombre) return alert("Ingresa el nombre del cliente.");
+        
+        const btn = document.querySelector('.btn-submit-form');
+        btn.innerText = "Verificando disponibilidad...";
+        btn.disabled = true;
+
+        try {
+            // Verificar solapamiento primero
+            const response = await fetch(SCRIPT_URL);
+            const allCitas = await response.json();
+            const exists = allCitas.find(c => c.fecha.includes(fecha) && c.hora === hora);
+            if(exists) {
+                alert(`❌ Error: Ya existe una cita ocupando el horario de ${hora} el día ${fecha}.`);
+                btn.innerText = "Guardar en Agenda";
+                btn.disabled = false;
+                return;
+            }
+
+            const payload = {
+                fecha: fecha, hora: hora, nombre: nombre, telefono: "N/A",
+                servicio: servicioTexto, modalidad: "Estudio", pago: "Efectivo",
+                precio: precio, bebida: "N/A"
+            };
+
+            btn.innerText = "Guardando cita...";
+
+            const postRes = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "text/plain;charset=utf-8" }
+            });
+            const data = await postRes.json();
+            
+            if(data.status === "success") {
+                alert(`✅ Cita guardada correctamente.`);
+                document.getElementById('manualNombre').value = '';
+                loadData(false); // Recargar agenda visible
+            } else {
+                alert("Error al guardar.");
+            }
+        } catch(e) {
+            console.error(e);
+            alert("Error de conexión al guardar.");
+        }
+        btn.innerText = "Guardar en Agenda";
+        btn.disabled = false;
+    }
+
+    // Cancelar Cita Logic
+    async function cancelarCita(fecha, hora, nombre) {
+        if(confirm(`¿Estás seguro de cancelar la cita de ${nombre}? El horario volverá a estar libre.`)) {
+            try {
+                const postRes = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify({ action: "cancelar", fecha: fecha, hora: hora, nombre: nombre }),
+                    headers: { "Content-Type": "text/plain;charset=utf-8" }
+                });
+                const data = await postRes.json();
+                if(data.status === "success") {
+                    alert("✅ Cita cancelada exitosamente.");
+                    loadData(false);
+                } else {
+                    alert("Error al intentar cancelar.");
+                }
+            } catch(e) {
+                console.error(e);
+                alert("Error de red al intentar cancelar.");
+            }
+        }
+    }
+
+    // Funciones del menú móvil
+    function toggleMenu() {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function closeMenu() {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('active');
+    }
+
+    // Agregamos listener de cambio manual para forzar carga con loader
+    document.getElementById('adminDate').addEventListener('change', () => loadData(false));
+
+</script>
+</body>
+</html>

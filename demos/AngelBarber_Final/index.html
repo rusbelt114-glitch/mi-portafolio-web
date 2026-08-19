@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Barber - VIP Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #030308;
+            --surface-color: #0d0d1a;
+            --surface-light: #16162d;
+            --purple-main: #8a2be2;
+            --purple-light: #b05bff;
+            --blue-main: #00e5ff;
+            --blue-glow: rgba(0, 229, 255, 0.4);
+            --purple-glow: rgba(138, 43, 226, 0.5);
+            --text-main: #ffffff;
+            --text-muted: #9ba1a6;
+            --error-color: #ff3366;
+            --border-radius: 20px;
+        }
+
+        /* Kill Switch CSS */
+        .license-blocker { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; font-family: 'Outfit', sans-serif; display: none; }
+        .license-blocker h1 { color: #ff3366; font-size: 30px; margin-bottom: 15px; }
+        .license-blocker p { color: #aaa; font-size: 16px; max-width: 80%; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Layout Responsivo */
+        .app-container {
+            width: 100%;
+            max-width: 500px; /* Ancho optimizado para móvil */
+            margin: 0 auto;
+            background-color: var(--bg-dark);
+            padding-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-x: hidden;
+        }
+
+        .left-col, .right-col { width: 100%; }
+
+        @media (min-width: 850px) {
+            .app-container {
+                max-width: 1200px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                padding: 30px;
+                gap: 40px;
+            }
+            .left-col { position: sticky; top: 30px; height: fit-content; }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 25px 20px 15px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15) 0%, rgba(0, 229, 255, 0.1) 100%);
+            border-radius: 30px;
+            margin: 10px 10px 20px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        @media (min-width: 850px) {
+            .hero { margin: 0 0 30px 0; }
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--purple-main);
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 60px;
+            font-weight: 400;
+            line-height: 1.0;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--blue-main), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0 20px 10px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title span { color: var(--purple-main); }
+
+        /* Galería Horizontal Compacta */
+        .gallery-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 0 20px 10px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .gallery-container::-webkit-scrollbar { display: none; }
+
+        .gallery-item {
+            min-width: 140px;
+            height: 140px;
+            border-radius: var(--border-radius);
+            scroll-snap-align: start;
+            background-color: var(--surface-color);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid #222;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .gallery-item:hover img { opacity: 1; transform: scale(1.05); }
+
+        /* Menú de Bebidas Compacto */
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 20px;
+            margin-bottom: 25px;
+        }
+
+        .drink-item {
+            background-color: var(--surface-color);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 20px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .drink-item p { font-size: 10px; color: var(--text-muted); margin-top: 5px; font-weight: 600; }
+        .drink-item.active {
+            border-color: var(--purple-main);
+            background: rgba(157, 78, 221, 0.1);
+            box-shadow: 0 0 10px var(--purple-glow);
+        }
+
+        /* Tarjetas de Selección Compactas */
+        .grid-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 20px;
+            margin-bottom: 25px;
+        }
+
+        .option-card {
+            background-color: var(--surface-color);
+            border: 2px solid #222;
+            border-radius: 15px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option-card.selected {
+            border-color: var(--blue-main);
+            background: linear-gradient(145deg, rgba(0, 229, 255, 0.15), var(--surface-color));
+            box-shadow: 0 0 10px var(--blue-glow);
+        }
+
+        .option-card.selected::before {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: var(--blue-main);
+            font-weight: bold;
+        }
+
+        .option-title { font-weight: 600; margin-bottom: 2px; font-size: 14px; }
+        .option-price { color: var(--purple-light); font-weight: 800; font-size: 16px; }
+
+        /* Calendario y Horas Compactos */
+        .calendar-wrap { padding: 0 20px; margin-bottom: 10px; }
+        input[type="date"] {
+            width: 100%;
+            background-color: var(--surface-color);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 10px 15px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            padding: 0 20px;
+        }
+
+        .time-slot {
+            background-color: var(--surface-color);
+            padding: 10px 2px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #333;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .time-slot.available { color: var(--text-main); }
+        .time-slot.available:hover { border-color: var(--purple-light); }
+        .time-slot.selected {
+            background-color: var(--purple-main);
+            border-color: var(--purple-main);
+            color: #fff;
+            box-shadow: 0 0 10px var(--purple-glow);
+        }
+        
+        .time-slot.occupied {
+            background-color: #1a1a1a;
+            border-color: #1a1a1a;
+            color: #444;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 20px 25px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.disp { background-color: var(--surface-color); border: 1px solid #555; }
+        .dot.ocup { background-color: #1a1a1a; }
+        .dot.selec { background-color: var(--purple-main); box-shadow: 0 0 5px var(--purple-glow);}
+
+        /* Datos de Contacto y Pagos */
+        .form-section { padding: 0 20px; margin-bottom: 25px; }
+        
+        input[type="text"], input[type="tel"], textarea {
+            width: 100%;
+            background-color: var(--surface-color);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--purple-main); }
+        textarea { resize: none; height: 60px; }
+
+        .payment-box {
+            background: var(--surface-light);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 0 20px 30px;
+            border: 1px dashed var(--purple-main);
+        }
+
+        .bank-details {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .bank-details strong { color: var(--text-main); }
+
+        .file-upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 45px;
+            border-radius: 10px;
+            background-color: var(--surface-color);
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            left: 0; top: 0; opacity: 0;
+            width: 100%; height: 100%; cursor: pointer;
+        }
+        .file-upload-text { color: var(--purple-light); font-weight: 600; font-size: 13px; }
+
+        /* Resumen Final Flotante */
+        .floating-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .footer-content {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-price { font-size: 20px; font-weight: 900; color: var(--text-main); }
+        .total-price span { font-size: 11px; color: var(--text-muted); display: block; font-weight: 400; }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--purple-main), var(--blue-main));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px var(--purple-glow);
+        }
+        .btn-submit:hover { transform: scale(1.02); }
+
+        /* License Blocker */
+        .license-blocker {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .license-blocker h1 { color: #ff3333; font-size: 24px; margin-bottom: 10px; }
+        .license-blocker p { color: #fff; font-size: 16px; }
+
+    </style>
+</head>
+<body>
+    <!-- DEMO RIBBON INYECTADO -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 999999; font-weight: bold; font-family: sans-serif; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+        MODO DEMO: Entorno seguro de solo lectura. Los datos son ficticios y no se guardarán.
+    </div>
+
+<!-- KILL SWITCH BLOQUEADOR -->
+<div id="licenseBlocker" class="license-blocker">
+    <h1>Servicio Suspendido</h1>
+    <p>Este sitio web se encuentra temporalmente fuera de servicio por mantenimiento o falta de pago. Por favor contacte al administrador.</p>
+</div>
+
+<script>
+    // IMPORTANTE: Aquí va la URL de tu Licencia_Maestra.js cuando lo publiques
+    const MASTER_LICENSE_URL = "https://script.google.com/macros/s/AKfycbw_glKCHTWaChBeDuJTcvU5uy5_nkkrJe2MTSBYqOL5w4j1pSr17lYqIUAmO7A3JVPDaQ/exec"; 
+    const CLIENT_NAME = "ANGEL";
+
+    async function checkLicense() {
+        if (!MASTER_LICENSE_URL) return; // Si no hay link, no bloquea nada por defecto
+        try {
+            const res = await fetch(MASTER_LICENSE_URL + "?cliente=" + CLIENT_NAME);
+            const data = await res.json();
+            if (data.estado === "INACTIVO") {
+                document.getElementById('licenseBlocker').style.display = "flex";
+                document.body.style.overflow = "hidden";
+            } else {
+                document.getElementById('licenseBlocker').style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        } catch(e) { console.error("Error verificando licencia"); }
+    }
+    checkLicense();
+    setInterval(checkLicense, 10000); // Verifica cada 10 segundos
+</script>
+
+<div class="app-container">
+    
+    <!-- COLUMNA IZQUIERDA (Info y Servicios) -->
+    <div class="left-col">
+        <div class="hero">
+            <div class="top-bar">
+                <img src="./logo.jpg" alt="Angel Barber Logo" class="logo">
+                <span style="font-weight: 800; letter-spacing: 2px;">ANGEL BARBER</span>
+            </div>
+            <h1>ELEVA TU ESTILO</h1>
+            <p class="subtitle">No solo es un corte de cabello, es tu imagen!</p>
+        </div>
+
+        <h2 class="section-title"><span>#</span> Trabajos Recientes</h2>
+        <div class="gallery-container">
+            <div class="gallery-item"><img src="./corte1.jpg" alt="Corte 1"></div>
+            <div class="gallery-item"><img src="./corte2.jpg" alt="Corte 2"></div>
+            <div class="gallery-item"><img src="./corte3.jpg" alt="Corte 3"></div>
+            <div class="gallery-item" style="display:flex; align-items:center; justify-content:center; background:#111; cursor:pointer;" onclick="window.open('https://www.instagram.com/angelg222_?igsh=MWtvZ3pyNDA5NmJ3cQ==', '_blank')">
+                <span style="color:var(--blue-main); font-weight:bold; font-size: 14px;">@angelg222_</span>
+            </div>
+        </div>
+
+        <br>
+
+        <h2 class="section-title"><span>#</span> Servicios</h2>
+        <div class="grid-options" id="servicesGrid">
+            <div class="option-card" data-service="Corte de cabello" data-price="10300" onclick="selectService(this)">
+                <div class="option-title">Corte de cabello</div>
+                <div class="option-price">$10.300</div>
+            </div>
+            <div class="option-card" data-service="Corte + lavado" data-price="11300" onclick="selectService(this)">
+                <div class="option-title">Corte + Lavado</div>
+                <div class="option-price">$11.300</div>
+            </div>
+            <div class="option-card" data-service="Corte + Barba" data-price="14300" onclick="selectService(this)">
+                <div class="option-title">Corte + Barba</div>
+                <div class="option-price">$14.300</div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><span>#</span> ¿Dónde te atiendo?</h2>
+        <div class="grid-options">
+            <div class="option-card selected" data-fee="0" id="modLocal" onclick="selectModality('Estudio', 0)">
+                <div class="option-title">En el Estudio</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Sin recargo</div>
+            </div>
+            <div class="option-card" data-fee="5000" id="modDelivery" onclick="selectModality('A Domicilio', 5000)">
+                <div class="option-title">A Domicilio</div>
+                <div style="font-size: 11px; color: var(--purple-light);">+$5.000 Delivery</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COLUMNA DERECHA (Agenda y Pagos) -->
+    <div class="right-col">
+        <h2 class="section-title"><span>#</span> Cortesía de la Casa</h2>
+        <div class="drinks-grid" id="drinksGrid">
+            <div class="drink-item" onclick="selectDrink(this, 'Café')">☕<p>Café</p></div>
+            <div class="drink-item" onclick="selectDrink(this, 'Té')">🍵<p>Té</p></div>
+        </div>
+
+        <h2 class="section-title"><span>#</span> Tu Cita</h2>
+        <div class="calendar-wrap">
+            <input type="date" id="fecha" onchange="loadAvailableHours()">
+        </div>
+        
+        <div class="time-slots" id="timeGrid"></div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="dot disp"></div> Libre</div>
+            <div class="legend-item"><div class="dot ocup"></div> Ocupado</div>
+            <div class="legend-item"><div class="dot selec"></div> Tú</div>
+        </div>
+
+        <h2 class="section-title"><span>#</span> Detalles Finales</h2>
+        <div class="form-section">
+            <input type="text" id="nombre" placeholder="Nombre Completo">
+            <textarea id="notas" placeholder="¿Detalles extra?"></textarea>
+        </div>
+
+        <h2 class="section-title"><span>#</span> Método de Pago</h2>
+        <div class="grid-options" style="grid-template-columns: 1fr 1fr; margin-bottom: 15px; gap: 10px;">
+            <div class="option-card selected" style="padding: 10px 5px;" id="payEfectivo" onclick="selectPayment('Efectivo')">
+                <div class="option-title" style="font-size:13px;">Efectivo</div>
+            </div>
+            <div class="option-card" style="padding: 10px 5px;" id="payTransfer" onclick="selectPayment('Transferencia')">
+                <div class="option-title" style="font-size:13px;">Transferencia</div>
+            </div>
+        </div>
+
+        <!-- Comprobante falso eliminado para no confundir al cliente -->
+    </div>
+
+    <div style="height: 30px;"></div>
+
+    <!-- FOOTER FLOTANTE -->
+    <div class="floating-footer">
+        <div class="footer-content">
+            <div class="total-price">
+                <span>Total a Pagar</span>
+                <span id="sumTotal" style="font-size:22px; font-weight:900; color:#fff;">$0.00</span>
+            </div>
+            <button type="button" class="btn-submit" onclick="submitForm()">Confirmar Cita</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let state = { service: null, price: 0, modality: 'Estudio', fee: 0, time: null, drink: null, payment: 'Efectivo' };
+
+    const dateInput = document.getElementById('fecha');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today; dateInput.value = today;
+
+    const allHours = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM', '08:00 PM', '09:00 PM'];
+    
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8Y_D2Xgmm0_bn_azX5tWHo8UHUKx4XPV7qZEKdd_BSj8Ykyq7eqmXrQOiOqCIUlmraQ/exec";
+
+    async function loadAvailableHours() {
+        const grid = document.getElementById('timeGrid');
+        grid.innerHTML = '<p style="font-size:12px; color:var(--purple-light); margin-left:20px;">🔄 Conectando con agenda de Angel...</p>'; 
+        state.time = null;
+        
+        let occupiedHours = [];
+        try {
+            const response = await fetch(SCRIPT_URL);
+            const allCitas = await response.json();
+            occupiedHours = allCitas.filter(c => {
+                if(!c.fecha) return false;
+                let d = new Date(c.fecha);
+                let fechaFormateada = String(c.fecha).split('T')[0].trim();
+                if (!isNaN(d.getTime())) {
+                    let yyyy = d.getFullYear();
+                    let mm = String(d.getMonth() + 1).padStart(2, '0');
+                    let dd = String(d.getDate()).padStart(2, '0');
+                    fechaFormateada = `${yyyy}-${mm}-${dd}`;
+                }
+                return fechaFormateada === dateInput.value || String(c.fecha).includes(dateInput.value);
+            }).map(c => c.hora);
+        } catch(e) { console.error("Modo Offline"); }
+        
+        grid.innerHTML = '';
+        allHours.forEach(hour => {
+            const isOccupied = occupiedHours.includes(hour);
+            const div = document.createElement('div');
+            div.className = `time-slot ${isOccupied ? 'occupied' : 'available'}`;
+            div.innerText = hour;
+            
+            if (isOccupied) div.onclick = () => alert(`Horario no disponible.`);
+            else div.onclick = () => selectTime(div, hour);
+            
+            grid.appendChild(div);
+        });
+    }
+
+    loadAvailableHours();
+
+    function selectService(el) {
+        document.querySelectorAll('#servicesGrid .option-card').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+        state.service = el.getAttribute('data-service'); state.price = parseFloat(el.getAttribute('data-price'));
+        updateTotal();
+    }
+
+    function selectModality(modality, fee) {
+        document.getElementById('modLocal').classList.remove('selected');
+        document.getElementById('modDelivery').classList.remove('selected');
+        if(modality === 'Estudio') document.getElementById('modLocal').classList.add('selected');
+        else document.getElementById('modDelivery').classList.add('selected');
+        state.modality = modality; state.fee = parseFloat(fee);
+        updateTotal();
+    }
+
+    function selectTime(el, hour) {
+        document.querySelectorAll('.time-slot.available').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected'); state.time = hour;
+    }
+
+    function selectDrink(el, drink) {
+        document.querySelectorAll('.drink-item').forEach(e => e.classList.remove('active'));
+        el.classList.add('active'); state.drink = drink;
+    }
+
+    function selectPayment(method) {
+        document.getElementById('payEfectivo').classList.remove('selected');
+        document.getElementById('payTransfer').classList.remove('selected');
+        
+        if(method === 'Efectivo') document.getElementById('payEfectivo').classList.add('selected');
+        if(method === 'Transferencia') document.getElementById('payTransfer').classList.add('selected');
+        
+        state.payment = method;
+
+        if(method === 'Transferencia') {
+            alert("Nota: Por favor envía tu comprobante directamente a nuestro WhatsApp después de confirmar la cita.");
+        }
+    }
+
+    // handleFileUpload eliminado
+
+    function updateTotal() { 
+        const total = state.price + state.fee;
+        const totalFormatted = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(total);
+        document.getElementById('sumTotal').innerText = totalFormatted; 
+    }
+
+    async function submitForm() {
+        if(!state.service) return alert("Selecciona un servicio.");
+        if(!state.time) return alert("Selecciona un horario disponible.");
+        const nombre = document.getElementById('nombre').value;
+        if(!nombre) return alert("Completa tu Nombre.");
+
+        const btn = document.querySelector('.btn-submit');
+        btn.innerText = "Confirmando cita y conectando...";
+        btn.disabled = true;
+        
+        const numeroAngel = "584142394674"; 
+        const total = state.price + state.fee;
+        const totalStr = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(total);
+
+        const payload = {
+            fecha: dateInput.value,
+            hora: state.time,
+            nombre: nombre,
+            telefono: 'N/A',
+            servicio: state.service,
+            modalidad: state.modality,
+            pago: state.payment,
+            precio: total,
+            bebida: state.drink || 'Ninguna'
+        };
+
+        try {
+            // Se envía sin "no-cors" y usando texto plano para que Google Apps Script acepte el post sin preflight
+            const res = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "text/plain;charset=utf-8" }
+            });
+            const data = await res.json();
+            
+            if(data.status !== "success") {
+                alert("Error al agendar en la base de datos, intenta de nuevo.");
+                btn.innerText = "Confirmar Cita";
+                btn.disabled = false;
+                return;
+            }
+        } catch(e) { 
+            console.error(e); 
+            // Si el backend falla, aún así permitimos enviarlo por whatsapp
+        }
+
+        btn.innerHTML = "✅ Abriendo WhatsApp..."; btn.style.background = "#00b4d8";
+        
+        let mensaje = `Hola Angel 💈, acabo de reservar una cita en tu página web.\n\n`;
+        mensaje += `*Nombre:* ${nombre}\n`;
+        mensaje += `*Día:* ${dateInput.value}\n`;
+        mensaje += `*Hora:* ${state.time}\n`;
+        mensaje += `*Servicio:* ${state.service}\n`;
+        mensaje += `*Bebida:* ${state.drink || 'Ninguna'}\n`;
+        mensaje += `*Pago:* ${state.payment}\n`;
+        mensaje += `*Total a pagar:* ${totalStr}\n\n`;
+        
+        if(state.payment === 'Transferencia') {
+            mensaje += `*Te adjunto en este chat mi comprobante de pago.* 📸`;
+        } else {
+            mensaje += `*Te pagaré con ${state.payment} allá.*`;
+        }
+
+        const urlWhatsApp = `https://wa.me/${numeroAngel}?text=${encodeURIComponent(mensaje)}`;
+        
+        window.open(urlWhatsApp, '_blank');
+        
+        setTimeout(() => { btn.innerText = "Confirmar Cita"; btn.style.background = ""; btn.disabled = false; }, 3000);
+    }
+</script>
+
+</body>
+</html>
+
