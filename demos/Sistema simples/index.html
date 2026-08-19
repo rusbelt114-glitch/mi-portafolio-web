@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas Simples | Desarrollo Web Profesional para tu Negocio</title>
+    <meta name="description" content="Páginas web profesionales, sistemas de inventario y catálogos digitales por menos de $80. Lleva tu negocio al mundo digital con Sistemas Simples.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- DEMO RIBBON INYECTADO -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 999999; font-weight: bold; font-family: sans-serif; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+        MODO DEMO: Entorno seguro de solo lectura. Los datos son ficticios y no se guardarán.
+    </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">SS</div>
+                <span>Sistemas<span class="logo-sep">__</span>Simples</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#ejemplos">Ejemplos</a>
+                <a href="#por-que">¿Por qué elegirnos?</a>
+                <a href="#contacto" class="btn-nav">Contáctanos</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+            <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+            <a href="#ejemplos" onclick="toggleMenu()">Ejemplos</a>
+            <a href="#por-que" onclick="toggleMenu()">¿Por qué elegirnos?</a>
+            <a href="#contacto" onclick="toggleMenu()">Contáctanos</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">Soluciones Digitales a tu Alcance</span>
+                <h1>Páginas Web <br><span class="text-gradient">Profesionales</span></h1>
+                <p class="hero-subtitle">Diseñadas para impulsar tu negocio en línea</p>
+                <p class="hero-desc">Creamos sitios web modernos, rápidos y 100% personalizados que se adaptan a tus necesidades y te ayudan a destacar en el mundo digital.</p>
+                
+                <div class="price-badge">
+                    <span class="price-label">Por menos de</span>
+                    <span class="price-amount">$80</span>
+                    <span class="price-sub">Totalmente personalizada</span>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn-primary">
+                        Solicitar Cotización <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#servicios" class="btn-secondary">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label">Nuestros Servicios</span>
+                <h2>Soluciones tecnológicas <br>de alto rendimiento</h2>
+                <p>¿Quieres dar el salto a internet pero crees que es muy costoso? En Sistemas Simples lo hacemos posible con desarrollo de código profesional y a la medida de tu emprendimiento.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Páginas Web Profesionales</h3>
+                    <p>Sitios rápidos, seguros y completamente adaptados a la identidad de tu marca. Diseño responsivo que se ve perfecto en cualquier dispositivo.</p>
+                    <ul class="service-features">
+                        <li>Diseño responsivo y moderno</li>
+                        <li>Optimizado para Google (SEO)</li>
+                        <li>Carga ultra rápida</li>
+                        <li>Adaptado a tu marca</li>
+                    </ul>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-badge">Más Popular</div>
+                    <div class="service-number">02</div>
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Sistemas de Inventario</h3>
+                    <p>Controla tu stock sin complicaciones. Sistemas organizados y seguros para gestionar toda la información de tu negocio en un solo lugar.</p>
+                    <ul class="service-features">
+                        <li>Control de stock en tiempo real</li>
+                        <li>Alertas de inventario bajo</li>
+                        <li>Reportes automáticos</li>
+                        <li>Panel de administración</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Catálogos y Tiendas Digitales</h3>
+                    <p>Muestra tus productos de forma atractiva con un catálogo online profesional o una tienda completa para vender por internet.</p>
+                    <ul class="service-features">
+                        <li>Galería de productos</li>
+                        <li>Carrito de compras</li>
+                        <li>Pasarela de pagos</li>
+                        <li>Gestión de pedidos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="ejemplos" class="examples">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label">Portafolio</span>
+                <h2>Algunos ejemplos de lo que <br><span class="text-gradient">podemos hacer</span></h2>
+            </div>
+
+            <div class="examples-grid">
+                <!-- Example 1: Dashboard -->
+                <div class="example-card">
+                    <div class="example-preview">
+                        <div class="browser-mockup">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-content dashboard-mock">
+                                <div class="dash-sidebar">
+                                    <div class="dash-logo-sm"></div>
+                                    <div class="dash-nav-item active"></div>
+                                    <div class="dash-nav-item"></div>
+                                    <div class="dash-nav-item"></div>
+                                    <div class="dash-nav-item"></div>
+                                    <div class="dash-nav-item"></div>
+                                </div>
+                                <div class="dash-main">
+                                    <div class="dash-topbar">
+                                        <div class="dash-title"></div>
+                                        <div class="dash-avatar"></div>
+                                    </div>
+                                    <div class="dash-metrics">
+                                        <div class="dash-metric">
+                                            <div class="metric-value">$12.4k</div>
+                                            <div class="metric-label"></div>
+                                            <div class="metric-bar"><div class="metric-fill" style="width:75%"></div></div>
+                                        </div>
+                                        <div class="dash-metric">
+                                            <div class="metric-value">847</div>
+                                            <div class="metric-label"></div>
+                                            <div class="metric-bar"><div class="metric-fill green" style="width:60%"></div></div>
+                                        </div>
+                                        <div class="dash-metric">
+                                            <div class="metric-value">94%</div>
+                                            <div class="metric-label"></div>
+                                            <div class="metric-bar"><div class="metric-fill purple" style="width:94%"></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="dash-chart-area">
+                                        <div class="mini-chart">
+                                            <div class="chart-bar" style="height:30%"></div>
+                                            <div class="chart-bar" style="height:55%"></div>
+                                            <div class="chart-bar" style="height:45%"></div>
+                                            <div class="chart-bar" style="height:80%"></div>
+                                            <div class="chart-bar" style="height:65%"></div>
+                                            <div class="chart-bar" style="height:90%"></div>
+                                            <div class="chart-bar" style="height:70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="dash-table">
+                                        <div class="table-row header"></div>
+                                        <div class="table-row"></div>
+                                        <div class="table-row"></div>
+                                        <div class="table-row"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-info">
+                        <h3>Bases de Datos y Paneles</h3>
+                        <p>Sistemas organizados y seguros para gestionar tu información empresarial con dashboards interactivos.</p>
+                    </div>
+                </div>
+
+                <!-- Example 2: Business Page -->
+                <div class="example-card">
+                    <div class="example-preview">
+                        <div class="browser-mockup">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-content page-mock">
+                                <div class="page-navbar">
+                                    <div class="page-nav-logo"></div>
+                                    <div class="page-nav-links">
+                                        <div class="page-nav-link"></div>
+                                        <div class="page-nav-link"></div>
+                                        <div class="page-nav-link"></div>
+                                        <div class="page-nav-btn"></div>
+                                    </div>
+                                </div>
+                                <div class="page-hero-section">
+                                    <div class="page-hero-text">
+                                        <div class="page-tag"></div>
+                                        <div class="page-hero-title"></div>
+                                        <div class="page-hero-sub"></div>
+                                        <div class="page-hero-btn"></div>
+                                    </div>
+                                    <div class="page-hero-img"></div>
+                                </div>
+                                <div class="page-services-row">
+                                    <div class="page-service-card">
+                                        <div class="psc-icon"></div>
+                                        <div class="psc-line"></div>
+                                        <div class="psc-line short"></div>
+                                    </div>
+                                    <div class="page-service-card">
+                                        <div class="psc-icon"></div>
+                                        <div class="psc-line"></div>
+                                        <div class="psc-line short"></div>
+                                    </div>
+                                    <div class="page-service-card">
+                                        <div class="psc-icon"></div>
+                                        <div class="psc-line"></div>
+                                        <div class="psc-line short"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-info">
+                        <h3>Páginas para Negocios</h3>
+                        <p>Sitios web que presentan tu marca de forma profesional y atraen más clientes potenciales.</p>
+                    </div>
+                </div>
+
+                <!-- Example 3: Shop -->
+                <div class="example-card">
+                    <div class="example-preview">
+                        <div class="browser-mockup">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-content shop-mock">
+                                <div class="shop-navbar">
+                                    <div class="shop-nav-logo"></div>
+                                    <div class="shop-nav-links">
+                                        <div class="shop-nav-link"></div>
+                                        <div class="shop-nav-link"></div>
+                                        <div class="shop-cart"><i class="fas fa-shopping-cart" style="font-size:0.5rem;color:var(--gray-400)"></i></div>
+                                    </div>
+                                </div>
+                                <div class="shop-title-bar">
+                                    <div class="shop-title"></div>
+                                    <div class="shop-filter"></div>
+                                </div>
+                                <div class="shop-products">
+                                    <div class="shop-product-card">
+                                        <div class="spc-img"></div>
+                                        <div class="spc-name"></div>
+                                        <div class="spc-price">$45.00</div>
+                                        <div class="spc-btn">Agregar</div>
+                                    </div>
+                                    <div class="shop-product-card">
+                                        <div class="spc-img"></div>
+                                        <div class="spc-name"></div>
+                                        <div class="spc-price">$89.00</div>
+                                        <div class="spc-btn">Agregar</div>
+                                    </div>
+                                    <div class="shop-product-card">
+                                        <div class="spc-img"></div>
+                                        <div class="spc-name"></div>
+                                        <div class="spc-price">$25.00</div>
+                                        <div class="spc-btn">Agregar</div>
+                                    </div>
+                                    <div class="shop-product-card">
+                                        <div class="spc-img"></div>
+                                        <div class="spc-name"></div>
+                                        <div class="spc-price">$67.00</div>
+                                        <div class="spc-btn">Agregar</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-info">
+                        <h3>Tiendas de Productos</h3>
+                        <p>Tiendas en línea completas para vender tus productos fácilmente con catálogo y carrito de compras.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="por-que" class="why-us">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label">Ventajas</span>
+                <h2>¿Por qué <span class="text-gradient">elegirnos</span>?</h2>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Diseño Moderno y Responsivo</h3>
+                    <p>Tu sitio se verá increíble en celulares, tablets y computadoras. Diseño actualizado con las últimas tendencias.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Sitios Rápidos y Optimizados</h3>
+                    <p>Código limpio y optimizado para que tu página cargue al instante. Sin plantillas genéricas, todo hecho a medida.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>100% Personalizado a tu Medida</h3>
+                    <p>Nada de plantillas repetidas. Cada proyecto se diseña desde cero según tu marca, colores y necesidades.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte y Asesoría Incluidos</h3>
+                    <p>Te acompañamos durante todo el proceso y después de la entrega. Soporte técnico y asesoría sin costo adicional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contacto" class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-content">
+                    <h2>¡Lleva tu negocio al siguiente nivel!</h2>
+                    <p>Contáctanos hoy y obtén tu página web profesional. No dejes pasar la oportunidad de digitalizar tus ventas con una plataforma sólida.</p>
+                    <div class="cta-price">
+                        <span>Todo desde</span>
+                        <strong>$80</strong>
+                    </div>
+                </div>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/582682537028" target="_blank" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <span class="btn-label">WhatsApp</span>
+                            <span class="btn-detail">+58 268-2537028</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/sistemas__simples" target="_blank" class="contact-btn instagram">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <span class="btn-label">Instagram</span>
+                            <span class="btn-detail">@sistemas__simples</span>
+                        </div>
+                    </a>
+                    <a href="mailto:contacto@sistemassimples.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <span class="btn-label">Correo</span>
+                            <span class="btn-detail">Escríbenos al DM</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-left">
+                <div class="logo">
+                    <div class="logo-icon sm">SS</div>
+                    <span>Sistemas<span class="logo-sep">__</span>Simples</span>
+                </div>
+                <p class="footer-desc">Desarrollo web profesional y a la medida de tu emprendimiento.</p>
+            </div>
+            <div class="footer-center">
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#ejemplos">Ejemplos</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-social">
+                    <a href="https://wa.me/582682537028" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/sistemas__simples" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="tel:+582682537028"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Sistemas Simples. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .example-card, .why-card').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

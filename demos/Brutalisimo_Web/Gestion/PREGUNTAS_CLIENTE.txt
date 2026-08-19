@@ -1,0 +1,19 @@
+=== CUESTIONARIO DE DESCUBRIMIENTO PARA EL CLIENTE ===
+Este documento contiene las interrogantes que se le deben plantear al dueño del negocio antes de entregarle o configurar la página web final.
+
+1. MÉTODO DE CARGA DE FOTOS:
+¿Cómo prefieres subir las fotos de tus prendas al catálogo de la tienda? (Tenemos 3 opciones preparadas para ti):
+   a) Copiar y pegar el link directo de Shein (Ideal si toda tu mercancía viene de ahí y no quieres tomar fotos).
+   b) Tomar fotos tú mismo y usar una página gratuita (como Imgur/Postimages) para generar un link (Ideal si quieres un proceso manual pero con tus propias fotos).
+   c) Usar un Formulario Privado en tu celular (La opción más fácil: abres el link, escribes el nombre, tomas la foto con tu cámara y se sube sola a la web).
+
+2. MÉTODO DE INVENTARIO:
+¿Cómo vas a manejar el stock? (¿Quieres que diga "Nuevo", "Agotado", o prefieres que la prenda desaparezca cuando ya no la tengas?)
+
+3. PASARELA DE PAGO / CONTACTO:
+Cuando el cliente presione el botón "COMPRAR", ¿a dónde quieres que lo lleve?
+   a) A un chat de WhatsApp con un mensaje automático ("Hola, quiero comprar la Sudadera Urbana por $45").
+   b) A una pasarela de pago real (Stripe/MercadoPago) para cobrar con tarjeta de crédito.
+
+4. ACTUALIZACIÓN DE PRECIOS:
+¿Con qué frecuencia cambiarás los precios? (Esto nos ayuda a saber si necesitas alertas automatizadas o si te basta con editar el Excel a mano).

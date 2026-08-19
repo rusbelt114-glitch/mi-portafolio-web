@@ -1,0 +1,128 @@
+// ============================================================
+// BRUTALISIMO — Backend Google Apps Script v2.0
+// Búsqueda por NOMBRE Y APELLIDO con filtro inteligente
+// 
+// ESTRUCTURA DE COLUMNAS EN GOOGLE SHEETS:
+//   Col A: NOMBRE_COMPLETO  (ej: "Maria Perez")
+//   Col B: QUINCENA         (ej: "1era Quincena Junio")
+//   Col C: ESTATUS          (dropdown con los 6 estatus)
+//   Col D: FECHA            (fecha de actualización)
+//   Col E: TELEFONO         (ej: "+584121234567")
+//
+// ESTATUS VÁLIDOS (para el dropdown de validación):
+//   - TRANSITO SHEIN USA
+//   - LLEGADA CASILLERO MIAMI
+//   - TRANSITO VENEZUELA
+//   - LLEGADA ADUANA VENEZUELA
+//   - TRANSITO ESTADAL
+//   - LUGAR DESTINO
+// ============================================================
+
+/**
+ * Normaliza texto para comparación:
+ * Elimina tildes, espacios extra, convierte a MAYÚSCULAS.
+ * "María Pérez " == "MARIA PEREZ" == "maria perez"
+ */
+function normalizarTexto(texto) {
+  return String(texto)
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")  // quita tildes/acentos
+    .toUpperCase()
+    .replace(/\s+/g, " ");            // colapsa espacios múltiples
+}
+
+/**
+ * Punto de entrada de la API Web.
+ * URL de llamada: ?nombre=Maria%20Perez
+ */
+function doGet(e) {
+  // Headers CORS para permitir acceso desde la web
+  var output;
+
+  try {
+    var nombreBusqueda = e.parameter.nombre;
+
+    if (!nombreBusqueda) {
+      output = { error: "Parámetro 'nombre' no recibido" };
+      return responder(output);
+    }
+
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var ultimaFila = sheet.getLastRow();
+
+    if (ultimaFila < 2) {
+      return responder({ encontrado: false });
+    }
+
+    // Leer columnas A–E (5 columnas, desde fila 2)
+    var datos = sheet.getRange(2, 1, ultimaFila - 1, 5).getValues();
+
+    var paquetes = [];
+    var nombreOriginal = "";
+    var telefonoCliente = "";
+    var nombreBuscadoNorm = normalizarTexto(nombreBusqueda);
+
+    // Barrer TODAS las filas (no se detiene en la primera coincidencia)
+    for (var i = 0; i < datos.length; i++) {
+      var fila = datos[i];
+
+      // Saltar filas vacías
+      if (!fila[0]) continue;
+
+      var nombreFilaNorm = normalizarTexto(fila[0]);
+
+      if (nombreFilaNorm === nombreBuscadoNorm) {
+        // Guardar datos del cliente (solo la primera vez)
+        if (!nombreOriginal) nombreOriginal = String(fila[0]).trim();
+        if (!telefonoCliente && fila[4]) telefonoCliente = String(fila[4]).trim();
+
+        // Formato de fecha legible
+        var fechaFormateada = "";
+        if (fila[3]) {
+          var fechaObj = new Date(fila[3]);
+          if (!isNaN(fechaObj.getTime())) {
+            fechaFormateada = Utilities.formatDate(
+              fechaObj,
+              Session.getScriptTimeZone(),
+              "yyyy-MM-dd"
+            );
+          } else {
+            fechaFormateada = String(fila[3]);
+          }
+        }
+
+        paquetes.push({
+          quincena: String(fila[1]).trim() || "Sin quincena",
+          estatus:  String(fila[2]).trim() || "Sin estatus",
+          fecha:    fechaFormateada,
+        });
+      }
+    }
+
+    if (paquetes.length > 0) {
+      output = {
+        encontrado: true,
+        nombre:     nombreOriginal,
+        telefono:   telefonoCliente,
+        paquetes:   paquetes
+      };
+    } else {
+      output = { encontrado: false };
+    }
+
+  } catch (err) {
+    output = { error: "Error interno: " + err.message };
+  }
+
+  return responder(output);
+}
+
+/**
+ * Helper: devuelve respuesta JSON con CORS habilitado
+ */
+function responder(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}

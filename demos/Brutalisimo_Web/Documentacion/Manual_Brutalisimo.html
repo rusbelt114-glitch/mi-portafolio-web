@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario - Brutalisimo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --amarillo: #E8DF8A;
+            --azul: #2135FF;
+            --rosa: #FF61B6;
+            --blanco: #FFFFFF;
+            --negro: #111111;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--negro);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Estilo tipo Hoja A4 */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--blanco);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 40px auto;
+            padding: 20mm;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .header {
+            border-bottom: 4px solid var(--azul);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title {
+            font-family: 'Lilita One', cursive;
+            font-size: 2.8rem;
+            color: var(--azul);
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background: var(--rosa);
+            color: var(--blanco);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-family: 'Lilita One', cursive;
+            font-size: 1.8rem;
+            color: var(--azul);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "✦";
+            color: var(--rosa);
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--negro);
+            font-weight: 800;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--amarillo);
+            padding-left: 10px;
+        }
+
+        p, li {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .role-card {
+            background: #f9f9f9;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .role-title {
+            font-family: 'Lilita One', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .role-brutalisimo { color: var(--azul); }
+        .role-cliente { color: var(--rosa); }
+
+        .estatus-box {
+            background: var(--azul);
+            color: var(--blanco);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .estatus-box p, .estatus-box li { color: var(--blanco); }
+
+        .estatus-box h3 {
+            color: var(--amarillo);
+            border: none;
+            padding: 0;
+            font-family: 'Lilita One', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .reglas {
+            background: #fff5f8;
+            border: 2px dashed var(--rosa);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        /* Ocultar elementos innecesarios al imprimir */
+        @media print {
+            body { background: white; margin: 0; padding: 0; }
+            .page { box-shadow: none; margin: 0; padding: 10mm; width: 100%; height: auto; }
+            .no-print { display: none !important; }
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--azul);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-family: 'Lilita One', cursive;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(33, 53, 255, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .print-btn:hover { transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Guardar como PDF</button>
+
+    <div class="page">
+        <div class="header">
+            <div>
+                <h1 class="header-title">MANUAL DE USUARIO</h1>
+                <div class="header-subtitle">Sistema de Tracking Interactivo</div>
+            </div>
+            <div class="badge">Brutalisimo Shein</div>
+        </div>
+
+        <p><strong>¡Felicidades por tu nueva plataforma!</strong> Este manual contiene la información necesaria para entender cómo opera el sistema de rastreo de pedidos, las reglas de oro para que no falle y cuáles son los roles tanto de tu empresa como de tus clientes.</p>
+
+        <h2>1. ¿Qué es y cómo funciona?</h2>
+        <p>Es una aplicación web conectada en tiempo real a tu base de datos (Hoja de cálculo en Google Drive). Su propósito es <strong>automatizar la atención al cliente</strong>. El cliente podrá entrar a la plataforma, escribir su nombre y saber exactamente dónde está su pedido sin tener que escribirte por WhatsApp, ahorrándote horas de atención manual.</p>
+
+        <h2>2. Roles del Sistema</h2>
+        <div class="roles-grid">
+            <div class="role-card">
+                <div class="role-title role-brutalisimo">🏢 La Empresa (Tú)</div>
+                <ul>
+                    <li>Actualizar la Hoja de Cálculo en Drive cada vez que un lote avance de estatus.</li>
+                    <li>Asegurarse de escribir bien el Nombre y Apellido del cliente en el Excel.</li>
+                    <li>Compartir el enlace de la página web (Netlify) en la biografía de Instagram, mensajes de bienvenida de WhatsApp o directamente a los clientes.</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <div class="role-title role-cliente">🛍️ El Cliente</div>
+                <ul>
+                    <li>Ingresa a la página web desde su celular o PC.</li>
+                    <li>Escribe su Nombre y Apellido (el sistema no distingue mayúsculas o minúsculas, así que es fácil buscar).</li>
+                    <li>Obtiene de inmediato el estatus visual de su paquete. Si tiene dudas extra, podrá tocar el botón para ser redirigido a tu WhatsApp.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>3. Uso de la Hoja de Cálculo (Matriz)</h2>
+        <p>La hoja de cálculo en Drive es el "Cerebro" de tu aplicación. Es fundamental entender para qué sirve cada columna:</p>
+        <ul>
+            <li><strong>Columna Nombre y Apellido:</strong> Deben coincidir con lo que el cliente va a buscar. Trata de mantener un estándar (Ej: Maria Perez).</li>
+            <li><strong>Columna Quincena / Lote:</strong> Aquí colocas el identificador del pedido. Si pones un número (ej: <code>7</code>), el sistema en la web dirá automáticamente <strong>"Quincena 7"</strong>. Si escribes un texto (ej: <code>Primera de Mayo</code>), el sistema mostrará ese texto tal cual.</li>
+            <li><strong>Columna Fecha:</strong> Se actualiza para saber cuándo fue el último cambio.</li>
+        </ul>
+
+        <div class="estatus-box">
+            <h3>⚠️ Los Estatus Oficiales</h3>
+            <p>El sistema dibuja una barra de progreso según el estatus. Para que la barra avance correctamente, debes escribir el estatus en tu Excel EXACTAMENTE como alguna de estas opciones (recomendamos crear una lista desplegable en Excel para evitar errores ortográficos):</p>
+            <ul>
+                <li>TRANSITO SHEIN USA</li>
+                <li>LLEGADA CASILLERO MIAMI</li>
+                <li>TRANSITO VENEZUELA</li>
+                <li>LLEGADA ADUANA VENEZUELA</li>
+                <li>TRANSITO ESTADAL</li>
+                <li>LUGAR DESTINO</li>
+            </ul>
+        </div>
+
+        <h2>4. Reglas de Oro</h2>
+        <div class="reglas">
+            <ul>
+                <li><strong>No cambies el nombre de la pestaña de la hoja de cálculo</strong> (la que está en la parte inferior del Excel), a menos que el desarrollador actualice el código.</li>
+                <li><strong>No elimines columnas existentes.</strong> Si necesitas columnas extra para uso interno, añádelas a la derecha de las que ya existen, pero nunca borres las columnas de Nombre, Apellido o Estatus.</li>
+                <li><strong>No elimines ni modifiques el código Apps Script</strong> que vincula el Excel con la web, ya que esto romperá la comunicación.</li>
+            </ul>
+        </div>
+
+        <h2>5. Sistema de Suscripción (Seguridad)</h2>
+        <p>La plataforma cuenta con un mecanismo de conexión hacia el servidor del Desarrollador. Si la licencia de uso o suscripción de mantenimiento se marca como "INACTIVA" por falta de pago, la plataforma mostrará automáticamente un bloqueo de "Servicio Suspendido" impidiendo el acceso a los clientes finales. Al regularizarse el estatus, el sistema vuelve a operar en milisegundos.</p>
+
+        <div class="footer">
+            Generado por el Desarrollador Web para Brutalisimo Shein. Todos los derechos reservados.
+        </div>
+    </div>
+
+</body>
+</html>

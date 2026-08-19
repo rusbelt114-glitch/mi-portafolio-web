@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://via.placeholder.com;">
+    <title>Tienda Prueba 2 - Neumorfismo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-section">
+        <nav class="navbar neumorphic">
+            <div class="logo" style="height: 40px; display: flex; align-items: center;">
+                <img src="../tienda_prueba/logo_transparente.png" alt="Brutalisimo Logo" style="height: 40px; transform: scale(3); transform-origin: left center;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#">Tienda</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="nav-icons">
+                <span class="icon-btn search-icon">🔍</span>
+                <span class="icon-btn cart-icon">🛒 <span class="badge">2</span></span>
+            </div>
+        </nav>
+
+        <div class="hero-content-wrapper">
+            <div class="hero-text-area">
+                <h1>Ropa Femenina<br>Elegante</h1>
+                <p>Importación directa de las últimas colecciones de Shein.<br>Calidad y tendencias globales a tu alcance.</p>
+                
+                <div class="hero-actions">
+                    <button class="btn-primary neumorphic-btn">Comprar Ahora 🛍️</button>
+                    <button class="btn-outline neumorphic-btn">Todas las Categorías ⌄</button>
+                </div>
+
+
+            </div>
+
+            <div class="hero-visual-area">
+                <div class="hero-circle neumorphic-circle"></div>
+                <img src="../tienda_prueba/promo_female.png" alt="Modelo Elegante" class="hero-model" onerror="this.src='https://via.placeholder.com/600x800?text=Modelo'">
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Categories Row -->
+        <section class="gallery-categories">
+
+            <div class="cat-banner neumorphic-card">
+                <div class="cat-img-wrapper neumorphic-inset-circle"><img src="../tienda_prueba/ai_hero.png" alt="Infantil"></div>
+                <div class="cat-info">
+                    <h3>Moda<br>Infantil</h3>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+            <div class="cat-banner neumorphic-card">
+                <div class="cat-img-wrapper neumorphic-inset-circle"><img src="../tienda_prueba/ai_male.png" alt="Hombre"></div>
+                <div class="cat-info">
+                    <h3>Moda<br>Masculina</h3>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+            <div class="cat-banner neumorphic-card">
+                <div class="cat-img-wrapper neumorphic-inset-circle"><img src="../tienda_prueba/ai_female.png" alt="Mujer"></div>
+                <div class="cat-info">
+                    <h3>Moda<br>Femenina</h3>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="filters">
+            <div class="filter-item neumorphic-btn active">
+                <span>Todo</span>
+            </div>
+            <div class="filter-item neumorphic-btn">
+                <span>Vestidos</span>
+            </div>
+            <div class="filter-item neumorphic-btn">
+                <span>Camisetas</span>
+            </div>
+            <div class="filter-item neumorphic-btn">
+                <span>Denim</span>
+            </div>
+            <div class="filter-item neumorphic-btn">
+                <span>Chaquetas</span>
+            </div>
+            <div class="filter-item neumorphic-btn">
+                <span>Abrigos</span>
+            </div>
+            <div class="filter-item neumorphic-btn">
+                <span>Zapatos</span>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card neumorphic-card">
+                <div class="product-img-container neumorphic-inset">
+                    <img src="../tienda_prueba/camisa.png" alt="Camisa a Cuadros" onerror="this.src='https://via.placeholder.com/300x400?text=Producto'">
+                </div>
+                <div class="product-details">
+                    <h4>Camisa a Cuadros Casual</h4>
+                    <div class="price-row">
+                        <span class="price">$49.00</span>
+                        <span class="fav neumorphic-btn-small">♡</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 (Featured) -->
+            <div class="product-card neumorphic-card featured">
+                <div class="product-img-container neumorphic-inset">
+                    <div class="badges">
+                        <span class="badge red neumorphic-badge">Popular</span>
+                        <span class="badge green neumorphic-badge">Nuevo</span>
+                    </div>
+                    <img src="../tienda_prueba/promo_female.png" alt="Vestido Corto de Fiesta" onerror="this.src='https://via.placeholder.com/300x400?text=Producto'">
+                </div>
+                <div class="product-details">
+                    <h4>Vestido Corto de Fiesta</h4>
+                    <div class="price-row">
+                        <span class="price featured-price">$790.00</span>
+                        <span class="fav neumorphic-btn-small">♡</span>
+                    </div>
+                    <button class="btn-primary full-width neumorphic-btn">🛍️ Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card neumorphic-card">
+                <div class="product-img-container neumorphic-inset">
+                    <img src="../tienda_prueba/chaqueta.png" alt="Blazer y Top de Mujer" onerror="this.src='https://via.placeholder.com/300x400?text=Producto'">
+                </div>
+                <div class="product-details">
+                    <h4>Blazer y Top de Mujer</h4>
+                    <div class="price-row">
+                        <span class="price">$85.00</span>
+                        <span class="fav neumorphic-btn-small">♡</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card neumorphic-card">
+                <div class="product-img-container neumorphic-inset">
+                    <img src="../tienda_prueba/pantalon.png" alt="Falda Floral de Verano" onerror="this.src='https://via.placeholder.com/300x400?text=Producto'">
+                </div>
+                <div class="product-details">
+                    <h4>Falda Floral de Verano</h4>
+                    <div class="price-row">
+                        <span class="price">$59.00</span>
+                        <span class="fav neumorphic-btn-small">♡</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer neumorphic-card">
+        <div class="privacy-policy">
+            <p><strong>Política de Privacidad:</strong> Este sistema recopila únicamente los datos necesarios para prestar el servicio de tienda online. Los datos son propiedad y responsabilidad de Tienda Prueba 2. El desarrollador del sistema actúa exclusivamente como proveedor de infraestructura tecnológica y no es responsable del tratamiento, almacenamiento o uso de los datos personales recopilados por la empresa operadora. Al utilizar este servicio, usted acepta estos términos.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulador de Rate Limiting en frontend (Regla D2a de SEGRUDIDAD)
+        let ultimaAccion = 0;
+        const TIEMPO_ESPERA = 2000;
+        
+        document.querySelectorAll('button, .neumorphic-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const ahora = Date.now();
+                if (ahora - ultimaAccion < TIEMPO_ESPERA) {
+                    e.preventDefault();
+                    console.warn('Rate Limit: Por favor espere antes de realizar otra acción.');
+                    return;
+                }
+                ultimaAccion = ahora;
+            });
+        });
+    </script>
+</body>
+</html>

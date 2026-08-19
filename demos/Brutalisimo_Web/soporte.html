@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte Técnico - Brutalisimo Shein</title>
+    <link rel="stylesheet" href="style.css?v=20260730">
+    <style>
+        .soporte-hero {
+            margin-top: 100px;
+            padding: 60px 4%;
+            text-align: center;
+            background-color: var(--azul);
+            color: #ffffff;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .soporte-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .soporte-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .soporte-content {
+            padding: 60px 4%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--rosa);
+        }
+
+        .faq-item h3 {
+            color: var(--azul);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .faq-item p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .contact-box {
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border: 2px dashed rgba(33, 53, 255, 0.2);
+        }
+
+        .btn-whatsapp-soporte {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp-soporte:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" style="background-color: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center; font-size: 2rem; font-weight: 900; letter-spacing: -1px;">
+            <span style="color: var(--azul);">BRUTALISIMO</span>&nbsp;<span style="color: var(--rosa);">SHEIN</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="rastreo.html">Rastreo de Pedidos</a></li>
+            <li><a href="soporte.html" style="color: var(--azul); font-weight: 800;">Soporte Técnico</a></li>
+            <li><a href="planes.html">Planes</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div><div></div><div></div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="soporte-hero">
+        <h1>Centro de Soporte</h1>
+        <p>¿Tuviste algún problema con tu pedido? Estamos aquí para ayudarte a resolverlo lo más rápido posible.</p>
+    </header>
+
+    <!-- CONTENIDO -->
+    <section class="soporte-content">
+        
+        <h2 style="text-align: center; color: var(--azul); margin-bottom: 40px; font-size: 2rem;">Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <h3>📦 Mi ropa llegó con una talla diferente a la que pedí</h3>
+            <p>No te preocupes. Si la prenda que recibiste tiene una talla distinta a la especificada en tu pedido original, contáctanos enviando fotos de la prenda y de la etiqueta. Gestionaremos el cambio de inmediato sin costo adicional para ti.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>⚠️ El producto llegó con un defecto de fábrica</h3>
+            <p>Revisamos la mercancía antes de entregarla, pero si por alguna razón la prenda presenta un daño de fábrica (costura suelta, mancha, etc.), envíanos un reporte detallado con fotografías el mismo día de la recepción para aplicar la garantía.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>🚚 Mi paquete está demorando más de lo esperado</h3>
+            <p>Recuerda que puedes usar nuestra sección de "Rastreo de Pedidos" para ver el estatus. Si el tiempo estimado ya se cumplió y no has recibido noticias, escríbenos para comunicarnos con la agencia de envíos y rastrear tu paquete de forma directa.</p>
+        </div>
+
+        <div class="contact-box">
+            <h2 style="color: var(--azul); margin-bottom: 15px;">¿Necesitas ayuda personalizada?</h2>
+            <p style="color: var(--text-color); margin-bottom: 10px;">Comunícate directamente con nuestro equipo de soporte técnico a través de WhatsApp. Envíanos tu número de pedido y detallanos tu problema.</p>
+            <a href="https://wa.me/584168473038?text=Hola%20Soporte%20Brutalisimo%20Shein,%20necesito%20ayuda%20con%20un%20inconveniente%20con%20mi%20paquete." class="btn-whatsapp-soporte" target="_blank">Contactar a Soporte</a>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9rem; margin-top: 50px; border-top: 1px solid #eee;">
+        <p>© 2026 Brutalisimo Shein. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

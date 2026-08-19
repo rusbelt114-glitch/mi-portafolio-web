@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Nuestro Universo de Amor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background: #020108;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            cursor: default;
+            touch-action: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: block;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .intro-content {
+            text-align: center;
+            animation: breathe 4s ease-in-out infinite;
+            max-width: 90vw;
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .title-main {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.2rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #ff8e9b 0%, #c77dba 40%, #ff8e9b 70%, #e8b4d8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255, 142, 155, 0.4));
+            margin-bottom: 15px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        .title-main span {
+            font-size: clamp(2.8rem, 10vw, 6.5rem);
+        }
+
+        @keyframes titleGlow {
+            from {
+                filter: drop-shadow(0 0 15px rgba(255, 142, 155, 0.3));
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(255, 142, 155, 0.6));
+            }
+        }
+
+        .intro-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 3.5vw, 1.6rem);
+            font-weight: 300;
+            font-style: italic;
+            color: #d7bde2;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeSlideUp 2s ease-out 0.8s forwards;
+        }
+
+        .intro-hint {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            color: rgba(215, 189, 226, 0.5);
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeSlideUp 2s ease-out 1.6s forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #startBtn {
+            position: relative;
+            padding: 16px 40px;
+            font-size: clamp(0.9rem, 3vw, 1.15rem);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 142, 155, 0.12);
+            border: 1px solid rgba(255, 142, 155, 0.5);
+            border-radius: 50px;
+            color: #ff8e9b;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeSlideUp 2s ease-out 1.2s forwards;
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: 50px;
+        }
+
+        #startBtn:hover,
+        #startBtn:active {
+            background: rgba(255, 142, 155, 0.25);
+            border-color: #ff8e9b;
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255, 142, 155, 0.3);
+        }
+
+        .reason-card {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            padding: clamp(25px, 5vw, 50px) clamp(18px, 4vw, 40px);
+            background: rgba(10, 5, 20, 0.6);
+            border: 1px solid rgba(255, 142, 155, 0.15);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .overlay.active .reason-card {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .reason-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 200;
+            color: rgba(255, 142, 155, 0.12);
+            line-height: 1;
+            margin-bottom: -5px;
+        }
+
+        .reason-planet-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.6rem, 2.2vw, 0.85rem);
+            font-weight: 600;
+            letter-spacing: clamp(3px, 1vw, 6px);
+            text-transform: uppercase;
+            color: rgba(199, 125, 186, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .reason-divider {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff8e9b, transparent);
+            margin: 15px auto;
+        }
+
+        .reason-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.6rem, 6vw, 2.8rem);
+            color: #ff8e9b;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 142, 155, 0.3);
+        }
+
+        .reason-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 3.5vw, 1.35rem);
+            font-weight: 300;
+            line-height: 1.7;
+            color: #f0e6f6;
+            font-style: italic;
+        }
+
+        .wormhole-msg {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.7rem, 2.5vw, 1rem);
+            font-weight: 200;
+            letter-spacing: clamp(3px, 1.5vw, 8px);
+            text-transform: uppercase;
+            color: rgba(255, 142, 155, 0.6);
+            animation: pulseFade 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseFade {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .outro-content {
+            text-align: center;
+            max-width: 90vw;
+            opacity: 0;
+            transform: scale(0.85);
+            transition: all 3.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .overlay.active .outro-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .outro-pre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 3.5vw, 1.4rem);
+            font-weight: 300;
+            font-style: italic;
+            color: #d7bde2;
+            margin-bottom: 20px;
+            opacity: 0;
+        }
+
+        .overlay.active .outro-pre {
+            animation: fadeSlideUp 3s ease-out 1s forwards;
+        }
+
+        .outro-main {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 7vw, 4.5rem);
+            line-height: 1.25;
+            background: linear-gradient(135deg, #ff8e9b, #c77dba, #ff8e9b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 30px rgba(255, 142, 155, 0.5));
+            margin-bottom: 30px;
+            opacity: 0;
+        }
+
+        .overlay.active .outro-main {
+            animation: fadeSlideUp 3s ease-out 2.5s forwards;
+        }
+
+        .outro-heart {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: #ff8e9b;
+            opacity: 0;
+        }
+
+        .overlay.active .outro-heart {
+            animation: heartBeat 1.5s ease-in-out 5s infinite, fadeSlideUp 2s ease-out 4.5s forwards;
+        }
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.2);
+            }
+        }
+
+        .outro-post {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 300;
+            color: #e8b4d8;
+            margin-top: 20px;
+            opacity: 0;
+        }
+
+        .overlay.active .outro-post {
+            animation: fadeSlideUp 3s ease-out 6s forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- DEMO RIBBON INYECTADO -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 999999; font-weight: bold; font-family: sans-serif; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+        MODO DEMO: Entorno seguro de solo lectura. Los datos son ficticios y no se guardarán.
+    </div>
+    <canvas id="universe"></canvas>
+
+    <div id="intro" class="overlay active">
+        <div class="intro-content">
+            <h1 class="title-main">Nuestro Universo<br><span>de Amor</span></h1>
+            <p class="intro-sub">Un viaje por las estrellas, dedicado a ti...</p>
+            <button id="startBtn" type="button">Comenzar el Viaje</button>
+            <p class="intro-hint">🔊 Activa el sonido para la mejor experiencia</p>
+        </div>
+    </div>
+
+    <div id="reason-overlay" class="overlay">
+        <div class="reason-card">
+            <div class="reason-number" id="reason-number">01</div>
+            <h2 class="reason-planet-name" id="reason-planet-name">Planeta</h2>
+            <div class="reason-divider"></div>
+            <h3 class="reason-title" id="reason-title">Motivo</h3>
+            <p class="reason-text" id="reason-text">Texto</p>
+        </div>
+    </div>
+
+    <div id="wormhole-text" class="overlay">
+        <p class="wormhole-msg">Viajando al siguiente destino...</p>
+    </div>
+
+    <div id="outro" class="overlay">
+        <div class="outro-content">
+            <p class="outro-pre">Y después de recorrer todo el universo...</p>
+            <h1 class="outro-main">Todo esto no se compara al amor que te tengo</h1>
+            <div class="outro-heart">♥</div>
+            <p class="outro-post">Te amo infinitamente</p>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var canvas = document.getElementById('universe');
+            var ctx = canvas.getContext('2d');
+            var W, H, cx, cy, DPR, isMobile;
+
+            function resize() {
+                DPR = Math.min(window.devicePixelRatio || 1, 2);
+                W = window.innerWidth;
+                H = window.innerHeight;
+                canvas.width = W * DPR;
+                canvas.height = H * DPR;
+                canvas.style.width = W + 'px';
+                canvas.style.height = H + 'px';
+                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+                cx = W / 2;
+                cy = H / 2;
+                isMobile = W < 768;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function rand(a, b) { return Math.random() * (b - a) + a; }
+            function lerp(a, b, t) { return a + (b - a) * t; }
+            var PI2 = 6.2832;
+
+            var scene = {
+                phase: 'idle', time: 0,
+                starSpeed: 0.3, targetStarSpeed: 0.3,
+                sunAlpha: 0.35,
+                planetConfig: null, planetAlpha: 0, targetPlanetAlpha: 0,
+                wormholeProgress: 0,
+                warpActive: false,
+                nebulaAlpha: 0.15
+            };
+
+            // ===== STARS =====
+            var stars = [];
+            function initStars() {
+                stars = [];
+                var count = isMobile ? 350 : 800;
+                for (var i = 0; i < count; i++) {
+                    stars.push({
+                        x: rand(-W, W), y: rand(-H, H),
+                        z: rand(1, W), pz: 0,
+                        br: rand(0.3, 1), sz: rand(0.4, 1.8),
+                        ci: Math.floor(rand(0, 4))
+                    });
+                }
+                for (var j = 0; j < stars.length; j++) stars[j].pz = stars[j].z;
+            }
+            initStars();
+
+            var sColors = ['#ffffff', '#ffe4e8', '#e8d5f5', '#d4e5ff'];
+
+            function drawStars() {
+                var isWarp = scene.warpActive || scene.starSpeed > 10;
+                var hW = W * 0.5, hH = H * 0.5;
+                for (var i = 0; i < stars.length; i++) {
+                    var s = stars[i];
+                    s.pz = s.z;
+                    s.z -= scene.starSpeed;
+                    if (s.z <= 0) { s.z = W; s.pz = s.z; s.x = rand(-W, W); s.y = rand(-H, H); }
+
+                    var invZ = 1 / s.z;
+                    var sx = s.x * invZ * hW + cx;
+                    var sy = s.y * invZ * hH + cy;
+                    var depth = 1 - s.z / W;
+                    var alpha = depth * s.br;
+
+                    if (isWarp) {
+                        var px = s.x / s.pz * hW + cx;
+                        var py = s.y / s.pz * hH + cy;
+                        var size = s.sz * depth * (isMobile ? 1.2 : 2);
+                        ctx.beginPath();
+                        ctx.moveTo(px, py);
+                        ctx.lineTo(sx, sy);
+                        ctx.strokeStyle = 'rgba(255,142,155,' + alpha + ')';
+                        ctx.lineWidth = size;
+                        ctx.stroke();
+                    } else {
+                        var twinkle = 0.7 + 0.3 * Math.sin(scene.time * 3 + i);
+                        var sz2 = s.sz * depth * 2;
+                        ctx.beginPath();
+                        ctx.arc(sx, sy, sz2, 0, PI2);
+                        ctx.fillStyle = sColors[s.ci];
+                        ctx.globalAlpha = alpha * twinkle;
+                        ctx.fill();
+                        if (!isMobile && s.br > 0.85 && sz2 > 1.5) {
+                            var gr = sz2 * 3;
+                            var g = ctx.createRadialGradient(sx, sy, 0, sx, sy, gr);
+                            g.addColorStop(0, 'rgba(255,200,220,' + (alpha * 0.25 * twinkle) + ')');
+                            g.addColorStop(1, 'rgba(255,200,220,0)');
+                            ctx.fillStyle = g;
+                            ctx.beginPath();
+                            ctx.arc(sx, sy, gr, 0, PI2);
+                            ctx.fill();
+                        }
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+
+            // ===== NEBULAE =====
+            var nebulae = [];
+            function initNebulae() {
+                var cols = [[180, 80, 160], [100, 60, 180], [220, 100, 130], [60, 80, 170], [160, 60, 120]];
+                var count = isMobile ? 3 : 5;
+                for (var i = 0; i < count; i++) {
+                    nebulae.push({
+                        x: rand(0, W), y: rand(0, H),
+                        r: rand(isMobile ? 80 : 150, isMobile ? 200 : 400),
+                        c: cols[i % 5],
+                        dx: rand(-0.07, 0.07), dy: rand(-0.07, 0.07),
+                        ph: rand(0, PI2)
+                    });
+                }
+            }
+            initNebulae();
+
+            function drawNebulae() {
+                for (var i = 0; i < nebulae.length; i++) {
+                    var n = nebulae[i];
+                    n.x += n.dx; n.y += n.dy;
+                    var pulse = 0.8 + 0.2 * Math.sin(scene.time * 0.5 + n.ph);
+                    var r = n.r * pulse;
+                    var c = n.c; var a = scene.nebulaAlpha;
+                    var g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r);
+                    g.addColorStop(0, 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (a * 0.5) + ')');
+                    g.addColorStop(0.5, 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (a * 0.15) + ')');
+                    g.addColorStop(1, 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',0)');
+                    ctx.fillStyle = g;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r, 0, PI2);
+                    ctx.fill();
+                }
+            }
+
+            // ===== SUN =====
+            function drawSun() {
+                var sunX = W * 0.85, sunY = H * 0.12;
+                var bR = isMobile ? 30 : 50;
+                var pulse = 1 + 0.04 * Math.sin(scene.time * 2);
+                var a = scene.sunAlpha;
+                for (var i = 4; i > 0; i--) {
+                    var cr = bR + i * (isMobile ? 20 : 30);
+                    var g = ctx.createRadialGradient(sunX, sunY, bR * 0.3, sunX, sunY, cr * pulse);
+                    g.addColorStop(0, 'rgba(255,220,150,' + (a * 0.06) + ')');
+                    g.addColorStop(1, 'rgba(255,140,80,0)');
+                    ctx.fillStyle = g;
+                    ctx.beginPath();
+                    ctx.arc(sunX, sunY, cr * pulse, 0, PI2);
+                    ctx.fill();
+                }
+                var cg = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, bR * pulse);
+                cg.addColorStop(0, 'rgba(255,250,220,' + a + ')');
+                cg.addColorStop(0.4, 'rgba(255,210,140,' + (a * 0.7) + ')');
+                cg.addColorStop(1, 'rgba(255,160,80,0)');
+                ctx.fillStyle = cg;
+                ctx.beginPath();
+                ctx.arc(sunX, sunY, bR * pulse, 0, PI2);
+                ctx.fill();
+                if (!isMobile) {
+                    ctx.save();
+                    ctx.translate(sunX, sunY);
+                    ctx.rotate(scene.time * 0.08);
+                    for (var j = 0; j < 6; j++) {
+                        ctx.rotate(Math.PI / 3);
+                        var rg = ctx.createLinearGradient(0, 0, bR * 2.5, 0);
+                        rg.addColorStop(0, 'rgba(255,220,180,' + (a * 0.1) + ')');
+                        rg.addColorStop(1, 'rgba(255,220,180,0)');
+                        ctx.fillStyle = rg;
+                        ctx.beginPath();
+                        ctx.moveTo(0, -1.5);
+                        ctx.lineTo(bR * 2.5 * pulse, 0);
+                        ctx.lineTo(0, 1.5);
+                        ctx.fill();
+                    }
+                    ctx.restore();
+                }
+            }
+
+            // ===== SHOOTING STARS =====
+            var shootingStars = [];
+            function drawShootingStars() {
+                if (Math.random() < (isMobile ? 0.004 : 0.008) && shootingStars.length < 2) {
+                    shootingStars.push({
+                        x: rand(W * 0.2, W * 0.9), y: rand(-20, H * 0.25),
+                        vx: rand(5, 11), vy: rand(2, 6),
+                        life: 1, decay: rand(0.01, 0.025), len: rand(50, 130)
+                    });
+                }
+                for (var i = shootingStars.length - 1; i >= 0; i--) {
+                    var ss = shootingStars[i];
+                    ss.x += ss.vx; ss.y += ss.vy; ss.life -= ss.decay;
+                    if (ss.life <= 0) { shootingStars.splice(i, 1); continue; }
+                    var tx = ss.x - ss.vx * (ss.len / 10);
+                    var ty = ss.y - ss.vy * (ss.len / 10);
+                    var grad = ctx.createLinearGradient(tx, ty, ss.x, ss.y);
+                    grad.addColorStop(0, 'rgba(255,200,220,0)');
+                    grad.addColorStop(1, 'rgba(255,200,220,' + ss.life + ')');
+                    ctx.beginPath();
+                    ctx.moveTo(tx, ty); ctx.lineTo(ss.x, ss.y);
+                    ctx.strokeStyle = grad; ctx.lineWidth = 1.5; ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(ss.x, ss.y, 2, 0, PI2);
+                    ctx.fillStyle = 'rgba(255,255,255,' + ss.life + ')';
+                    ctx.fill();
+                }
+            }
+
+            // ===== COSMIC DUST =====
+            var dust = [];
+            function initDust() {
+                var cols = ['#ff8e9b', '#c77dba', '#e8b4d8', '#8ec5fc'];
+                var count = isMobile ? 20 : 45;
+                for (var i = 0; i < count; i++) {
+                    dust.push({
+                        x: rand(0, W), y: rand(0, H),
+                        sz: rand(0.7, 2.2), sp: rand(0.1, 0.35),
+                        a: rand(0.04, 0.12), c: cols[i % 4], ph: rand(0, PI2)
+                    });
+                }
+            }
+            initDust();
+
+            function drawDust() {
+                for (var i = 0; i < dust.length; i++) {
+                    var p = dust[i];
+                    p.x += Math.sin(scene.time + p.ph) * p.sp;
+                    p.y -= p.sp * 0.25;
+                    if (p.y < -5) { p.y = H + 5; p.x = rand(0, W); }
+                    var fl = 0.6 + 0.4 * Math.sin(scene.time * 2 + p.ph);
+                    ctx.globalAlpha = p.a * fl;
+                    ctx.fillStyle = p.c;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.sz, 0, PI2);
+                    ctx.fill();
+                }
+                ctx.globalAlpha = 1;
+            }
+
+            // ===== SATELLITES =====
+            var sats = [];
+            function initSats() {
+                var count = isMobile ? 2 : 4;
+                for (var i = 0; i < count; i++) {
+                    sats.push({
+                        oR: rand(50, 180), ang: rand(0, PI2),
+                        sp: rand(0.005, 0.016) * (Math.random() > 0.5 ? 1 : -1),
+                        sz: rand(1.5, 3.5), tMax: isMobile ? 5 : 10,
+                        cx2: rand(W * 0.15, W * 0.85), cy2: rand(H * 0.15, H * 0.85),
+                        tilt: rand(0.3, 0.65), trail: []
+                    });
+                }
+            }
+            initSats();
+
+            function drawSats() {
+                for (var i = 0; i < sats.length; i++) {
+                    var sat = sats[i];
+                    sat.ang += sat.sp;
+                    var sx = sat.cx2 + Math.cos(sat.ang) * sat.oR;
+                    var sy = sat.cy2 + Math.sin(sat.ang) * sat.oR * sat.tilt;
+                    sat.trail.push({ x: sx, y: sy });
+                    if (sat.trail.length > sat.tMax) sat.trail.shift();
+                    for (var t = 0; t < sat.trail.length; t++) {
+                        var ta = (t / sat.trail.length) * 0.3;
+                        var tsz = sat.sz * (t / sat.trail.length);
+                        ctx.globalAlpha = ta;
+                        ctx.fillStyle = '#e8b4d8';
+                        ctx.beginPath();
+                        ctx.arc(sat.trail[t].x, sat.trail[t].y, tsz, 0, PI2);
+                        ctx.fill();
+                    }
+                    ctx.globalAlpha = 0.8;
+                    ctx.fillStyle = '#fff';
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, sat.sz, 0, PI2);
+                    ctx.fill();
+                    var sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, sat.sz * 3);
+                    sg.addColorStop(0, 'rgba(232,180,216,0.2)');
+                    sg.addColorStop(1, 'rgba(232,180,216,0)');
+                    ctx.fillStyle = sg;
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, sat.sz * 3, 0, PI2);
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+                }
+            }
+
+            // ===== PLANETS =====
+            var pCfg = [
+                { name: 'Mercurio', b: [255, 154, 158], a: [254, 207, 239], ring: null, m: 0, sz: isMobile ? 50 : 90 },
+                { name: 'Etérea', b: [161, 140, 209], a: [251, 194, 235], ring: [200, 170, 240], m: 1, sz: isMobile ? 60 : 110 },
+                { name: 'Rosalina', b: [255, 142, 155], a: [155, 89, 182], ring: null, m: 1, sz: isMobile ? 55 : 100 },
+                { name: 'Esperanza', b: [180, 220, 140], a: [150, 230, 161], ring: [180, 230, 160], m: 0, sz: isMobile ? 48 : 85 },
+                { name: 'Serenidad', b: [132, 250, 176], a: [143, 211, 244], ring: null, m: 1, sz: isMobile ? 52 : 95 },
+                { name: 'Pasión', b: [252, 203, 144], a: [213, 126, 235], ring: [240, 180, 200], m: 1, sz: isMobile ? 62 : 120 },
+                { name: 'Venus', b: [224, 195, 252], a: [142, 197, 252], ring: [210, 190, 255], m: 2, sz: isMobile ? 68 : 130 }
+            ];
+
+            function drawPlanet(cfg, px, py, al, t) {
+                if (al < 0.01) return;
+                ctx.save();
+                ctx.globalAlpha = al;
+                var r = cfg.sz;
+                var w = Math.sin(t * 1.5) * 4;
+                var pyW = py + w;
+
+                // Atmosphere
+                for (var i = 3; i > 0; i--) {
+                    var ar = r + i * (isMobile ? 12 : 20);
+                    var ag = ctx.createRadialGradient(px, pyW, r * 0.5, px, pyW, ar);
+                    ag.addColorStop(0, 'rgba(' + cfg.b[0] + ',' + cfg.b[1] + ',' + cfg.b[2] + ',0)');
+                    ag.addColorStop(0.7, 'rgba(' + cfg.b[0] + ',' + cfg.b[1] + ',' + cfg.b[2] + ',' + (0.025 * al) + ')');
+                    ag.addColorStop(1, 'rgba(' + cfg.b[0] + ',' + cfg.b[1] + ',' + cfg.b[2] + ',0)');
+                    ctx.fillStyle = ag;
+                    ctx.beginPath();
+                    ctx.arc(px, pyW, ar, 0, PI2);
+                    ctx.fill();
+                }
+
+                // Body
+                var bg = ctx.createRadialGradient(px - r * 0.3, pyW - r * 0.3, r * 0.1, px, pyW, r);
+                bg.addColorStop(0, 'rgba(' + cfg.a[0] + ',' + cfg.a[1] + ',' + cfg.a[2] + ',1)');
+                bg.addColorStop(0.6, 'rgba(' + cfg.b[0] + ',' + cfg.b[1] + ',' + cfg.b[2] + ',1)');
+                bg.addColorStop(1, 'rgba(' + (cfg.b[0] * 0.3 | 0) + ',' + (cfg.b[1] * 0.3 | 0) + ',' + (cfg.b[2] * 0.3 | 0) + ',1)');
+                ctx.fillStyle = bg;
+                ctx.beginPath();
+                ctx.arc(px, pyW, r, 0, PI2);
+                ctx.fill();
+
+                // Surface bands
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(px, pyW, r, 0, PI2);
+                ctx.clip();
+                for (var b2 = 0; b2 < 3; b2++) {
+                    var by = pyW - r + (b2 + 0.5) * (r * 2 / 3) + Math.sin(t + b2) * 2;
+                    ctx.fillStyle = 'rgba(' + cfg.a[0] + ',' + cfg.a[1] + ',' + cfg.a[2] + ',0.1)';
+                    ctx.fillRect(px - r, by, r * 2, r * 0.12);
+                }
+                ctx.restore();
+
+                // Shadow
+                var sg = ctx.createRadialGradient(px + r * 0.4, pyW + r * 0.2, r * 0.2, px + r * 0.3, pyW, r * 1.1);
+                sg.addColorStop(0, 'rgba(0,0,0,0)');
+                sg.addColorStop(0.6, 'rgba(0,0,0,0.1)');
+                sg.addColorStop(1, 'rgba(0,0,0,0.5)');
+                ctx.fillStyle = sg;
+                ctx.beginPath();
+                ctx.arc(px, pyW, r, 0, PI2);
+                ctx.fill();
+
+                // Rings
+                if (cfg.ring) {
+                    ctx.save();
+                    ctx.translate(px, pyW);
+                    ctx.scale(1, 0.3);
+                    ctx.rotate(0.2);
+                    var rc = cfg.ring;
+                    for (var ri = 0; ri < 3; ri++) {
+                        ctx.beginPath();
+                        ctx.arc(0, 0, r * 1.35 + ri * 10, 0, PI2);
+                        ctx.strokeStyle = 'rgba(' + rc[0] + ',' + rc[1] + ',' + rc[2] + ',' + (0.35 - ri * 0.1) + ')';
+                        ctx.lineWidth = 3 - ri;
+                        ctx.stroke();
+                    }
+                    ctx.restore();
+                }
+
+                // Moons
+                for (var mi = 0; mi < cfg.m; mi++) {
+                    var md = r * 1.6 + mi * 22;
+                    var ma = t * (0.7 - mi * 0.2) + mi * 2;
+                    var mx = px + Math.cos(ma) * md;
+                    var my = pyW + Math.sin(ma) * md * 0.35;
+                    var ms = 3 + mi * 1.5;
+                    ctx.beginPath();
+                    ctx.ellipse(px, pyW, md, md * 0.35, 0, 0, PI2);
+                    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                    var mg = ctx.createRadialGradient(mx - 1, my - 1, 0, mx, my, ms);
+                    mg.addColorStop(0, '#fff');
+                    mg.addColorStop(1, 'rgba(' + cfg.a[0] + ',' + cfg.a[1] + ',' + cfg.a[2] + ',0.7)');
+                    ctx.fillStyle = mg;
+                    ctx.beginPath();
+                    ctx.arc(mx, my, ms, 0, PI2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            // ===== WORMHOLE =====
+            function drawWormhole(prog) {
+                if (prog < 0.01) return;
+                ctx.save();
+                ctx.translate(cx, cy);
+                var rings = isMobile ? 16 : 25;
+                var maxR = Math.max(W, H) * 0.7;
+                for (var i = 0; i < rings; i++) {
+                    var t2 = (i / rings + scene.time * 0.5) % 1;
+                    var rad = t2 * maxR * prog;
+                    var al = (1 - t2) * 0.3 * prog;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, rad, 0, PI2);
+                    ctx.strokeStyle = 'hsla(' + (300 + i * 4) + ',80%,70%,' + al + ')';
+                    ctx.lineWidth = 1.5 + (1 - t2) * 3;
+                    ctx.stroke();
+                }
+                var cr2 = 55 * prog;
+                var cg2 = ctx.createRadialGradient(0, 0, 0, 0, 0, cr2);
+                cg2.addColorStop(0, 'rgba(255,255,255,' + (0.6 * prog) + ')');
+                cg2.addColorStop(0.3, 'rgba(255,142,155,' + (0.3 * prog) + ')');
+                cg2.addColorStop(1, 'rgba(155,89,182,0)');
+                ctx.fillStyle = cg2;
+                ctx.beginPath();
+                ctx.arc(0, 0, cr2, 0, PI2);
+                ctx.fill();
+                var pCnt = isMobile ? 15 : 30;
+                for (var p = 0; p < pCnt; p++) {
+                    var angle = (p / pCnt) * PI2 + scene.time * 3;
+                    var dist = (25 + (p / pCnt) * maxR * 0.35) * prog;
+                    ctx.beginPath();
+                    ctx.arc(Math.cos(angle) * dist, Math.sin(angle) * dist, rand(0.7, 2), 0, PI2);
+                    ctx.fillStyle = 'rgba(255,200,220,' + (rand(0.1, 0.35) * prog) + ')';
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            // ===== MUSIC (Clean Symphonic Ambient) =====
+            var musicStarted = false;
+            function startMusic() {
+                if (musicStarted) return;
+                musicStarted = true;
+                var ac;
+                try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
+                if (ac.state === 'suspended') ac.resume();
+
+                // Master volume - keep low for clean output
+                var master = ac.createGain();
+                master.gain.setValueAtTime(0, ac.currentTime);
+                master.gain.linearRampToValueAtTime(0.12, ac.currentTime + 6);
+                master.connect(ac.destination);
+
+                // Gentle reverb via delay - very low feedback to avoid static
+                var dly = ac.createDelay(1);
+                dly.delayTime.value = 0.4;
+                var fb = ac.createGain();
+                fb.gain.value = 0.12; // very low feedback = no buildup/static
+                var dlpf = ac.createBiquadFilter();
+                dlpf.type = 'lowpass'; dlpf.frequency.value = 800;
+                dly.connect(dlpf); dlpf.connect(fb); fb.connect(dly);
+                dly.connect(master);
+
+                // Second delay for depth
+                var dly2 = ac.createDelay(1);
+                dly2.delayTime.value = 0.65;
+                var fb2 = ac.createGain();
+                fb2.gain.value = 0.08;
+                var dlpf2 = ac.createBiquadFilter();
+                dlpf2.type = 'lowpass'; dlpf2.frequency.value = 600;
+                dly2.connect(dlpf2); dlpf2.connect(fb2); fb2.connect(dly2);
+                dly2.connect(master);
+
+                // Warm pad - triangle waves filtered very low for a soft hum
+                function pad(freq, detune, vol) {
+                    var o = ac.createOscillator();
+                    o.type = 'triangle';
+                    o.frequency.value = freq;
+                    o.detune.value = detune;
+                    var g = ac.createGain();
+                    g.gain.value = vol;
+                    var f1 = ac.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 400; f1.Q.value = 0.5;
+                    o.connect(f1); f1.connect(g); g.connect(master); g.connect(dly);
+                    o.start();
+                }
+                // Cmaj7 chord - very soft
+                pad(130.81, 0, 0.025);    // C3
+                pad(164.81, 4, 0.02);     // E3
+                pad(196.00, -4, 0.02);    // G3
+                pad(246.94, 2, 0.018);    // B3
+                // Higher octave pad - even softer for shimmer
+                pad(261.63, 3, 0.012);    // C4
+                pad(329.63, -3, 0.01);    // E4
+
+                // Melody - clean sine, very gentle, slow
+                var melodyNotes = [
+                    523.25, 0, 659.25, 0, 783.99, 0, 659.25, 0,
+                    587.33, 0, 523.25, 0, 493.88, 0, 523.25, 0,
+                    659.25, 0, 783.99, 0, 880.00, 0, 783.99, 0,
+                    659.25, 0, 587.33, 0, 523.25, 0, 493.88, 0
+                ];
+                var ni = 0;
+                function playNote() {
+                    if (!ac || ac.state === 'closed') return;
+                    var freq = melodyNotes[ni % melodyNotes.length];
+                    ni++;
+                    if (freq === 0) return; // rest
+
+                    var o = ac.createOscillator();
+                    o.type = 'sine';
+                    o.frequency.value = freq;
+
+                    // Smooth envelope - no clicks or pops
+                    var g = ac.createGain();
+                    var now = ac.currentTime;
+                    g.gain.setValueAtTime(0.0001, now);
+                    g.gain.exponentialRampToValueAtTime(0.035, now + 0.8);  // slow attack
+                    g.gain.exponentialRampToValueAtTime(0.02, now + 2.5);   // sustain
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + 4.5); // long fade
+
+                    // Heavy filtering for a mellow tone
+                    var f1 = ac.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 900; f1.Q.value = 0.3;
+
+                    o.connect(f1); f1.connect(g);
+                    g.connect(master);
+                    g.connect(dly2);  // send to second delay for depth
+                    o.start(now);
+                    o.stop(now + 5);
+                }
+                // Slower tempo for a more symphonic/cinematic feel
+                setInterval(playNote, 1500);
+                setTimeout(playNote, 500);
+            }
+
+            // ===== JOURNEY =====
+            var reasons = [
+                { title: 'Tu Humildad', text: 'Tu sencillez me cautivó desde el primer momento. En un mundo lleno de apariencias, tú eres real, genuina, y eso te hace infinitamente hermosa.' },
+                { title: 'Tu Lealtad', text: 'Te quedaste a mi lado a pesar de todo. Cuando el mundo se puso difícil, tú no soltaste mi mano. Eso es algo que jamás olvidaré.' },
+                { title: 'El Equipo que Somos', text: 'Juntos somos invencibles. No importa lo que venga, sé que contigo a mi lado puedo enfrentar cualquier cosa. Somos el mejor equipo del universo.' },
+                { title: 'Tu Sonrisa', text: 'Esa sonrisa tuya tiene el poder de borrar cualquier mal día. Es mi refugio, mi paz, mi lugar favorito en todo el cosmos.' },
+                { title: 'Tu Fuerza', text: 'Admiro profundamente tu valentía y la fortaleza con la que enfrentas cada desafío. Me inspiras cada día a ser mejor por ti y para ti.' },
+                { title: 'Tu Ternura', text: 'Esos pequeños detalles que tienes conmigo, esas palabras dulces, esas caricias... hacen que cada segundo a tu lado sea mágico e irrepetible.' },
+                { title: 'Lo Especial que Eres', text: 'No existe nadie como tú en todo el universo, y lo digo con la certeza de haberlo recorrido entero buscándote. Eres única, eres mi todo.' }
+            ];
+
+            var introScreen = document.getElementById('intro');
+            var reasonOverlay = document.getElementById('reason-overlay');
+            var wormholeTextEl = document.getElementById('wormhole-text');
+            var outroScreen = document.getElementById('outro');
+            var elNum = document.getElementById('reason-number');
+            var elPlanet = document.getElementById('reason-planet-name');
+            var elTitle = document.getElementById('reason-title');
+            var elText = document.getElementById('reason-text');
+            var startBtn = document.getElementById('startBtn');
+
+            function handleStart() {
+                if (scene.phase !== 'idle') return;
+                scene.phase = 'starting';
+                startMusic();
+                introScreen.classList.remove('active');
+                setTimeout(startJourney, 2000);
+            }
+            startBtn.addEventListener('click', handleStart);
+            startBtn.addEventListener('touchend', function (e) { e.preventDefault(); handleStart(); });
+
+            function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+            function animWH(fadeIn) {
+                return new Promise(function (resolve) {
+                    var start = performance.now();
+                    var dur = fadeIn ? 1500 : 1000;
+                    function tick() {
+                        var el = performance.now() - start;
+                        var t = Math.min(1, el / dur);
+                        scene.wormholeProgress = fadeIn ? t : (1 - t);
+                        if (el < dur) requestAnimationFrame(tick); else resolve();
+                    }
+                    tick();
+                });
+            }
+
+            async function startJourney() {
+                for (var i = 0; i < reasons.length; i++) {
+                    scene.phase = 'wormhole';
+                    scene.targetStarSpeed = 6;
+                    wormholeTextEl.classList.add('active');
+                    await animWH(true);
+                    await wait(800);
+                    wormholeTextEl.classList.remove('active');
+                    await animWH(false);
+
+                    scene.phase = 'planet';
+                    scene.targetStarSpeed = 0.3;
+                    scene.planetConfig = pCfg[i];
+                    scene.targetPlanetAlpha = 1;
+                    await wait(1500);
+
+                    elNum.textContent = String(i + 1).padStart(2, '0');
+                    elPlanet.textContent = 'Planeta ' + pCfg[i].name;
+                    elTitle.textContent = reasons[i].title;
+                    elText.textContent = reasons[i].text;
+                    reasonOverlay.classList.add('active');
+                    await wait(7000);
+
+                    reasonOverlay.classList.remove('active');
+                    await wait(1000);
+                    scene.targetPlanetAlpha = 0;
+                    await wait(1200);
+                }
+
+                scene.phase = 'warp';
+                scene.warpActive = true;
+                scene.targetStarSpeed = 55;
+                scene.sunAlpha = 0;
+                scene.nebulaAlpha = 0;
+                await wait(4000);
+
+                scene.targetStarSpeed = 0.8;
+                scene.warpActive = false;
+                await wait(1500);
+                outroScreen.classList.add('active');
+                scene.nebulaAlpha = 0.08;
+            }
+
+            // ===== RENDER LOOP =====
+            var lastT = 0;
+            function render(ts) {
+                var dt = Math.min((ts - lastT) / 1000, 0.05);
+                lastT = ts;
+                scene.time += dt;
+                scene.starSpeed = lerp(scene.starSpeed, scene.targetStarSpeed, 0.025);
+                scene.planetAlpha = lerp(scene.planetAlpha, scene.targetPlanetAlpha, 0.035);
+
+                ctx.fillStyle = '#020108';
+                ctx.fillRect(0, 0, W, H);
+
+                drawNebulae();
+                drawSun();
+                drawStars();
+                drawDust();
+                drawShootingStars();
+                drawSats();
+
+                if (scene.planetConfig && scene.planetAlpha > 0.01) {
+                    drawPlanet(scene.planetConfig, cx, isMobile ? cy * 0.5 : cy * 0.65, scene.planetAlpha, scene.time);
+                }
+                if (scene.wormholeProgress > 0.01) {
+                    drawWormhole(scene.wormholeProgress);
+                }
+                requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+        })();
+    </script>
+</body>
+
+</html>

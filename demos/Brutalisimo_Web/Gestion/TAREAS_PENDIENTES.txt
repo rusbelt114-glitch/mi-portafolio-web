@@ -1,0 +1,27 @@
+=== HOJA DE RUTA Y TAREAS PENDIENTES ===
+
+🎯 OBJETIVO PRINCIPAL DEL PROYECTO:
+Desarrollar un "Ecosistema de Tienda Digital" (Web + Software Contable ERP) para una marca de ropa de estilo urbano. La web debe tener un diseño "Brutalista Pop-Art" espectacular para el cliente final, mientras que la administración interna debe ser extremadamente sencilla (basada en Google Sheets) para que el dueño no necesite conocimientos técnicos.
+
+✅ LO QUE YA HEMOS LOGRADO (COMPLETADO):
+1. Diseño Base: Estilo Brutalista, tipografías pesadas, logo gigante transparente, animaciones de scroll y marquesina amarilla.
+2. Motor Dinámico: La web lee los productos automáticamente usando JavaScript seguro (prevención de XSS y spam).
+3. Modo Demo: La página autocompleta el catálogo con imágenes de IA para que puedas presentar el prototipo sin errores.
+4. El "Cerebro" de Datos: Código de Google Apps Script creado y protocolos de seguridad (Ciberseguridad Maestro) aplicados.
+5. El ERP Contable: Plantilla de Excel generada localmente (Plantilla_ERP_Lista.xlsx) con fórmulas de Dashboard, Ventas y Gastos pre-configuradas.
+
+⚠️ LO QUE NOS FALTA (TAREAS PENDIENTES PARA TERMINAR LA PÁGINA):
+1. Botones de Acción (El Embudo de Ventas):
+   - Actualmente el botón "COMPRAR" no hace nada. 
+   - TAREA: Programarlo para que redirija a WhatsApp con un mensaje pre-armado (Ej: "Hola, quiero comprar la Chaqueta Urbana por $89.90").
+
+2. Páginas Secundarias (Navegación):
+   - Los links de la barra de navegación ("Inicio", "Catálogo", "Nosotros") están muertos.
+   - TAREA: Crear una sección o página de "Nosotros" o "Contacto" que mantenga la misma estética urbana brutalista.
+
+3. Adaptación Móvil (Responsive Design):
+   - El 90% de los clientes de una tienda de ropa entran por el celular.
+   - TAREA: Darle una revisión completa al diseño en pantallas pequeñas para asegurar que el logo, el menú y las imágenes se vean perfectos en teléfonos.
+
+4. Despliegue Oficial (Día de la Reunión):
+   - TAREA: Hacer que el cliente suba el Excel a su Drive, nos pase el Link de Apps Script, y conectarlo al código final (apagar el Modo Demo).
