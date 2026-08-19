@@ -12,6 +12,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <!-- Favicon (Emoji de Cohete temporal) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 </head>
 <body>
 
@@ -30,6 +32,9 @@
                     <i class="fas fa-moon"></i>
                 </button>
             </nav>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
@@ -53,8 +58,11 @@
     <section id="sobre-mi" class="about bg-light">
         <div class="container about-container">
             <div class="section-header">
-                <h2>Sobre Mi Experiencia</h2>
+                <h2>Sobre Mí</h2>
                 <div class="line"></div>
+                <p style="margin-top: 20px; color: var(--text-muted); line-height: 1.8;">
+                    Soy <strong>Rusbelt</strong>, un apasionado desarrollador y especialista en automatizaciones. Me dedico a transformar negocios tradicionales en empresas eficientes mediante tecnología. Desde la creación de sistemas a medida hasta la optimización de procesos logísticos, mi objetivo es hacer que la tecnología trabaje para ti.
+                </p>
             </div>
             <div class="about-grid">
                 <div class="about-card">
@@ -115,9 +123,12 @@
                         </div>
                         <h3>Sistema Integral de Barbería</h3>
                         <p>Plataforma completa para gestionar citas, horarios de barberos y administración del negocio, reemplazando el papel y WhatsApp.</p>
-                        <button class="project-link" onclick="toggleDetails('details-1')">
-                            Ver detalles <i class="fas fa-chevron-down"></i>
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                            <button class="project-link" onclick="toggleDetails('details-1')">
+                                Ver detalles <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="#" target="_blank" class="project-link" style="background: var(--accent-light); border-color: transparent;">Ver Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
                     </div>
                     <div class="project-details" id="details-1">
                         <div class="details-inner">
@@ -160,9 +171,12 @@
                         </div>
                         <h3>Angel Barber (Landing Page)</h3>
                         <p>Sitio web moderno diseñado específicamente para captar clientes de una barbería, mostrando servicios y generando presencia online.</p>
-                        <button class="project-link" onclick="toggleDetails('details-2')">
-                            Ver detalles <i class="fas fa-chevron-down"></i>
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                            <button class="project-link" onclick="toggleDetails('details-2')">
+                                Ver detalles <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="#" target="_blank" class="project-link" style="background: var(--accent-light); border-color: transparent;">Ver Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
                     </div>
                     <div class="project-details" id="details-2">
                         <div class="details-inner">
@@ -205,9 +219,12 @@
                         </div>
                         <h3>Brutalísimo Tracker (Estilo Shein)</h3>
                         <p>Sistema de rastreo de paquetes que permite a los clientes ver el estado de su envío en tiempo real, similar a la experiencia de Shein.</p>
-                        <button class="project-link" onclick="toggleDetails('details-3')">
-                            Ver detalles <i class="fas fa-chevron-down"></i>
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                            <button class="project-link" onclick="toggleDetails('details-3')">
+                                Ver detalles <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="#" target="_blank" class="project-link" style="background: var(--accent-light); border-color: transparent;">Ver Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
                     </div>
                     <div class="project-details" id="details-3">
                         <div class="details-inner">
@@ -239,7 +256,7 @@
                 <!-- Project 4 -->
                 <div class="project-card" id="project-4">
                     <div class="project-visual">
-                        <div class="visual-placeholder"><i class="fas fa-image"></i><br><span>Tu imagen aquí</span></div>
+                        <img src="assets/universo-amor.png" alt="App Interactiva para Parejas">
                     </div>
                     <div class="project-number">04</div>
                     <div class="project-content">
@@ -250,9 +267,12 @@
                         </div>
                         <h3>App Interactiva para Parejas</h3>
                         <p>Aplicación ("Universo Amor") con funcionalidades diseñadas para que las parejas interactúen, conecten y mejoren su comunicación.</p>
-                        <button class="project-link" onclick="toggleDetails('details-4')">
-                            Ver detalles <i class="fas fa-chevron-down"></i>
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                            <button class="project-link" onclick="toggleDetails('details-4')">
+                                Ver detalles <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <a href="#" target="_blank" class="project-link" style="background: var(--accent-light); border-color: transparent;">Ver Demo <i class="fas fa-external-link-alt"></i></a>
+                        </div>
                     </div>
                     <div class="project-details" id="details-4">
                         <div class="details-inner">
@@ -369,6 +389,28 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            const icon = mobileMenuBtn.querySelector('i');
+            if(navLinks.classList.contains('show')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
         });
 
         // Toggle project details
