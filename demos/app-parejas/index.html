@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Conexión - Parejas App</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- PWA: Logo e Instalación -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="theme-color" content="#FF4D8D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- DEMO RIBBON INYECTADO -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 999999; font-weight: bold; font-family: sans-serif; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+        MODO DEMO: Entorno seguro de solo lectura. Los datos son ficticios y no se guardarán.
+    </div>
+    <div class="app-container">
+        <!-- Elementos de fondo para efecto Glassmorphism -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+
+        <!-- Cabecera Superior -->
+        <header class="app-header glass-panel">
+            <div class="user-info">
+                <div class="avatar-container">
+                    <img src="https://api.dicebear.com/9.x/micah/svg?seed=Felix&backgroundColor=b6e3f4" alt="Avatar" class="avatar">
+                    <div class="online-dot"></div>
+                </div>
+                <div class="header-text">
+                    <h1 id="header-username">Nuestro Espacio</h1>
+                    <span class="status" id="header-status">Conectados ahora 💞</span>
+                </div>
+            </div>
+            <button class="icon-btn" id="btn-notif"><i class="ph ph-bell"></i></button>
+        </header>
+
+        <!-- Área Dinámica de Vistas -->
+        <main id="main-view">
+            <!-- VISTA: DIARIO COMPARTIDO -->
+            <section id="view-diary" class="view active">
+                <div class="view-header">
+                    <h2>Diario Compartido</h2>
+                    <p>Nuestros mejores momentos</p>
+                </div>
+                
+                <div class="diary-feed">
+                    <div class="diary-card glass-panel">
+                        <div class="card-header">
+                            <div class="user-meta">
+                                <img src="https://api.dicebear.com/9.x/micah/svg?seed=Felix&backgroundColor=b6e3f4" class="mini-avatar">
+                                <div>
+                                    <span class="name">Tú</span>
+                                    <span class="date">Hoy, 10:30 AM</span>
+                                </div>
+                            </div>
+                            <button class="icon-btn small"><i class="ph-fill ph-dots-three"></i></button>
+                        </div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Recuerdo" class="diary-img">
+                            <div class="like-btn"><i class="ph-fill ph-heart"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <p>Tarde de parque y mucho sol 🌳✨</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTA: CAJA DE ANTOJOS -->
+            <section id="view-cravings" class="view">
+                <div class="view-header">
+                    <h2>Caja de Antojos</h2>
+                    <p>Para cuando no sabemos qué hacer</p>
+                </div>
+
+                <button id="btn-random-craving" class="random-btn gradient-pink glass-panel">
+                    <i class="ph-fill ph-magic-wand"></i> ¡Botón de Indecisión!
+                </button>
+
+                <!-- Resultado del botón de indecisión -->
+                <div id="random-result" class="glass-panel" style="display:none; text-align:center; padding: 20px; margin-bottom: 24px; border-radius: 20px; border: 2px solid var(--accent-blue);">
+                    <h3 style="color: var(--accent-blue); font-size:1.1rem; margin-bottom:8px;">¡El destino ha hablado! 🔮</h3>
+                    <p id="random-result-text" style="font-size: 1.3rem; font-weight: 700; color: white;"></p>
+                </div>
+
+                <div class="cravings-list">
+                    <!-- Los antojos cargarán aquí -->
+                </div>
+            </section>
+
+            <!-- VISTA: PERFIL -->
+            <section id="view-profile" class="view">
+                <div class="view-header">
+                    <h2>Nuestro Espacio</h2>
+                    <p>Donde guardamos nuestra historia</p>
+                </div>
+
+                <!-- GATOS: Panel de Conexión -->
+                <div class="cats-panel glass-panel">
+                    <p class="cats-panel-title"><i class="ph-fill ph-heart"></i> Estamos aquí</p>
+                    <div class="cats-panel-row">
+                        <!-- Gato Izquierdo: La Negrita -->
+                        <div class="mascot negrita" id="mascot-goldota">
+                            <div class="speech-bubble" id="bubble-goldota">¡Hola!</div>
+                            <button class="btn-buzz" id="buzz-goldota" style="display:none; position:absolute; top:-10px; right:-10px; background:var(--accent-pink); border:none; border-radius:50%; width:28px; height:28px; color:white; cursor:pointer; font-size:0.8rem;"><i class="ph-fill ph-bell-ringing"></i></button>
+                            <div class="cat-body black-cat" id="cat-body-goldota">
+                                <div class="zzz">Zzz</div>
+                                <div class="ear ear-l"></div><div class="ear ear-r"></div>
+                                <div class="eye eye-l"></div><div class="eye eye-r"></div>
+                                <div class="blush blush-l"></div><div class="blush blush-r"></div>
+                                <div class="nose"></div><div class="smile"></div>
+                                <div class="whiskers-l"><div class="w1"></div><div class="w2"></div></div>
+                                <div class="whiskers-r"><div class="w1"></div><div class="w2"></div></div>
+                                <div class="paw paw-l waving"></div>
+                            </div>
+                            <span class="mascot-name">La Negrita</span>
+                            <div class="connection-dot" id="dot-goldota"></div>
+                            <div class="mood-selector" id="mood-goldota">
+                                <button class="mood-btn" data-mood="feliz">😺</button>
+                                <button class="mood-btn" data-mood="sad">😿</button>
+                                <button class="mood-btn" data-mood="angry">😾</button>
+                            </div>
+                        </div>
+
+                        <!-- Corazón central -->
+                        <div class="cats-heart" id="cats-connection-heart">💗</div>
+
+                        <!-- Gato Derecho: Trajesito -->
+                        <div class="mascot trajesito" id="mascot-goldote">
+                            <div class="speech-bubble" id="bubble-goldote">¡Hola!</div>
+                            <button class="btn-buzz" id="buzz-goldote" style="display:none; position:absolute; top:-10px; left:-10px; background:var(--accent-pink); border:none; border-radius:50%; width:28px; height:28px; color:white; cursor:pointer; font-size:0.8rem;"><i class="ph-fill ph-bell-ringing"></i></button>
+                            <div class="cat-body cow-cat" id="cat-body-goldote">
+                                <div class="zzz">Zzz</div>
+                                <div class="spot"></div>
+                                <div class="ear ear-l"></div><div class="ear ear-r"></div>
+                                <div class="eye eye-l"></div><div class="eye eye-r"></div>
+                                <div class="blush blush-l"></div><div class="blush blush-r"></div>
+                                <div class="nose"></div><div class="smile"></div>
+                                <div class="whiskers-l"><div class="w1"></div><div class="w2"></div></div>
+                                <div class="whiskers-r"><div class="w1"></div><div class="w2"></div></div>
+                                <div class="paw paw-r waving"></div>
+                            </div>
+                            <span class="mascot-name">Trajesito</span>
+                            <div class="connection-dot" id="dot-goldote"></div>
+                            <div class="mood-selector" id="mood-goldote">
+                                <button class="mood-btn" data-mood="feliz">😺</button>
+                                <button class="mood-btn" data-mood="sad">😿</button>
+                                <button class="mood-btn" data-mood="angry">😾</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contador de Días -->
+                <div class="profile-card romantic-card">
+                    <div class="romantic-icon">💖</div>
+                    <h3>Llevamos Juntos</h3>
+                    <div class="days-counter" id="days-together">Calculando...</div>
+                    <p class="anniversary-date">Desde el 9 de Febrero, 2025</p>
+                </div>
+
+                <!-- Baúl de Secretos -->
+                <button class="profile-btn gradient-purple" id="btn-secret-stash">
+                    <div class="btn-icon">🔐</div>
+                    <div class="btn-text">
+                        <strong>Baúl de Secretos</strong>
+                        <span>Notas privadas y contraseñas</span>
+                    </div>
+                </button>
+
+                <!-- Manual Animado -->
+                <button class="profile-btn gradient-blue" id="btn-manual">
+                    <div class="btn-icon">📖</div>
+                    <div class="btn-text">
+                        <strong>Manual Gatuno</strong>
+                        <span>Cuento ilustrado de uso</span>
+                    </div>
+                </button>
+            </section>
+
+            <!-- VISTA: MOTOR DE TIEMPO -->
+            <section id="view-time" class="view">
+                <div class="view-header">
+                    <h2>Motor de Tiempo</h2>
+                    <p>Mensajes al futuro y Buzón de pausa</p>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 24px;">
+                    <button id="btn-new-capsule" class="random-btn gradient-pink glass-panel" style="flex:1; margin-bottom:0; font-size:1rem;">
+                        <i class="ph-fill ph-rocket"></i> Al Futuro
+                    </button>
+                    <button id="btn-new-pause" class="random-btn glass-panel" style="flex:1; margin-bottom:0; font-size:1rem; background: rgba(255,255,255,0.1); color:var(--text-light); border: 1px solid var(--accent-blue);">
+                        <i class="ph-fill ph-pause-circle"></i> Pausa
+                    </button>
+                </div>
+
+                <div class="time-feed">
+                    <!-- Las cápsulas cargarán aquí -->
+                </div>
+            </section>
+        </main>
+
+
+        <!-- Botón Flotante (Diario) -->
+        <button id="fab-diary" class="fab-btn gradient-pink"><i class="ph ph-plus"></i></button>
+
+        <!-- Barra de Navegación Inferior Flotante -->
+        <nav class="bottom-nav glass-panel">
+            <button class="nav-item active" data-target="view-diary">
+                <div class="nav-icon-wrapper">
+                    <i class="ph ph-images"></i>
+                </div>
+                <span>Diario</span>
+            </button>
+            <button class="nav-item" data-target="view-cravings">
+                <div class="nav-icon-wrapper">
+                    <i class="ph ph-pizza"></i>
+                </div>
+                <span>Antojos</span>
+            </button>
+            <button class="nav-item" data-target="view-time">
+                <div class="nav-icon-wrapper">
+                    <i class="ph ph-hourglass-medium"></i>
+                </div>
+                <span>Tiempo</span>
+            </button>
+            <button class="nav-item" data-target="view-profile">
+                <div class="nav-icon-wrapper">
+                    <i class="ph ph-user"></i>
+                </div>
+                <span>Perfil</span>
+            </button>
+        </nav>
+        
+        <!-- MODAL: Nuevo Recuerdo -->
+        <div id="diary-modal" class="modal-overlay">
+            <div class="modal-content glass-panel">
+                <h3>Nuevo Recuerdo</h3>
+                <textarea id="diary-text" placeholder="¿Qué momento especial quieres guardar hoy?"></textarea>
+                <div class="modal-actions">
+                    <button id="cancel-diary" class="btn-cancel">Cancelar</button>
+                    <button id="save-diary" class="btn-save gradient-pink">Guardar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Nuevo Antojo -->
+        <div id="cravings-modal" class="modal-overlay">
+            <div class="modal-content glass-panel">
+                <h3>Nuevo Antojo</h3>
+                <input type="text" id="craving-title" placeholder="Ej: Ir por helado de McDonald's" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:white; font-family: 'Poppins', sans-serif;">
+                <select id="craving-tag" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:var(--bg-main); color:white; font-family: 'Poppins', sans-serif;">
+                    <option value="Comida">🍔 Comida</option>
+                    <option value="Postre">🍦 Postre</option>
+                    <option value="Salida">🍿 Salida / Cita</option>
+                    <option value="Regalo">🎁 Detalle</option>
+                </select>
+                <div class="modal-actions">
+                    <button id="cancel-craving" class="btn-cancel">Cancelar</button>
+                    <button id="save-craving" class="btn-save gradient-pink">Guardar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Cápsula al Futuro -->
+        <div id="capsule-modal" class="modal-overlay">
+            <div class="modal-content glass-panel">
+                <h3>Cápsula al Futuro</h3>
+                <textarea id="capsule-text" placeholder="Escribe tu mensaje para el futuro..." style="width:100%; height:80px; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:white; font-family: 'Poppins', sans-serif; resize:none;"></textarea>
+                
+                <p style="font-size:0.8rem; margin-top:10px; margin-bottom:5px;">¿Cuándo se abrirá?</p>
+                <input type="datetime-local" id="capsule-date" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:var(--bg-main); color:white; font-family: 'Poppins', sans-serif;">
+                
+                <div class="modal-actions" style="margin-top:15px;">
+                    <button id="cancel-capsule" class="btn-cancel">Cancelar</button>
+                    <button id="save-capsule" class="btn-save gradient-pink">Sellar Cápsula</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Buzón de Pausa -->
+        <div id="pause-modal" class="modal-overlay">
+            <div class="modal-content glass-panel" style="border: 2px solid var(--accent-blue);">
+                <h3 style="color:var(--accent-blue);">Buzón de Pausa</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted);">Escribe lo que sientes. Se bloqueará automáticamente por 2 horas para que ambos se enfríen.</p>
+                <textarea id="pause-text" placeholder="Me siento así porque..." style="width:100%; height:100px; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:white; font-family: 'Poppins', sans-serif; resize:none; margin-top:10px;"></textarea>
+                
+                <div class="modal-actions" style="margin-top:15px;">
+                    <button id="cancel-pause" class="btn-cancel">Cancelar</button>
+                    <button id="save-pause" class="btn-save" style="background:var(--accent-blue); color:var(--bg-main);">Bloquear Mensaje</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- Modal: Bienvenida Romántica (Solo para Goldota) -->
+    <div class="modal-overlay" id="welcome-modal">
+        <div class="modal-content welcome-modal-content">
+            <div class="welcome-hearts">
+                <span class="fheart">💖</span>
+                <span class="fheart">✨</span>
+                <span class="fheart">🌸</span>
+                <span class="fheart">💕</span>
+                <span class="fheart">⭐</span>
+            </div>
+            <div class="welcome-cats">
+                <span class="wcat wcat-left">🐈‍⬛</span>
+                <span class="wcat-heart">💗</span>
+                <span class="wcat wcat-right">🐈</span>
+            </div>
+            <h2 class="welcome-title">Bienvenida a<br><span>Nuestro Espacio</span></h2>
+            <p class="welcome-sub">Un lugar donde intentaremos compartir,<br>estar siempre comunicados y recordar<br>cada momento juntos.</p>
+            <p class="welcome-sig">Te amo mucho ❤️</p>
+            <button class="btn-welcome" id="btn-close-welcome">
+                <i class="ph-fill ph-heart"></i> Entrar a Nuestro Espacio
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal: Identidad (Obligatorio) -->
+    <div class="modal-overlay" id="identity-modal">
+        <div class="modal-content" style="align-items: center; text-align: center;">
+            <h2 style="font-size: 2rem;">¿Quién eres?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Toca tu mascota para entrar a la app.</p>
+            <div style="display: flex; gap: 20px;">
+                <button id="btn-goldota" style="background: none; border: none; cursor: pointer; transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="width: 80px; height: 80px; background: #1a1a2e; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; font-size: 2.5rem;">🐈‍⬛</div>
+                    <span style="display: block; margin-top: 10px; font-weight: 700; color: white;">La Negrita<br>(Goldota)</span>
+                </button>
+                <button id="btn-goldote" style="background: none; border: none; cursor: pointer; transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="width: 80px; height: 80px; background: #f8fafc; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; font-size: 2.5rem;">🐄</div>
+                    <span style="display: block; margin-top: 10px; font-weight: 700; color: white;">Trajesito<br>(Goldote)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Manual Gatuno (Cuento) -->
+    <div class="modal-overlay" id="manual-modal">
+        <div class="modal-content storybook-modal">
+            <h3 style="text-align:center; color:var(--accent-pink);">El Cuento de la App 📖</h3>
+            <div id="manual-carousel" class="carousel-container">
+                <div class="slide active">
+                    <div class="slide-icon">📝</div>
+                    <h4>1. Nuestro Diario</h4>
+                    <p>Aquí escribimos nuestros recuerdos. Ya tenemos un botecito de basura (🗑️) por si nos equivocamos.</p>
+                </div>
+                <div class="slide">
+                    <div class="slide-icon">🍕</div>
+                    <h4>2. Los Antojos</h4>
+                    <p>Si no sabemos qué comer, le damos al botón mágico. Y si ambos tenemos hambre... ¡Telepatía Gatuna!</p>
+                </div>
+                <div class="slide">
+                    <div class="slide-icon">⏳</div>
+                    <h4>3. El Tiempo</h4>
+                    <p>Podemos enviarnos sorpresas al futuro 🎁, o usar el Buzón de Pausa si estamos molestos y necesitamos calmarnos.</p>
+                </div>
+                <div class="slide">
+                    <div class="slide-icon">🐈‍⬛</div>
+                    <h4>4. Nosotros (Los Gatos)</h4>
+                    <p>Danos mimos tocándonos. Si duras 12 horas sin entrar, ¡nos enojaremos! De noche, dormiremos Zzz.</p>
+                </div>
+            </div>
+            <div class="carousel-controls" style="display:flex; justify-content:space-between; margin-top:15px;">
+                <button id="manual-prev" class="btn-cancel">Anterior</button>
+                <button id="manual-next" class="btn-save">Siguiente</button>
+            </div>
+            <button class="btn-cancel" style="width:100%; margin-top:10px; text-align:center;" id="btn-close-manual">Cerrar Cuento</button>
+        </div>
+    </div>
+
+    <!-- Modal: Baúl de Secretos -->
+    <div class="modal-overlay" id="secrets-modal">
+        <div class="modal-content">
+            <h3>Baúl de Secretos 🔐</h3>
+            <p style="font-size:0.8rem; color:var(--text-muted);">Un solo bloc de notas seguro para guardar contraseñas o promesas largas.</p>
+            <textarea id="secret-text" placeholder="Escribe aquí los secretos compartidos..." style="height: 150px;"></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="btn-close-secrets">Cerrar</button>
+                <button class="btn-save" id="btn-save-secrets">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Base de Datos: Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
