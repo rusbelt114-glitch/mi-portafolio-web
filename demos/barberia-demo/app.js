@@ -29,9 +29,9 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         const preloader = document.getElementById('preloader');
         preloader.classList.add('hidden');
-        initParticles();
+        // Ambient particles omitted for a calmer interface.
         animateCounters();
-    }, 1800);
+    }, 0);
 });
 
 // ============================
@@ -144,6 +144,9 @@ window.addEventListener('scroll', () => {
 function toggleMobileMenu() {
     const menu = document.getElementById('mobileMenu');
     menu.classList.toggle('open');
+    const toggle = document.querySelector('.mobile-menu-btn');
+    toggle.setAttribute('aria-expanded', String(menu.classList.contains('open')));
+    toggle.setAttribute('aria-label', menu.classList.contains('open') ? 'Cerrar menú' : 'Abrir menú');
 }
 
 // ============================
@@ -203,6 +206,7 @@ function updateBookingSummary() {
 
 // Booking Steps
 function goToStep(step) {
+    if (step === 3 && (!state.selectedDate || !state.selectedTime)) { showToast('Elige una fecha y un horario para continuar.'); return; }
     state.bookingStep = step;
     
     // Update step indicators
@@ -295,6 +299,8 @@ function selectDate(year, month, day) {
     if (date.getDay() === 0) return; // Sunday
     
     state.selectedDate = date;
+    state.selectedTime = null;
+    generateTimeSlots();
     generateCalendar();
     generateTimeSlots();
     
@@ -363,6 +369,11 @@ function updateConfirmation() {
 }
 
 function confirmBooking() {
+    if (!state.selectedDate || !state.selectedTime) { showToast('Selecciona una fecha y un horario.'); return; }
+    const name = document.getElementById('clientName');
+    if (!name.value.trim()) { showToast('Completa el nombre de ejemplo.'); name.focus(); return; }
+    const email = document.getElementById('clientEmail');
+    if (!email.checkValidity()) { email.reportValidity(); return; }
     const modal = document.getElementById('successModal');
     if (!modal) return;
     
@@ -386,9 +397,10 @@ function confirmBooking() {
     
     // Show modal
     modal.classList.add('open');
+    modal.focus();
     
     // Confetti effect
-    createConfetti();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) createConfetti();
 }
 
 function closeModal() {
@@ -521,8 +533,8 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     // Set today as default date for demo
     const today = new Date();
-    state.selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
-    state.selectedTime = '2:30 PM';
+    state.selectedDate = null;
+    state.selectedTime = null;
     
     // Generate calendar
     generateCalendar();

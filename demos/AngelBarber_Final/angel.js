@@ -1,0 +1,10 @@
+'use strict';
+const dateInput=document.getElementById('angel-date');
+const localDate=new Date();
+const today=[localDate.getFullYear(),String(localDate.getMonth()+1).padStart(2,'0'),String(localDate.getDate()).padStart(2,'0')].join('-');
+dateInput.min=today;dateInput.value=today;
+const priceFormat=new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0});
+document.querySelectorAll('[name=service]').forEach(radio=>radio.addEventListener('change',()=>{document.getElementById('angel-total').textContent=priceFormat.format(Number(radio.dataset.price));}));
+const dialog=document.getElementById('angel-dialog');
+document.getElementById('angel-form').addEventListener('submit',event=>{event.preventDefault();const service=document.querySelector('[name=service]:checked');const name=document.getElementById('angel-name').value.trim();const date=new Date(dateInput.value+'T12:00:00');const day=new Intl.DateTimeFormat('es',{dateStyle:'long'}).format(date);document.getElementById('angel-summary').textContent=`${name?name+', ':''}${service.value} · ${day} · ${document.getElementById('angel-time').value} · ${priceFormat.format(Number(service.dataset.price))}.`;dialog.showModal();});
+document.getElementById('close-angel-dialog').addEventListener('click',()=>dialog.close());

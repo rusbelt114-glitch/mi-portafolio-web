@@ -8,12 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Rye&family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-</head>
+<link rel="stylesheet" href="../demo-common.css"><link rel="stylesheet" href="polish.css"><link rel="icon" href="../../assets/favicon.svg"></head>
 <body>
-    <!-- DEMO RIBBON INYECTADO -->
-    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 999999; font-weight: bold; font-family: sans-serif; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
-        MODO DEMO: Entorno seguro de solo lectura. Los datos son ficticios y no se guardarán.
-    </div>
+    <div class="demo-bar"><a href="../../index.html#project-1">← Volver al portafolio</a><b>UN PROYECTO DE RUSBELT</b><span>Demo interactiva · Datos de ejemplo</span></div>
     <!-- PRELOADER -->
     <div id="preloader">
         <div class="preloader-inner">
@@ -39,7 +36,7 @@
                 <a href="#" onclick="showSection('booking')" class="nav-link" data-section="booking">Reservar</a>
                 <a href="#" onclick="showSection('dashboard')" class="nav-link" data-section="dashboard">Mi Cuenta</a>
             </div>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-btn" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMobileMenu()">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -158,12 +155,12 @@
             <div class="section-header animate-in">
                 <span class="section-tag"><i class="fas fa-users"></i> NUESTRO EQUIPO</span>
                 <h2 class="section-title">Barberos <span class="gold-text">Expertos</span></h2>
-                <p class="section-subtitle">Profesionales certificados con años de experiencia y pasión por el detalle.</p>
+                <p class="section-subtitle">Perfiles de ejemplo para explorar la selección de profesionales.</p>
             </div>
             <div class="barbers-grid">
                 <div class="barber-card animate-in" onclick="selectBarber(this, 'Carlos Méndez')">
                     <div class="barber-video-container">
-                        <video src="assets/videos/barber-carlos.mp4" poster="img/barber_carlos.png" autoplay loop muted playsinline></video>
+                        <img src="img/barber_carlos.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
                     </div>
                     <div class="barber-rating">
                         <i class="fas fa-star"></i> 4.9
@@ -181,7 +178,7 @@
                 </div>
                 <div class="barber-card animate-in" onclick="selectBarber(this, 'Miguel Torres')">
                     <div class="barber-video-container">
-                        <video src="assets/videos/barber-miguel.mp4" poster="img/barber_miguel.png" autoplay loop muted playsinline></video>
+                        <img src="img/barber_miguel.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
                     </div>
                     <div class="barber-rating">
                         <i class="fas fa-star"></i> 4.8
@@ -199,7 +196,7 @@
                 </div>
                 <div class="barber-card animate-in" onclick="selectBarber(this, 'Andrés Ruiz')">
                     <div class="barber-video-container">
-                        <video src="assets/videos/barber-andres.mp4" poster="img/barber_andres.png" autoplay loop muted playsinline></video>
+                        <img src="img/barber_andres.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
                     </div>
                     <div class="barber-rating">
                         <i class="fas fa-star"></i> 4.9
@@ -217,7 +214,7 @@
                 </div>
                 <div class="barber-card animate-in" onclick="selectBarber(this, 'Diego López')">
                     <div class="barber-video-container">
-                        <video src="assets/videos/barber-diego.mp4" poster="img/barber_diego.png" autoplay loop muted playsinline></video>
+                        <img src="img/barber_diego.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
                     </div>
                     <div class="barber-rating">
                         <i class="fas fa-star"></i> 4.7
@@ -392,16 +389,16 @@
                     </div>
                     <div class="confirmation-form">
                         <div class="form-group">
-                            <label><i class="fas fa-user"></i> Nombre completo</label>
-                            <input type="text" id="clientName" placeholder="Tu nombre" value="Juan Pérez">
+                            <label for="clientName"><i class="fas fa-user"></i> Nombre completo</label>
+                            <input type="text" id="clientName" maxlength="60" placeholder="Tu nombre" value="Juan Pérez">
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-phone"></i> Teléfono</label>
-                            <input type="tel" id="clientPhone" placeholder="Tu teléfono" value="+58 424-1234567">
+                            <label for="clientPhone"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input type="tel" id="clientPhone" maxlength="30" placeholder="Tu teléfono" value="Teléfono de ejemplo">
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-envelope"></i> Email (opcional)</label>
-                            <input type="email" id="clientEmail" placeholder="Tu email" value="juan@email.com">
+                            <label for="clientEmail"><i class="fas fa-envelope"></i> Email (opcional)</label>
+                            <input type="email" id="clientEmail" maxlength="100" placeholder="Tu email" value="juan@email.com">
                         </div>
                     </div>
                     <div class="booking-nav-buttons">
@@ -414,21 +411,21 @@
             </div>
 
             <!-- SUCCESS MODAL -->
-            <div id="successModal" class="modal-overlay">
+            <div id="successModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Reserva de demostración completada" tabindex="-1">
                 <div class="modal-card success-modal">
                     <div class="success-animation">
                         <div class="success-checkmark">
                             <i class="fas fa-check"></i>
                         </div>
                     </div>
-                    <h2>¡Cita Confirmada! 🎉</h2>
-                    <p>Tu cita ha sido reservada exitosamente</p>
+                    <h2>¡Reserva simulada! 🎉</h2>
+                    <p>Recorrido completado. Esta demo no crea una cita real.</p>
                     <div class="success-details">
                         <div class="success-detail"><i class="fas fa-hashtag"></i> Código: <strong id="bookingCode">BC-28471</strong></div>
                         <div class="success-detail"><i class="fas fa-calendar"></i> <span id="successDate">—</span></div>
                         <div class="success-detail"><i class="fas fa-clock"></i> <span id="successTime">—</span></div>
                     </div>
-                    <p class="success-note">📱 Recibirás una confirmación por WhatsApp y Email</p>
+                    <p class="success-note">No se envían confirmaciones ni se guardan datos.</p>
                     <div class="success-buttons">
                         <button class="btn-primary" onclick="closeModal(); showSection('dashboard')">
                             <i class="fas fa-tachometer-alt"></i> Ver mi Panel
@@ -937,8 +934,8 @@
             <div class="footer-links">
                 <h4>Contacto</h4>
                 <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123</p>
-                <p><i class="fas fa-phone"></i> +58 424-1234567</p>
-                <p><i class="fas fa-envelope"></i> info@bladeandcrown.com</p>
+                <p><i class="fas fa-phone"></i> Teléfono de ejemplo</p>
+                <p><i class="fas fa-envelope"></i> contacto@ejemplo.test</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -946,6 +943,6 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="app.js"></script><script src="enhancements.js"></script>
 </body>
 </html>
