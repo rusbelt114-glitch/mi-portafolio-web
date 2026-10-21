@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber S&T — Barbería Premium</title>
+    <meta name="description" content="Barber S&T - La barbería premium con sistema de citas inteligente. Reserva tu cita en segundos.">
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../demo-common.css"><link rel="stylesheet" href="polish.css"><link rel="icon" href="../../assets/favicon.svg"></head>
+<body>
+    <div class="demo-bar"><a href="../../index.html#project-1">← Volver al portafolio</a><b>UN PROYECTO DE RUSBELT</b><span>Demo interactiva · Datos de ejemplo</span></div>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="preloader-text"><span style="color: #fff;">BARBER</span> <span class="gold-text">S&T</span></div>
+            <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" onclick="showSection('hero')">
+                <i class="fas fa-star"></i>
+                <span><span style="color: #fff;">BARBER</span> <span class="gold-text">S&T</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('hero')" class="nav-link active" data-section="hero">Inicio</a>
+                <a href="#" onclick="showSection('services')" class="nav-link" data-section="services">Servicios</a>
+                <a href="#" onclick="showSection('barbers')" class="nav-link" data-section="barbers">Barberos</a>
+                <a href="#" onclick="showSection('booking')" class="nav-link" data-section="booking">Reservar</a>
+                <a href="#" onclick="showSection('dashboard')" class="nav-link" data-section="dashboard">Mi Cuenta</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#" onclick="showSection('hero'); toggleMobileMenu()">Inicio</a>
+        <a href="#" onclick="showSection('services'); toggleMobileMenu()">Servicios</a>
+        <a href="#" onclick="showSection('barbers'); toggleMobileMenu()">Barberos</a>
+        <a href="#" onclick="showSection('booking'); toggleMobileMenu()">Reservar</a>
+        <a href="#" onclick="showSection('dashboard'); toggleMobileMenu()">Mi Cuenta</a>
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero" class="section active">
+        <div class="hero-bg">
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-in">
+                Tu Estilo.<br>
+                <span class="gold-text">Nuestra Pasión.</span>
+            </h1>
+            <p class="hero-subtitle animate-in">
+                Cortes de precisión, barbas esculpidas y una experiencia única. 
+                Reserva tu cita en segundos con nuestro sistema inteligente.
+            </p>
+            <div class="hero-buttons animate-in">
+                <button class="btn-primary" onclick="showSection('booking')">
+                    <i class="fas fa-calendar-alt"></i> Reservar Ahora
+                </button>
+                <button class="btn-secondary" onclick="showSection('services')">
+                    <i class="fas fa-star"></i> Ver Servicios
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========== SERVICES SECTION ========== -->
+    <section id="services" class="section">
+        <div class="section-container">
+            <div class="section-header animate-in">
+                <span class="section-tag"><i class="fas fa-star"></i> NUESTROS SERVICIOS</span>
+                <h2 class="section-title">Servicios <span class="gold-text">Premium</span></h2>
+                <p class="section-subtitle">Cada corte es una obra de arte. Elige tu servicio y déjate llevar.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-in" onclick="selectService(this, 'Corte Clásico', 15)">
+                    <div class="service-icon"><i class="fas fa-star"></i></div>
+                    <div class="service-popular">Popular</div>
+                    <h3>Corte Clásico</h3>
+                    <p>Corte de cabello tradicional con acabado perfecto. Incluye lavado y secado.</p>
+                    <div class="service-details">
+                        <span><i class="fas fa-clock"></i> 30 min</span>
+                        <span class="service-price">$15</span>
+                    </div>
+                </div>
+                <div class="service-card featured animate-in" onclick="selectService(this, 'Corte + Barba', 25)">
+                    <div class="service-icon"><i class="fas fa-star"></i></div>
+                    <div class="service-popular">⭐ Más Pedido</div>
+                    <h3>Corte + Barba</h3>
+                    <p>Combo perfecto: corte de cabello con diseño de barba y perfilado con navaja.</p>
+                    <div class="service-details">
+                        <span><i class="fas fa-clock"></i> 50 min</span>
+                        <span class="service-price">$25</span>
+                    </div>
+                </div>
+                <div class="service-card animate-in" onclick="selectService(this, 'Diseño de Barba', 12)">
+                    <div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Diseño de Barba</h3>
+                    <p>Perfilado y diseño de barba con navaja caliente y aceites premium.</p>
+                    <div class="service-details">
+                        <span><i class="fas fa-clock"></i> 25 min</span>
+                        <span class="service-price">$12</span>
+                    </div>
+                </div>
+                <div class="service-card animate-in" onclick="selectService(this, 'Fade Premium', 20)">
+                    <div class="service-icon"><i class="fas fa-magic"></i></div>
+                    <h3>Fade Premium</h3>
+                    <p>Degradado perfecto con técnicas avanzadas. Low, mid o high fade a tu elección.</p>
+                    <div class="service-details">
+                        <span><i class="fas fa-clock"></i> 40 min</span>
+                        <span class="service-price">$20</span>
+                    </div>
+                </div>
+                <div class="service-card animate-in" onclick="selectService(this, 'Experiencia VIP', 45)">
+                    <div class="service-icon"><i class="fas fa-crown"></i></div>
+                    <div class="service-popular">Premium</div>
+                    <h3>Experiencia VIP</h3>
+                    <p>Corte + barba + tratamiento facial + masaje capilar + cerveza artesanal.</p>
+                    <div class="service-details">
+                        <span><i class="fas fa-clock"></i> 90 min</span>
+                        <span class="service-price">$45</span>
+                    </div>
+                </div>
+                <div class="service-card animate-in" onclick="selectService(this, 'Cejas & Detalles', 8)">
+                    <div class="service-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Cejas & Detalles</h3>
+                    <p>Perfilado de cejas con hilo o navaja. Detalle perfecto para tu look.</p>
+                    <div class="service-details">
+                        <span><i class="fas fa-clock"></i> 15 min</span>
+                        <span class="service-price">$8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BARBERS SECTION ========== -->
+    <section id="barbers" class="section">
+        <div class="section-container">
+            <div class="section-header animate-in">
+                <span class="section-tag"><i class="fas fa-users"></i> NUESTRO EQUIPO</span>
+                <h2 class="section-title">Barberos <span class="gold-text">Expertos</span></h2>
+                <p class="section-subtitle">Perfiles de ejemplo para explorar la selección de profesionales.</p>
+            </div>
+            <div class="barbers-grid">
+                <div class="barber-card animate-in" onclick="selectBarber(this, 'Carlos Méndez')">
+                    <div class="barber-video-container">
+                        <img src="img/barber_carlos.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
+                    </div>
+                    <div class="barber-rating">
+                        <i class="fas fa-star"></i> 4.9
+                    </div>
+                    <h3>Carlos Méndez</h3>
+                    <p class="barber-title">Master Barber</p>
+                    <p class="barber-specialty">Especialista en Fades & Diseños</p>
+                    <div class="barber-stats">
+                        <span><i class="fas fa-star"></i> 12 años</span>
+                        <span><i class="fas fa-heart"></i> 847 reviews</span>
+                    </div>
+                    <div class="barber-availability available">
+                        <i class="fas fa-circle"></i> Disponible hoy
+                    </div>
+                </div>
+                <div class="barber-card animate-in" onclick="selectBarber(this, 'Miguel Torres')">
+                    <div class="barber-video-container">
+                        <img src="img/barber_miguel.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
+                    </div>
+                    <div class="barber-rating">
+                        <i class="fas fa-star"></i> 4.8
+                    </div>
+                    <h3>Miguel Torres</h3>
+                    <p class="barber-title">Senior Barber</p>
+                    <p class="barber-specialty">Experto en Barbas & Clásicos</p>
+                    <div class="barber-stats">
+                        <span><i class="fas fa-star"></i> 8 años</span>
+                        <span><i class="fas fa-heart"></i> 623 reviews</span>
+                    </div>
+                    <div class="barber-availability available">
+                        <i class="fas fa-circle"></i> Disponible hoy
+                    </div>
+                </div>
+                <div class="barber-card animate-in" onclick="selectBarber(this, 'Andrés Ruiz')">
+                    <div class="barber-video-container">
+                        <img src="img/barber_andres.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
+                    </div>
+                    <div class="barber-rating">
+                        <i class="fas fa-star"></i> 4.9
+                    </div>
+                    <h3>Andrés Ruiz</h3>
+                    <p class="barber-title">Creative Barber</p>
+                    <p class="barber-specialty">Diseños Artísticos & Color</p>
+                    <div class="barber-stats">
+                        <span><i class="fas fa-star"></i> 6 años</span>
+                        <span><i class="fas fa-heart"></i> 512 reviews</span>
+                    </div>
+                    <div class="barber-availability busy">
+                        <i class="fas fa-circle"></i> Próximo: 3:30 PM
+                    </div>
+                </div>
+                <div class="barber-card animate-in" onclick="selectBarber(this, 'Diego López')">
+                    <div class="barber-video-container">
+                        <img src="img/barber_diego.png" alt="Profesional de ejemplo de Barber S&T" loading="lazy">
+                    </div>
+                    <div class="barber-rating">
+                        <i class="fas fa-star"></i> 4.7
+                    </div>
+                    <h3>Diego López</h3>
+                    <p class="barber-title">Junior Barber</p>
+                    <p class="barber-specialty">Fades Modernos & Tendencias</p>
+                    <div class="barber-stats">
+                        <span><i class="fas fa-star"></i> 3 años</span>
+                        <span><i class="fas fa-heart"></i> 289 reviews</span>
+                    </div>
+                    <div class="barber-availability available">
+                        <i class="fas fa-circle"></i> Disponible hoy
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BOOKING SECTION ========== -->
+    <section id="booking" class="section">
+        <div class="section-container">
+            <div class="section-header animate-in">
+                <span class="section-tag"><i class="fas fa-calendar-check"></i> RESERVAR CITA</span>
+                <h2 class="section-title">Agenda tu <span class="gold-text">Cita</span></h2>
+                <p class="section-subtitle">3 pasos simples y tu cita estará lista. Sin llamadas, sin esperas.</p>
+            </div>
+
+            <!-- BOOKING STEPS INDICATOR -->
+            <div class="booking-steps animate-in">
+                <div class="step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <span>Servicio</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <span>Fecha & Hora</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <span>Confirmar</span>
+                </div>
+            </div>
+
+            <!-- STEP 1: Service Selection -->
+            <div id="bookingStep1" class="booking-step-content active">
+                <div class="booking-summary-bar">
+                    <div class="summary-item" id="selectedServiceDisplay">
+                        <i class="fas fa-star"></i> <span>Selecciona un servicio</span>
+                    </div>
+                    <div class="summary-item" id="selectedBarberDisplay">
+                        <i class="fas fa-user"></i> <span>Selecciona un barbero</span>
+                    </div>
+                </div>
+                <div class="mini-services-grid">
+                    <div class="mini-service" onclick="bookingSelectService(this, 'Corte Clásico', 15)">
+                        <i class="fas fa-star"></i>
+                        <span>Corte Clásico</span>
+                        <strong>$15</strong>
+                    </div>
+                    <div class="mini-service selected" onclick="bookingSelectService(this, 'Corte + Barba', 25)">
+                        <i class="fas fa-star"></i>
+                        <span>Corte + Barba</span>
+                        <strong>$25</strong>
+                    </div>
+                    <div class="mini-service" onclick="bookingSelectService(this, 'Diseño de Barba', 12)">
+                        <i class="fas fa-palette"></i>
+                        <span>Diseño de Barba</span>
+                        <strong>$12</strong>
+                    </div>
+                    <div class="mini-service" onclick="bookingSelectService(this, 'Fade Premium', 20)">
+                        <i class="fas fa-magic"></i>
+                        <span>Fade Premium</span>
+                        <strong>$20</strong>
+                    </div>
+                    <div class="mini-service" onclick="bookingSelectService(this, 'Experiencia VIP', 45)">
+                        <i class="fas fa-crown"></i>
+                        <span>Experiencia VIP</span>
+                        <strong>$45</strong>
+                    </div>
+                    <div class="mini-service" onclick="bookingSelectService(this, 'Cejas & Detalles', 8)">
+                        <i class="fas fa-eye"></i>
+                        <span>Cejas & Detalles</span>
+                        <strong>$8</strong>
+                    </div>
+                </div>
+                <h4 class="booking-sub-title"><i class="fas fa-user-check"></i> Elige tu barbero</h4>
+                <div class="mini-barbers-grid">
+                    <div class="mini-barber" onclick="bookingSelectBarber(this, 'Carlos Méndez')">
+                        <div class="mini-barber-avatar" style="background: linear-gradient(135deg, #c9a84c, #8b6914);"><i class="fas fa-user"></i></div>
+                        <span>Carlos M.</span>
+                        <small>⭐ 4.9</small>
+                    </div>
+                    <div class="mini-barber selected" onclick="bookingSelectBarber(this, 'Miguel Torres')">
+                        <div class="mini-barber-avatar" style="background: linear-gradient(135deg, #4ca8c9, #146b8b);"><i class="fas fa-user"></i></div>
+                        <span>Miguel T.</span>
+                        <small>⭐ 4.8</small>
+                    </div>
+                    <div class="mini-barber" onclick="bookingSelectBarber(this, 'Andrés Ruiz')">
+                        <div class="mini-barber-avatar" style="background: linear-gradient(135deg, #c94c7c, #8b1444);"><i class="fas fa-user"></i></div>
+                        <span>Andrés R.</span>
+                        <small>⭐ 4.9</small>
+                    </div>
+                    <div class="mini-barber" onclick="bookingSelectBarber(this, 'Diego López')">
+                        <div class="mini-barber-avatar" style="background: linear-gradient(135deg, #4cc96a, #148b33);"><i class="fas fa-user"></i></div>
+                        <span>Diego L.</span>
+                        <small>⭐ 4.7</small>
+                    </div>
+                </div>
+                <button class="btn-primary btn-full" onclick="goToStep(2)">
+                    Continuar <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Date & Time -->
+            <div id="bookingStep2" class="booking-step-content">
+                <div class="booking-calendar">
+                    <div class="calendar-header">
+                        <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="calendarMonth">Agosto 2026</h3>
+                        <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                    </div>
+                    <div class="calendar-days" id="calendarDays">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                <div class="time-slots">
+                    <h4><i class="fas fa-clock"></i> Horarios disponibles — <span id="selectedDateText">Selecciona una fecha</span></h4>
+                    <div class="slots-grid" id="timeSlots">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                <div class="booking-nav-buttons">
+                    <button class="btn-secondary" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Atrás</button>
+                    <button class="btn-primary" onclick="goToStep(3)">Continuar <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="bookingStep3" class="booking-step-content">
+                <div class="confirmation-card">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Resumen de tu Cita</h3>
+                    <div class="confirmation-details">
+                        <div class="detail-row">
+                            <span class="detail-label"><i class="fas fa-star"></i> Servicio</span>
+                            <span class="detail-value" id="confirmService">Corte + Barba</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label"><i class="fas fa-user"></i> Barbero</span>
+                            <span class="detail-value" id="confirmBarber">Miguel Torres</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label"><i class="fas fa-calendar"></i> Fecha</span>
+                            <span class="detail-value" id="confirmDate">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label"><i class="fas fa-clock"></i> Hora</span>
+                            <span class="detail-value" id="confirmTime">—</span>
+                        </div>
+                        <div class="detail-row total">
+                            <span class="detail-label"><i class="fas fa-dollar-sign"></i> Total</span>
+                            <span class="detail-value" id="confirmPrice">$25.00</span>
+                        </div>
+                    </div>
+                    <div class="confirmation-form">
+                        <div class="form-group">
+                            <label for="clientName"><i class="fas fa-user"></i> Nombre completo</label>
+                            <input type="text" id="clientName" maxlength="60" placeholder="Tu nombre" value="Juan Pérez">
+                        </div>
+                        <div class="form-group">
+                            <label for="clientPhone"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input type="tel" id="clientPhone" maxlength="30" placeholder="Tu teléfono" value="Teléfono de ejemplo">
+                        </div>
+                        <div class="form-group">
+                            <label for="clientEmail"><i class="fas fa-envelope"></i> Email (opcional)</label>
+                            <input type="email" id="clientEmail" maxlength="100" placeholder="Tu email" value="juan@email.com">
+                        </div>
+                    </div>
+                    <div class="booking-nav-buttons">
+                        <button class="btn-secondary" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Atrás</button>
+                        <button class="btn-primary btn-confirm" onclick="confirmBooking()">
+                            <i class="fas fa-check-circle"></i> Confirmar Cita
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUCCESS MODAL -->
+            <div id="successModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Reserva de demostración completada" tabindex="-1">
+                <div class="modal-card success-modal">
+                    <div class="success-animation">
+                        <div class="success-checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <h2>¡Reserva simulada! 🎉</h2>
+                    <p>Recorrido completado. Esta demo no crea una cita real.</p>
+                    <div class="success-details">
+                        <div class="success-detail"><i class="fas fa-hashtag"></i> Código: <strong id="bookingCode">BC-28471</strong></div>
+                        <div class="success-detail"><i class="fas fa-calendar"></i> <span id="successDate">—</span></div>
+                        <div class="success-detail"><i class="fas fa-clock"></i> <span id="successTime">—</span></div>
+                    </div>
+                    <p class="success-note">No se envían confirmaciones ni se guardan datos.</p>
+                    <div class="success-buttons">
+                        <button class="btn-primary" onclick="closeModal(); showSection('dashboard')">
+                            <i class="fas fa-tachometer-alt"></i> Ver mi Panel
+                        </button>
+                        <button class="btn-secondary" onclick="closeModal()">
+                            <i class="fas fa-home"></i> Inicio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CLIENT DASHBOARD ========== -->
+    <section id="dashboard" class="section">
+        <div class="section-container">
+            <div class="section-header animate-in">
+                <span class="section-tag"><i class="fas fa-user-circle"></i> MI CUENTA</span>
+                <h2 class="section-title">Panel del <span class="gold-text">Cliente</span></h2>
+            </div>
+
+            <!-- CLIENT WELCOME -->
+            <div class="client-welcome animate-in">
+                <div class="client-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="client-info">
+                    <h3>¡Hola, Juan! 👋</h3>
+                    <p>Cliente frecuente desde Enero 2025</p>
+                    <div class="client-badges">
+                        <span class="badge gold"><i class="fas fa-crown"></i> VIP Gold</span>
+                        <span class="badge"><i class="fas fa-fire"></i> 12 visitas</span>
+                        <span class="badge"><i class="fas fa-heart"></i> Fiel</span>
+                    </div>
+                </div>
+                <div class="loyalty-card">
+                    <div class="loyalty-title"><i class="fas fa-gift"></i> Puntos de Lealtad</div>
+                    <div class="loyalty-points">
+                        <span class="points-number">480</span>
+                        <span class="points-label">puntos</span>
+                    </div>
+                    <div class="loyalty-progress">
+                        <div class="loyalty-bar" style="width: 80%"></div>
+                    </div>
+                    <small>120 puntos más para tu próximo corte GRATIS 🎉</small>
+                </div>
+            </div>
+
+            <!-- UPCOMING APPOINTMENTS -->
+            <div class="dashboard-section animate-in">
+                <h3 class="dash-section-title"><i class="fas fa-calendar-check"></i> Próximas Citas</h3>
+                <div class="appointments-list">
+                    <div class="appointment-card upcoming">
+                        <div class="apt-date">
+                            <span class="apt-day">08</span>
+                            <span class="apt-month">AGO</span>
+                        </div>
+                        <div class="apt-info">
+                            <h4>Corte + Barba</h4>
+                            <p><i class="fas fa-user"></i> Miguel Torres</p>
+                            <p><i class="fas fa-clock"></i> 2:30 PM — 3:20 PM</p>
+                        </div>
+                        <div class="apt-status">
+                            <span class="status-badge confirmed"><i class="fas fa-check-circle"></i> Confirmada</span>
+                            <span class="apt-price">$25.00</span>
+                        </div>
+                        <div class="apt-actions">
+                            <button class="btn-icon" title="Reprogramar"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon danger" title="Cancelar"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="appointment-card upcoming">
+                        <div class="apt-date">
+                            <span class="apt-day">15</span>
+                            <span class="apt-month">AGO</span>
+                        </div>
+                        <div class="apt-info">
+                            <h4>Experiencia VIP</h4>
+                            <p><i class="fas fa-user"></i> Carlos Méndez</p>
+                            <p><i class="fas fa-clock"></i> 11:00 AM — 12:30 PM</p>
+                        </div>
+                        <div class="apt-status">
+                            <span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pendiente</span>
+                            <span class="apt-price">$45.00</span>
+                        </div>
+                        <div class="apt-actions">
+                            <button class="btn-icon" title="Reprogramar"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon danger" title="Cancelar"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HISTORY -->
+            <div class="dashboard-section animate-in">
+                <h3 class="dash-section-title"><i class="fas fa-history"></i> Historial Reciente</h3>
+                <div class="appointments-list">
+                    <div class="appointment-card past">
+                        <div class="apt-date">
+                            <span class="apt-day">25</span>
+                            <span class="apt-month">JUL</span>
+                        </div>
+                        <div class="apt-info">
+                            <h4>Fade Premium</h4>
+                            <p><i class="fas fa-user"></i> Carlos Méndez</p>
+                        </div>
+                        <div class="apt-status">
+                            <span class="status-badge completed"><i class="fas fa-check"></i> Completada</span>
+                            <span class="apt-price">$20.00</span>
+                        </div>
+                        <div class="apt-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="appointment-card past">
+                        <div class="apt-date">
+                            <span class="apt-day">10</span>
+                            <span class="apt-month">JUL</span>
+                        </div>
+                        <div class="apt-info">
+                            <h4>Corte + Barba</h4>
+                            <p><i class="fas fa-user"></i> Miguel Torres</p>
+                        </div>
+                        <div class="apt-status">
+                            <span class="status-badge completed"><i class="fas fa-check"></i> Completada</span>
+                            <span class="apt-price">$25.00</span>
+                        </div>
+                        <div class="apt-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="appointment-card past">
+                        <div class="apt-date">
+                            <span class="apt-day">28</span>
+                            <span class="apt-month">JUN</span>
+                        </div>
+                        <div class="apt-info">
+                            <h4>Corte Clásico</h4>
+                            <p><i class="fas fa-user"></i> Andrés Ruiz</p>
+                        </div>
+                        <div class="apt-status">
+                            <span class="status-badge completed"><i class="fas fa-check"></i> Completada</span>
+                            <span class="apt-price">$15.00</span>
+                        </div>
+                        <div class="apt-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADMIN DASHBOARD ========== -->
+    <section id="admin" class="section">
+        <div class="section-container">
+            <div class="section-header animate-in">
+                <span class="section-tag"><i class="fas fa-chart-line"></i> PANEL ADMINISTRATIVO</span>
+                <h2 class="section-title">Control <span class="gold-text">Total</span></h2>
+                <p class="section-subtitle">Gestiona tu barbería con datos en tiempo real</p>
+            </div>
+
+            <!-- ADMIN STATS -->
+            <div class="admin-stats-grid animate-in">
+                <div class="admin-stat-card revenue">
+                    <div class="admin-stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="admin-stat-info">
+                        <span class="admin-stat-label">Ingresos del Mes</span>
+                        <span class="admin-stat-value">$12,847</span>
+                        <span class="admin-stat-change positive"><i class="fas fa-arrow-up"></i> +18.5%</span>
+                    </div>
+                    <div class="admin-stat-chart">
+                        <div class="mini-bar" style="height: 40%"></div>
+                        <div class="mini-bar" style="height: 55%"></div>
+                        <div class="mini-bar" style="height: 35%"></div>
+                        <div class="mini-bar" style="height: 70%"></div>
+                        <div class="mini-bar" style="height: 60%"></div>
+                        <div class="mini-bar" style="height: 85%"></div>
+                        <div class="mini-bar active" style="height: 92%"></div>
+                    </div>
+                </div>
+                <div class="admin-stat-card appointments">
+                    <div class="admin-stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="admin-stat-info">
+                        <span class="admin-stat-label">Citas este Mes</span>
+                        <span class="admin-stat-value">384</span>
+                        <span class="admin-stat-change positive"><i class="fas fa-arrow-up"></i> +12.3%</span>
+                    </div>
+                    <div class="admin-stat-chart">
+                        <div class="mini-bar" style="height: 50%"></div>
+                        <div class="mini-bar" style="height: 65%"></div>
+                        <div class="mini-bar" style="height: 45%"></div>
+                        <div class="mini-bar" style="height: 80%"></div>
+                        <div class="mini-bar" style="height: 70%"></div>
+                        <div class="mini-bar" style="height: 75%"></div>
+                        <div class="mini-bar active" style="height: 88%"></div>
+                    </div>
+                </div>
+                <div class="admin-stat-card clients">
+                    <div class="admin-stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="admin-stat-info">
+                        <span class="admin-stat-label">Clientes Nuevos</span>
+                        <span class="admin-stat-value">67</span>
+                        <span class="admin-stat-change positive"><i class="fas fa-arrow-up"></i> +24.1%</span>
+                    </div>
+                    <div class="admin-stat-chart">
+                        <div class="mini-bar" style="height: 30%"></div>
+                        <div class="mini-bar" style="height: 45%"></div>
+                        <div class="mini-bar" style="height: 60%"></div>
+                        <div class="mini-bar" style="height: 50%"></div>
+                        <div class="mini-bar" style="height: 75%"></div>
+                        <div class="mini-bar" style="height: 80%"></div>
+                        <div class="mini-bar active" style="height: 95%"></div>
+                    </div>
+                </div>
+                <div class="admin-stat-card rating">
+                    <div class="admin-stat-icon"><i class="fas fa-star"></i></div>
+                    <div class="admin-stat-info">
+                        <span class="admin-stat-label">Calificación</span>
+                        <span class="admin-stat-value">4.9</span>
+                        <span class="admin-stat-change positive"><i class="fas fa-arrow-up"></i> +0.2</span>
+                    </div>
+                    <div class="admin-stat-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVENUE CHART -->
+            <div class="admin-chart-card animate-in">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-area"></i> Ingresos Mensuales</h3>
+                    <div class="chart-tabs">
+                        <button class="chart-tab active">Semanal</button>
+                        <button class="chart-tab">Mensual</button>
+                        <button class="chart-tab">Anual</button>
+                    </div>
+                </div>
+                <div class="revenue-chart" id="revenueChart">
+                    <div class="chart-y-axis">
+                        <span>$15k</span>
+                        <span>$12k</span>
+                        <span>$9k</span>
+                        <span>$6k</span>
+                        <span>$3k</span>
+                        <span>$0</span>
+                    </div>
+                    <div class="chart-bars">
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 60%;" data-value="$7,240">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Ene</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 72%;" data-value="$8,640">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Feb</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 55%;" data-value="$6,600">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Mar</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 68%;" data-value="$8,160">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Abr</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 78%;" data-value="$9,360">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>May</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 85%;" data-value="$10,200">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Jun</span>
+                        </div>
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: 90%;" data-value="$10,800">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Jul</span>
+                        </div>
+                        <div class="chart-bar-group highlight">
+                            <div class="chart-bar" style="height: 95%;" data-value="$12,847">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <span>Ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODAY'S APPOINTMENTS -->
+            <div class="admin-panel-grid animate-in">
+                <div class="admin-panel">
+                    <h3><i class="fas fa-list-alt"></i> Citas de Hoy <span class="badge-count">8</span></h3>
+                    <div class="today-appointments">
+                        <div class="today-apt completed-apt">
+                            <div class="today-time">9:00 AM</div>
+                            <div class="today-info">
+                                <strong>Pedro García</strong>
+                                <small>Corte Clásico — Carlos M.</small>
+                            </div>
+                            <span class="today-status done"><i class="fas fa-check"></i></span>
+                            <span class="today-amount">$15</span>
+                        </div>
+                        <div class="today-apt completed-apt">
+                            <div class="today-time">9:45 AM</div>
+                            <div class="today-info">
+                                <strong>Luis Fernández</strong>
+                                <small>Corte + Barba — Miguel T.</small>
+                            </div>
+                            <span class="today-status done"><i class="fas fa-check"></i></span>
+                            <span class="today-amount">$25</span>
+                        </div>
+                        <div class="today-apt completed-apt">
+                            <div class="today-time">10:30 AM</div>
+                            <div class="today-info">
+                                <strong>Roberto Díaz</strong>
+                                <small>Fade Premium — Andrés R.</small>
+                            </div>
+                            <span class="today-status done"><i class="fas fa-check"></i></span>
+                            <span class="today-amount">$20</span>
+                        </div>
+                        <div class="today-apt in-progress-apt">
+                            <div class="today-time">11:15 AM</div>
+                            <div class="today-info">
+                                <strong>Marco Villar</strong>
+                                <small>Experiencia VIP — Carlos M.</small>
+                            </div>
+                            <span class="today-status progress"><i class="fas fa-spinner fa-spin"></i></span>
+                            <span class="today-amount">$45</span>
+                        </div>
+                        <div class="today-apt">
+                            <div class="today-time">1:00 PM</div>
+                            <div class="today-info">
+                                <strong>Santiago Mora</strong>
+                                <small>Corte + Barba — Diego L.</small>
+                            </div>
+                            <span class="today-status pending"><i class="fas fa-clock"></i></span>
+                            <span class="today-amount">$25</span>
+                        </div>
+                        <div class="today-apt">
+                            <div class="today-time">2:30 PM</div>
+                            <div class="today-info">
+                                <strong>Juan Pérez</strong>
+                                <small>Corte + Barba — Miguel T.</small>
+                            </div>
+                            <span class="today-status pending"><i class="fas fa-clock"></i></span>
+                            <span class="today-amount">$25</span>
+                        </div>
+                        <div class="today-apt">
+                            <div class="today-time">3:30 PM</div>
+                            <div class="today-info">
+                                <strong>Alejandro Ríos</strong>
+                                <small>Diseño de Barba — Andrés R.</small>
+                            </div>
+                            <span class="today-status pending"><i class="fas fa-clock"></i></span>
+                            <span class="today-amount">$12</span>
+                        </div>
+                        <div class="today-apt">
+                            <div class="today-time">4:15 PM</div>
+                            <div class="today-info">
+                                <strong>Felipe Castro</strong>
+                                <small>Fade Premium — Carlos M.</small>
+                            </div>
+                            <span class="today-status pending"><i class="fas fa-clock"></i></span>
+                            <span class="today-amount">$20</span>
+                        </div>
+                    </div>
+                    <div class="today-total">
+                        <span>Total del día</span>
+                        <strong>$187.00</strong>
+                    </div>
+                </div>
+
+                <!-- ACCOUNTING PANEL -->
+                <div class="admin-panel">
+                    <h3><i class="fas fa-file-invoice-dollar"></i> Contabilidad</h3>
+                    <div class="accounting-summary">
+                        <div class="acc-row">
+                            <span class="acc-label">Ingresos Brutos</span>
+                            <span class="acc-value">$12,847.00</span>
+                        </div>
+                        <div class="acc-row">
+                            <span class="acc-label">Productos vendidos</span>
+                            <span class="acc-value">$2,340.00</span>
+                        </div>
+                        <div class="acc-row expense">
+                            <span class="acc-label">Comisiones barberos</span>
+                            <span class="acc-value">-$5,138.80</span>
+                        </div>
+                        <div class="acc-row expense">
+                            <span class="acc-label">Alquiler local</span>
+                            <span class="acc-value">-$1,200.00</span>
+                        </div>
+                        <div class="acc-row expense">
+                            <span class="acc-label">Insumos</span>
+                            <span class="acc-value">-$890.00</span>
+                        </div>
+                        <div class="acc-row expense">
+                            <span class="acc-label">Servicios</span>
+                            <span class="acc-value">-$350.00</span>
+                        </div>
+                        <div class="acc-divider"></div>
+                        <div class="acc-row total">
+                            <span class="acc-label">Ganancia Neta</span>
+                            <span class="acc-value positive">$7,608.20</span>
+                        </div>
+                    </div>
+
+                    <h4 class="acc-subtitle"><i class="fas fa-chart-pie"></i> Servicios más vendidos</h4>
+                    <div class="services-ranking">
+                        <div class="ranking-item">
+                            <div class="ranking-bar-bg">
+                                <div class="ranking-bar" style="width: 85%"></div>
+                            </div>
+                            <span class="ranking-name">Corte + Barba</span>
+                            <span class="ranking-count">142</span>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-bar-bg">
+                                <div class="ranking-bar" style="width: 62%"></div>
+                            </div>
+                            <span class="ranking-name">Fade Premium</span>
+                            <span class="ranking-count">98</span>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-bar-bg">
+                                <div class="ranking-bar" style="width: 48%"></div>
+                            </div>
+                            <span class="ranking-name">Corte Clásico</span>
+                            <span class="ranking-count">76</span>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-bar-bg">
+                                <div class="ranking-bar" style="width: 35%"></div>
+                            </div>
+                            <span class="ranking-name">Experiencia VIP</span>
+                            <span class="ranking-count">42</span>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-bar-bg">
+                                <div class="ranking-bar" style="width: 22%"></div>
+                            </div>
+                            <span class="ranking-name">Diseño de Barba</span>
+                            <span class="ranking-count">26</span>
+                        </div>
+                    </div>
+
+                    <h4 class="acc-subtitle"><i class="fas fa-trophy"></i> Top Barberos del Mes</h4>
+                    <div class="top-barbers">
+                        <div class="top-barber">
+                            <span class="top-rank gold">1</span>
+                            <span class="top-name">Carlos Méndez</span>
+                            <span class="top-earnings">$4,230</span>
+                        </div>
+                        <div class="top-barber">
+                            <span class="top-rank silver">2</span>
+                            <span class="top-name">Miguel Torres</span>
+                            <span class="top-earnings">$3,815</span>
+                        </div>
+                        <div class="top-barber">
+                            <span class="top-rank bronze">3</span>
+                            <span class="top-name">Andrés Ruiz</span>
+                            <span class="top-earnings">$2,940</span>
+                        </div>
+                        <div class="top-barber">
+                            <span class="top-rank">4</span>
+                            <span class="top-name">Diego López</span>
+                            <span class="top-earnings">$1,862</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo"><i class="fas fa-star"></i> <span style="color: #fff;">BARBER</span> <span class="gold-text">S&T</span></div>
+                <p>La barbería premium de la ciudad. Estilo, precisión y confianza.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Horario</h4>
+                <p>Lun - Vie: 9:00 AM - 7:00 PM</p>
+                <p>Sábado: 8:00 AM - 5:00 PM</p>
+                <p>Domingo: Cerrado</p>
+            </div>
+            <div class="footer-links">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123</p>
+                <p><i class="fas fa-phone"></i> Teléfono de ejemplo</p>
+                <p><i class="fas fa-envelope"></i> contacto@ejemplo.test</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Barber S&T — Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script><script src="enhancements.js"></script>
+</body>
+</html>
