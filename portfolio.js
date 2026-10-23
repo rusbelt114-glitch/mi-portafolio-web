@@ -12,3 +12,35 @@ document.getElementById('year').textContent=new Date().getFullYear();
 
 function openLinkedCase(){const target=document.getElementById(location.hash.slice(1));if(target?.tagName==='DETAILS')target.open=true;}
 window.addEventListener('hashchange',openLinkedCase);openLinkedCase();
+
+// Keep one business open, and keep the desktop detail area populated.
+const businessOptions = [...document.querySelectorAll('.business-option')];
+businessOptions.forEach(option => {
+  option.addEventListener('toggle', () => {
+    if (option.open) businessOptions.forEach(other => { if (other !== option) other.open = false; });
+  });
+  option.querySelector('summary').addEventListener('click', event => {
+    if (window.matchMedia('(min-width: 801px)').matches && option.open) event.preventDefault();
+  });
+});
+
+function fitBusinessPanel() {
+  const options = document.querySelector('.business-options');
+  if (!options) return;
+  if (window.matchMedia('(min-width: 801px)').matches) {
+    const panel = options.querySelector('.business-option[open] .business-panel');
+    const listHeight = businessOptions.reduce((height, item) => height + item.querySelector('summary').getBoundingClientRect().height + 10, 0);
+    options.style.minHeight = Math.ceil(Math.max(listHeight, panel ? panel.getBoundingClientRect().height : 0) + 12) + 'px';
+  } else {
+    options.style.minHeight = '';
+  }
+}
+businessOptions.forEach(option => option.addEventListener('toggle', fitBusinessPanel));
+window.addEventListener('resize', fitBusinessPanel);
+if ('ResizeObserver' in window) {
+  const businessResizeObserver = new ResizeObserver(fitBusinessPanel);
+  document.querySelectorAll('.business-panel').forEach(panel => businessResizeObserver.observe(panel));
+}
+if (document.fonts) document.fonts.ready.then(fitBusinessPanel);
+fitBusinessPanel();
+
