@@ -124,14 +124,14 @@ if(root&&MODELS[root.dataset.sector]){
     }
     const [a,qty]=field('Unidades para trasladar de B a A',4,1,30);stage.append(a);
     const result=box('Sede A: '+state.branchA+' · Sede B: '+state.branchB,'','');
-    const draw=()=>{const n=number(qty,1,30);update(result,'Después del traslado',n===null||n>state.branchB?'Cantidad inválida':`A: ${state.branchA+n} · B: ${state.branchB-n}`,n===null?'Introduce una cantidad válida.':n>state.branchB?'No hay suficientes unidades en B.':state.branchB-n<4?'B quedaría por debajo de su reserva de 4.':'Ambas sedes mantienen la reserva mínima de B.')};
+    const draw=()=>{const n=number(qty,1,30);update(result,'Si se trasladan unidades',n===null||n>state.branchB?'Cantidad inválida':`A: ${state.branchA+n} · B: ${state.branchB-n}`,n===null?'Introduce una cantidad válida.':`Ahora: A ${state.branchA} · B ${state.branchB}. `+(n>state.branchB?'No hay suficientes unidades en B.':state.branchB-n<4?'B quedaría por debajo de su reserva de 4.':'Ambas sedes mantienen la reserva mínima de B.'))};
     qty.addEventListener('input',draw);draw();
     stage.append(button('Simular traslado',()=>{const n=number(qty,1,30);if(n===null||n>state.branchB||state.branchB-n<4){msg('Traslado no permitido: B debe conservar al menos 4 unidades.');return}state.branchA+=n;state.branchB-=n;save();render();msg(n+' unidades trasladadas en la prueba.')}));note('Solo tiene sentido si el negocio opera más de una sede. No hay movimiento real de productos.');
   }
   function services(){
     if(active===0){
       const rows=list();rows.append(line('Cancelación: 2:00 PM a 2:30 PM',state.slotTaken?'Turno ocupado en esta prueba.':'Hay un hueco de 30 minutos. Las opciones usan códigos de muestra.',state.slotTaken?null:button('Asignar a S-002',()=>{state.slotTaken=true;save();render();msg('Turno asignado en la demo. No se avisó a ninguna persona.')})));
-      rows.append(line('S-002 · Servicio de 20 min','Puede ocupar el hueco; deja 10 minutos libres.'));
+      rows.append(line('S-002 · Servicio de 20 min',state.slotTaken?'Asignado en esta prueba; deja 10 minutos libres.':'Puede ocupar el hueco; deja 10 minutos libres.'));
       rows.append(line('S-003 · Servicio de 45 min','No cabe en el hueco sin desplazar el siguiente turno.'));
       note('En un sistema real se verificarían disponibilidad y autorización antes de contactar.');return
     }
