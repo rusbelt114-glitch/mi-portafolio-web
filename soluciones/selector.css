@@ -1,0 +1,168 @@
+
+    #rusbelt-reference-preview{display:flex;justify-content:center;background:transparent;padding:4px 0 12px;font-family:Arial,sans-serif}
+    #rusbelt-reference-preview *{box-sizing:border-box}
+    #rusbelt-reference-preview .poster{width:min(100%,690px);height:990px;border-radius:31px;overflow:hidden;background:#ded9f5;position:relative;display:flex;flex-direction:column;align-items:center}
+    #rusbelt-reference-preview .poster-back{position:absolute;top:9px;left:9px;background:#29282e;color:#fff;border-radius:21px;width:77px;height:78px;display:grid;place-items:center;font:300 47px/1 Arial,sans-serif}
+    #rusbelt-reference-preview .device{position:absolute;top:120px;width:338px;height:665px;border-radius:53px;padding:9px;background:linear-gradient(115deg,#030305 7%,#8e8e96 15%,#17171a 27%,#020203 43%,#74747c 68%,#020203 88%);border:2px solid #77777d;box-shadow:0 0 0 3px #1c1b1e,0 2px 0 4px #9999a3,0 15px 24px rgba(43,39,75,.25)}
+    #rusbelt-reference-preview .device:before{content:"";position:absolute;left:-5px;top:155px;width:3px;height:43px;background:#7b7b82;border-radius:3px}
+    #rusbelt-reference-preview .screen{background:#f7f7f8;width:100%;height:100%;border-radius:43px;overflow:hidden;position:relative;padding:0 19px 16px}
+    #rusbelt-reference-preview .statusbar{height:48px;display:flex;align-items:flex-start;justify-content:space-between;padding:9px 10px 0;font-size:12px;font-weight:800;color:#15151a}
+    #rusbelt-reference-preview .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:91px;height:27px;border-radius:20px;background:#07070a;box-shadow:inset -7px 2px 8px #202127}
+    #rusbelt-reference-preview .status-icons{letter-spacing:-1px}
+    #rusbelt-reference-preview .greeting{height:51px;display:grid;grid-template-columns:37px 1fr 32px;align-items:center;gap:9px}
+    #rusbelt-reference-preview .avatar{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#ca8664 0 18%,transparent 19%),radial-gradient(circle at 50% 31%,#2b2727 0 29%,transparent 30%),linear-gradient(150deg,#a1d3d5,#ead1b7);border:2px solid white;box-shadow:0 0 0 1px #d9d9e0}
+    #rusbelt-reference-preview .hello{font-size:12px;font-weight:800;text-align:center;line-height:1.2;color:#15151b}
+    #rusbelt-reference-preview .hello small{display:block;font-size:10px;font-weight:400;color:#6c6b75;margin-top:2px}
+    #rusbelt-reference-preview .search{height:30px;width:30px;border:1px solid #e3e3e8;border-radius:50%;display:grid;place-items:center;font-size:18px;color:#55545e}
+    #rusbelt-reference-preview .hero{height:136px;border-radius:17px;background:linear-gradient(140deg,#9c8af1,#ad95ef 65%,#a783e8);position:relative;overflow:hidden;padding:17px 13px;box-shadow:inset 0 -9px 18px rgba(109,70,180,.1)}
+    #rusbelt-reference-preview .hero strong{display:block;font-size:23px;letter-spacing:-1.1px;line-height:.99;color:#14131c;max-width:126px;position:relative;z-index:2;font-weight:850}
+    #rusbelt-reference-preview .hero p{font-size:8px;color:#2c234e;position:relative;z-index:2;margin:6px 0 0}
+    #rusbelt-reference-preview .mini-people{position:absolute;left:12px;bottom:10px;display:flex;z-index:2}
+    #rusbelt-reference-preview .mini-people span{width:19px;height:19px;border-radius:50%;border:1px solid white;margin-right:-4px;background:linear-gradient(145deg,#7b314d,#f0b48e)}
+    #rusbelt-reference-preview .mini-people span:nth-child(2){background:linear-gradient(145deg,#4a7d91,#e9c18c)}#rusbelt-reference-preview .mini-people span:nth-child(3){background:linear-gradient(145deg,#543d72,#db9b82)}
+    #rusbelt-reference-preview .mini-people span:nth-child(4){width:23px;display:grid;place-items:center;background:#56478f;color:white;font-size:7px}
+    #rusbelt-reference-preview .sculpture{position:absolute;right:2px;top:9px;width:140px;height:132px;filter:drop-shadow(13px 17px 9px rgba(35,25,67,.36))}
+    #rusbelt-reference-preview .ring{position:absolute;width:52px;height:50px;border-radius:50%;background:radial-gradient(circle at 48% 48%,transparent 0 24%,#344044 27%,#445663 37%,#26343c 52%,#202a31 74%);transform:rotate(-29deg) scaleY(.78)}
+    #rusbelt-reference-preview .ring.one{left:20px;top:29px}#rusbelt-reference-preview .ring.two{right:10px;top:2px;background:radial-gradient(circle at 48% 48%,transparent 0 24%,#b75d00 27%,#fa8900 40%,#ffa700 62%,#f9ad1e 78%);transform:rotate(31deg) scaleY(.78)}#rusbelt-reference-preview .ring.three{left:31px;bottom:2px;width:40px;height:38px;background:radial-gradient(circle at 48% 48%,transparent 0 24%,#d8c900 27%,#fff23d 44%,#fff647 72%);transform:rotate(27deg) scaleY(.76)}
+    #rusbelt-reference-preview .cube{position:absolute;width:57px;height:54px;border-radius:17px;transform:rotate(18deg);background:radial-gradient(circle at 27% 18%,#b9adb9,#716674 60%,#3d3943);box-shadow:inset -8px -9px 11px rgba(0,0,0,.23)}
+    #rusbelt-reference-preview .cube.a{right:13px;top:40px}#rusbelt-reference-preview .cube.b{right:14px;top:76px;background:radial-gradient(circle at 20% 12%,#c9bec2,#706a6f 64%,#414146);transform:rotate(-18deg)}
+    #rusbelt-reference-preview .category-row{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:9px}
+    #rusbelt-reference-preview .category{border:1px solid #d2d2d7;border-radius:17px;background:#f9f9fa;color:#77777e;height:54px;padding:5px 1px;font-size:9px;line-height:1.2;cursor:pointer}
+    #rusbelt-reference-preview .category em{display:block;width:4px;height:4px;border-radius:50%;background:#a5a5af;margin:0 auto 3px}
+    #rusbelt-reference-preview .category b{display:block;font-size:10px;margin-top:3px;font-weight:700}
+    #rusbelt-reference-preview .category[aria-pressed="true"]{background:#141419;border-color:#141419;color:#fff}
+    #rusbelt-reference-preview .category[aria-pressed="true"] em{background:#fff}
+    #rusbelt-reference-preview .plan-heading{display:flex;align-items:center;justify-content:space-between;margin:17px 0 9px}
+    #rusbelt-reference-preview .plan-heading strong{font-size:17px;letter-spacing:-.5px;color:#16161b}
+    #rusbelt-reference-preview .plan-heading button{font:600 9px Arial,sans-serif;color:#696974;background:transparent;border:0;padding:7px;cursor:pointer}
+    #rusbelt-reference-preview .cards{height:228px;display:grid;grid-template-columns:1.13fr 1fr;grid-template-rows:132px 87px;gap:8px}
+    #rusbelt-reference-preview .sector{border-radius:15px;padding:12px;position:relative;overflow:hidden;min-width:0}
+    #rusbelt-reference-preview .sector.large{grid-row:span 2;background:#ffbd58}
+    #rusbelt-reference-preview .sector.medium{background:#abcaf6}
+    #rusbelt-reference-preview .sector.small{background:#ef8fe7}
+    #rusbelt-reference-preview .sector .pill{display:inline-block;padding:3px 7px;border-radius:11px;background:rgba(255,255,255,.38);font-size:8px;color:#45414c}
+    #rusbelt-reference-preview .sector h3{font-size:15px;font-weight:500;letter-spacing:-.55px;margin:12px 0 4px;line-height:1.1;color:#1a1b21}
+    #rusbelt-reference-preview .sector p{font-size:9px;line-height:1.3;margin:0;color:#41404a;max-width:110px}
+    #rusbelt-reference-preview .sector.large h3{font-size:18px;margin-top:17px}
+    #rusbelt-reference-preview .sector .open{position:absolute;bottom:11px;left:11px;font-size:10px;font-weight:700;color:#322f32}
+    #rusbelt-reference-preview .sector.medium:after{content:"";width:55px;height:55px;position:absolute;bottom:6px;right:-2px;border-radius:50%;background:radial-gradient(circle at 25% 25%,#ffe7da,#bda6a6 67%,#8f858e);box-shadow:-12px 16px 0 -6px #81acbb}
+    #rusbelt-reference-preview .sector.small{display:flex;align-items:center;justify-content:space-around;padding:9px}
+    #rusbelt-reference-preview .sector.small h3{margin:0;font-size:14px;max-width:100px}
+    #rusbelt-reference-preview .sector.small .sparkles{display:flex;gap:4px;align-self:flex-end}
+    #rusbelt-reference-preview .sector.small .sparkles i{font-style:normal;border-radius:50%;background:rgba(255,255,255,.54);width:21px;height:21px;text-align:center;line-height:21px;font-size:12px}
+    #rusbelt-reference-preview .bottom-nav{position:absolute;bottom:17px;left:17px;right:17px;height:55px;border-radius:32px;background:#111116;color:#eeeef0;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;text-align:center}
+    #rusbelt-reference-preview .bottom-nav span{font-size:19px;font-weight:300}
+    #rusbelt-reference-preview .bottom-nav .selected{height:50px;width:50px;border-radius:50%;background:#f7f7f8;color:#111116;display:grid;place-items:center;border:2px solid #111116;margin-left:3px}
+    #rusbelt-reference-preview .home-indicator{position:absolute;bottom:4px;width:116px;height:4px;border-radius:6px;background:#101013;left:50%;transform:translateX(-50%)}
+    #rusbelt-reference-preview .poster-foot{position:absolute;bottom:0;left:0;right:0;height:92px;background:#bfb3f3;display:flex;align-items:center;justify-content:space-between;padding:0 37px;color:#fff}
+    #rusbelt-reference-preview .poster-foot .mark{font-size:27px;opacity:.76;font-weight:700}
+    #rusbelt-reference-preview .poster-foot small{font-size:17px;opacity:.8}
+    #rusbelt-reference-preview .poster-foot .round{height:72px;width:72px;border-radius:23px;background:#030307;display:grid;place-items:center;font-size:31px;color:white}
+    #rusbelt-reference-preview .below{display:none}
+    @media(max-width:480px){#rusbelt-reference-preview .poster{width:100%;height:880px;border-radius:25px}#rusbelt-reference-preview .device{transform:scale(.89);transform-origin:top center;top:100px}#rusbelt-reference-preview .poster-foot{height:80px;padding:0 25px}#rusbelt-reference-preview .poster-foot .round{width:61px;height:61px}}
+    @media(max-width:350px){#rusbelt-reference-preview .poster{height:780px}#rusbelt-reference-preview .device{transform:scale(.78);top:84px}#rusbelt-reference-preview .poster-foot{height:67px}}
+
+    #rusbelt-reference-preview{font-family:"Aptos","Segoe UI",Arial,sans-serif}
+    #rusbelt-reference-preview .device{height:710px}
+    #rusbelt-reference-preview .notch{top:10px}
+    #rusbelt-reference-preview .greeting{height:58px}
+    #rusbelt-reference-preview .hero{margin-top:5px}
+    #rusbelt-reference-preview .hero strong{font-family:"Aptos","Segoe UI",Arial,sans-serif;font-size:22px;line-height:1.08;letter-spacing:-.7px;font-weight:750}
+    #rusbelt-reference-preview .hello{font-size:12px;line-height:1.4}
+    #rusbelt-reference-preview .category{font-family:inherit;line-height:1.3;font-size:9px}
+    #rusbelt-reference-preview .category b{font-size:9px;font-weight:500}
+    #rusbelt-reference-preview .plan-heading{margin:15px 0 12px}
+    #rusbelt-reference-preview .plan-heading strong{font-weight:750;letter-spacing:-.4px}
+    #rusbelt-reference-preview .sector{padding:13px}
+    #rusbelt-reference-preview .sector h3{font-family:"Aptos","Segoe UI",Arial,sans-serif;font-weight:750;font-size:15px;line-height:1.22;letter-spacing:-.3px;margin:10px 0 7px;position:relative;z-index:1;text-align:left}
+    #rusbelt-reference-preview .sector.large h3{font-size:18px;line-height:1.2;margin-top:17px}
+    #rusbelt-reference-preview .sector p{font-size:10px;line-height:1.45;text-align:justify;hyphens:auto;position:relative;z-index:1;max-width:100%}
+    #rusbelt-reference-preview .sector.medium p{max-width:90px}
+    #rusbelt-reference-preview .sector.medium:after{opacity:.45;width:43px;height:43px;bottom:5px}
+    #rusbelt-reference-preview .sector.small{display:block;padding:12px}
+    #rusbelt-reference-preview .sector.small .pill,#rusbelt-reference-preview .sector.small .sparkles{display:none}
+    #rusbelt-reference-preview .sector.small h3{font-size:14px;max-width:100%;margin:0 0 6px;font-weight:750}
+    #rusbelt-reference-preview .sector.small p{font-size:9px;line-height:1.35;margin:0}
+    #rusbelt-reference-preview .bottom-nav{bottom:19px}
+  #rusbelt-reference-preview a{color:inherit;text-decoration:none}#rusbelt-reference-preview .bottom-nav a{display:grid;place-items:center;font-size:21px;min-height:44px}#rusbelt-reference-preview .sector:focus-visible{outline:3px solid #493281;outline-offset:2px}body{margin:0;background:#ded9f5} 
+/* Integrated portfolio view: no device illustration. */
+body{background:#f7f7f8}
+#rusbelt-reference-preview{display:block;padding:0}
+#rusbelt-reference-preview .poster{width:100%;height:auto;min-height:100svh;background:#f7f7f8;border-radius:0;overflow:visible;display:block}
+#rusbelt-reference-preview .poster-back,#rusbelt-reference-preview .poster-foot,#rusbelt-reference-preview .statusbar,#rusbelt-reference-preview .notch,#rusbelt-reference-preview .home-indicator,#rusbelt-reference-preview .device:before{display:none}
+#rusbelt-reference-preview .device{position:static;transform:none;width:100%;max-width:760px;height:auto;border:0;border-radius:0;padding:0;margin:0 auto;background:none;box-shadow:none}
+#rusbelt-reference-preview .screen{height:auto;min-height:100svh;border-radius:0;overflow:visible;padding:18px 22px 24px;display:flex;flex-direction:column}
+#rusbelt-reference-preview .greeting{height:60px;grid-template-columns:42px 1fr;gap:12px;margin-bottom:16px}
+#rusbelt-reference-preview .hello{text-align:left;font-size:17px}
+#rusbelt-reference-preview .hello small{font-size:12px;margin-top:4px}
+#rusbelt-reference-preview .avatar{width:40px;height:40px}
+#rusbelt-reference-preview .search{display:none}
+#rusbelt-reference-preview .hero{height:176px;flex:none;padding:24px;border-radius:23px;margin:0}
+#rusbelt-reference-preview .hero strong{font-size:32px;line-height:1.08;max-width:250px}
+#rusbelt-reference-preview .hero p{font-size:12px;margin-top:12px;max-width:220px}
+#rusbelt-reference-preview .sculpture{right:12px;top:18px;transform:scale(1.18);transform-origin:right center}
+#rusbelt-reference-preview .mini-people{left:24px;bottom:17px}
+#rusbelt-reference-preview .category-row{margin-top:17px;gap:10px}
+#rusbelt-reference-preview .category{height:62px;font-size:13px;border-radius:18px}
+#rusbelt-reference-preview .category b{font-size:11px;margin-top:4px}
+#rusbelt-reference-preview .plan-heading{margin:22px 0 14px}
+#rusbelt-reference-preview .plan-heading strong{font-size:23px}
+#rusbelt-reference-preview .plan-heading button{font-size:12px;min-height:44px;padding:10px}
+#rusbelt-reference-preview .cards{height:288px;grid-template-rows:172px 104px;gap:12px;flex:none}
+#rusbelt-reference-preview .sector{padding:20px;border-radius:21px;display:block}
+#rusbelt-reference-preview .sector.large h3{font-size:25px;margin-top:24px}
+#rusbelt-reference-preview .sector h3{font-size:21px;margin-top:15px}
+#rusbelt-reference-preview .sector p{font-size:13px;line-height:1.5;text-align:left;max-width:230px}
+#rusbelt-reference-preview .sector .pill{font-size:11px;padding:5px 10px}
+#rusbelt-reference-preview .sector .open{font-size:13px;left:20px;bottom:20px}
+#rusbelt-reference-preview .sector.small{padding:18px}
+#rusbelt-reference-preview .sector.small h3{font-size:19px;margin:0 0 7px}
+#rusbelt-reference-preview .sector.small p{font-size:12px}
+#rusbelt-reference-preview .bottom-nav{position:static;flex:none;margin-top:25px;height:64px;min-height:64px;border-radius:36px}
+#rusbelt-reference-preview .bottom-nav a{font-size:24px;min-height:52px}
+#rusbelt-reference-preview .bottom-nav .selected{width:57px;height:57px}
+@media(max-width:480px){
+#rusbelt-reference-preview .poster{height:auto;min-height:100svh}
+#rusbelt-reference-preview .device{position:static;transform:none;width:100%;height:auto}
+#rusbelt-reference-preview .screen{padding:12px 18px 20px}
+#rusbelt-reference-preview .greeting{margin-bottom:10px;height:55px}
+#rusbelt-reference-preview .hero{height:154px;padding:20px}
+#rusbelt-reference-preview .hero strong{font-size:27px;max-width:185px}
+#rusbelt-reference-preview .hero p{font-size:10px;max-width:165px}
+#rusbelt-reference-preview .sculpture{right:0;top:14px;transform:scale(.92)}
+#rusbelt-reference-preview .mini-people{left:20px;bottom:13px}
+#rusbelt-reference-preview .category-row{gap:6px;margin-top:14px}
+#rusbelt-reference-preview .category{font-size:11px;height:58px}
+#rusbelt-reference-preview .category b{font-size:10px}
+#rusbelt-reference-preview .plan-heading{margin:15px 0 10px}
+#rusbelt-reference-preview .plan-heading strong{font-size:20px}
+#rusbelt-reference-preview .cards{height:260px;grid-template-rows:152px 98px;gap:10px}
+#rusbelt-reference-preview .sector{padding:15px}
+#rusbelt-reference-preview .sector.large h3{font-size:21px;margin-top:20px}
+#rusbelt-reference-preview .sector h3{font-size:18px}
+#rusbelt-reference-preview .sector p{font-size:12px;line-height:1.45}
+#rusbelt-reference-preview .sector.small{padding:14px}
+#rusbelt-reference-preview .sector.small h3{font-size:16px}
+#rusbelt-reference-preview .sector.small p{font-size:11px}
+#rusbelt-reference-preview .sector .open{left:15px;bottom:16px;font-size:12px}
+#rusbelt-reference-preview .bottom-nav{margin-top:22px}
+}
+#rusbelt-reference-preview .bottom-nav{display:flex;align-items:center;justify-content:center}#rusbelt-reference-preview .bottom-nav .selected{margin:0;border:2px solid #111116;font:26px Arial,sans-serif;cursor:pointer} 
+/* Shared, responsive business selector. */
+#rusbelt-reference-preview{font-family:"DM Sans",Arial,sans-serif}
+#rusbelt-reference-preview .avatar{background:#292631;color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;border:0;box-shadow:none}
+#rusbelt-reference-preview .business-count{position:absolute;bottom:14px;left:24px;font-size:12px;font-weight:700;color:#30234e}
+#rusbelt-reference-preview .hero p{margin-top:8px}
+#rusbelt-reference-preview .cards{height:auto;grid-template-rows:repeat(2,minmax(175px,auto));align-items:stretch}
+#rusbelt-reference-preview .sector{display:flex;flex-direction:column;gap:9px;overflow:visible;padding:18px}
+#rusbelt-reference-preview .sector.large{grid-row:span 2}
+#rusbelt-reference-preview .sector h3,#rusbelt-reference-preview .sector.large h3,#rusbelt-reference-preview .sector.small h3{font-size:20px;font-weight:800;line-height:1.25;margin:0;max-width:none;overflow-wrap:normal}
+#rusbelt-reference-preview .sector p,#rusbelt-reference-preview .sector.small p{font-size:13px;line-height:1.5;max-width:none;margin:0}
+#rusbelt-reference-preview .sector .pill{align-self:flex-start}
+#rusbelt-reference-preview .sector .open{position:static;margin-top:auto;padding-top:12px;font-size:12px;line-height:1.4}
+#rusbelt-reference-preview .sector.medium:after{display:none}
+#rusbelt-reference-preview .sector.small{align-items:stretch;justify-content:flex-start}
+#rusbelt-reference-preview :is(button,a):focus-visible{outline:3px solid #6643ac;outline-offset:4px}
+#rusbelt-reference-preview .bottom-nav{margin-top:28px}
+@media(max-width:480px){#rusbelt-reference-preview .cards{grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(168px,auto))}#rusbelt-reference-preview .sector{padding:14px}#rusbelt-reference-preview .sector h3,#rusbelt-reference-preview .sector.large h3,#rusbelt-reference-preview .sector.small h3{font-size:17px}#rusbelt-reference-preview .business-count{left:20px;font-size:11px}#rusbelt-reference-preview .hero p{max-width:155px}#rusbelt-reference-preview .hero{height:172px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}

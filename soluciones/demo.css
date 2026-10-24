@@ -65,3 +65,37 @@
 @media(max-width:760px){.sector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-head{align-items:flex-start;flex-direction:column;gap:10px}}
 @media(max-width:600px){.demo-main{padding-block:18px 100px}.demo-head h1{font-size:28px;letter-spacing:-1px}.demo-options{gap:5px;margin-block:12px}.demo-option{font-size:11px;line-height:1.35;min-height:54px;padding:7px;text-align:center}.demo-stage{padding:13px;min-height:0}.demo-stage h2{font-size:18px}.demo-tag{font-size:8px}.demo-fields{grid-template-columns:1fr;gap:0}.demo-list-row{align-items:flex-start;flex-direction:column;gap:7px}.demo-row-actions{width:100%}.demo-row-actions .demo-action{flex:1}.demo-list-row>.demo-action{width:100%}.sector-grid{grid-template-columns:1fr 1fr;gap:7px}.sector-card{padding:11px;min-height:128px}.sector-card strong{font-size:14px}.sector-card small{font-size:10px}.sector-filters{gap:5px}.sector-filter{font-size:11px}.demo-stats{grid-template-columns:1fr 1fr}.ideas-demo-link{flex-direction:column;align-items:flex-start}}
 @media(max-width:370px){.sector-grid{grid-template-columns:1fr}.demo-option{font-size:10px}.demo-tag{white-space:normal;text-align:right}}
+
+/* Consistent visual language for every business demonstration. */
+body.view-site{--paper:#f7f7f8;--ink:#211d2b;--muted:#615c6c;--line:#dfdbe7;--forest:#624393;--lime:#eee5ff;background:#f7f7f8;color:#211d2b}
+.demo-main{max-width:1000px}
+.demo-head{padding:24px;background:linear-gradient(125deg,#b8a2f5,#dcd0fa);border-radius:24px;align-items:center}
+.demo-head h1{font-size:clamp(26px,4vw,40px);line-height:1.2;overflow-wrap:break-word}
+.demo-head p,.demo-kicker{color:#392c53}
+.demo-reset{background:#ffffffa6;border-color:#ffffffb0;border-radius:14px;white-space:normal}
+.demo-options{gap:10px;margin-block:20px 12px}
+.demo-option{border:1px solid #dbd5e7;border-radius:17px;background:#fff;font-size:14px;line-height:1.35;min-height:62px}
+.demo-option:nth-child(1){background:#ffe0ad}.demo-option:nth-child(2){background:#c5dcfa}.demo-option:nth-child(3){background:#f4c3ed}
+.demo-option[aria-pressed=true]{background:#211d2b;color:#fff;border-color:#211d2b;box-shadow:0 3px 0 #a68acf}
+.demo-guide{font-size:14px;line-height:1.6;color:#51465e;margin:16px 0}
+.demo-stage{background:#fff;border-color:#e3ddea;border-radius:22px;padding:22px}
+.demo-stage-header{align-items:flex-start;flex-wrap:wrap;gap:8px}
+.demo-tag{background:#ede5fa;color:#604280}
+.demo-field span{color:#51465e;font-size:13px;line-height:1.5}
+.demo-field input,.demo-field select{border-color:#d5cddd;border-radius:12px;min-height:48px;height:auto;font-size:16px}
+.demo-action{background:#292332;color:#fff;border-radius:12px;min-height:44px;white-space:normal;line-height:1.4}
+.demo-action.secondary{border-color:#d5cddd;color:#45334f}
+.demo-list-row{border-color:#e5e0eb;border-radius:14px;padding:14px}
+.demo-list-row strong{font-size:14px}.demo-list-row small{font-size:12px}
+.demo-result{background:#ede5fa;border-color:#ddd0ef;border-radius:16px;gap:10px;grid-template-columns:1fr;margin-block:14px;padding:18px}
+.demo-result strong{font-size:26px;overflow-wrap:anywhere;line-height:1.3}
+.demo-result small{color:#51465e;font-size:13px;line-height:1.6}
+.demo-help{font-size:12px;line-height:1.6}.demo-status{color:#544078;line-height:1.5}
+.demo-stat{background:#ede5fa;border-radius:14px}
+.demo-contact{margin-top:20px;background:#f5e3c7;border:1px solid #eed6b3;border-radius:22px;padding:22px}
+.demo-contact strong{font-size:20px;line-height:1.35}.demo-contact p{font-size:14px;line-height:1.6;margin:8px 0 14px}
+.demo-contact a{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;min-height:48px;background:#211d2b;color:#fff;font-weight:700;font-size:14px;border-radius:14px;line-height:1.4;text-decoration:none}
+.demo-contact small{display:block;margin-top:12px;font-size:12px;line-height:1.5;color:#62523c}
+.demo-main :is(a,button,input,select):focus-visible{outline:3px solid #7650ad;outline-offset:3px}
+@media(max-width:600px){.demo-head{padding:20px;gap:8px}.demo-option{font-size:12px;padding:10px 6px}.demo-stage{padding:16px}.demo-head h1{letter-spacing:-.7px}.demo-guide{font-size:13px}.demo-contact{padding:18px}.demo-contact a{width:100%}.demo-fields{gap:4px}.demo-options{gap:7px}.demo-main{padding-bottom:100px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}

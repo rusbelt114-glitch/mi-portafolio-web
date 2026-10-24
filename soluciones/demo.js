@@ -38,7 +38,11 @@ function defaultState(cfg){
   return {members:[{id:1,until:dayAt(12),visits:0}],next:2};
 }
 function safeState(value,cfg){
-  if(!value||typeof value!=='object')return false;
+  if(!value||typeof value!=='object'||!Number.isInteger(value.next)||value.next<1)return false;
+const records=cfg.mode==='stock'?value.operations:cfg.mode==='agenda'?value.appointments:cfg.mode==='hotel'?value.reservations:value.members;
+if(!Array.isArray(records)||!records.every(x=>x&&typeof x==='object'&&Number.isInteger(x.id)&&x.id>0&&x.id<value.next))return false;
+if(cfg.mode==='stock'&&!records.every(x=>Number.isInteger(x.item)&&x.item>=0&&x.item<cfg.items.length&&Number.isFinite(x.qty)&&x.qty>0&&Number.isFinite(x.total)&&typeof x.job==='string'&&typeof x.state==='string'))return false;
+if(cfg.mode==='agenda'&&!records.every(x=>Number.isInteger(x.service)&&x.service>=0&&x.service<cfg.services.length&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&/^([01]\d|2[0-3]):[0-5]\d$/.test(x.time)&&['Reservado','En atención','Finalizado','Cancelado'].includes(x.state)))return false;
   if(cfg.mode==='stock')return Array.isArray(value.quantities)&&value.quantities.length===cfg.items.length&&value.quantities.every(v=>Number.isFinite(v)&&v>=0)&&Array.isArray(value.operations)&&Number.isInteger(value.next);
   if(cfg.mode==='agenda')return Array.isArray(value.appointments)&&Number.isInteger(value.next);
   if(cfg.mode==='hotel')return Array.isArray(value.reservations)&&Number.isInteger(value.next);
@@ -63,6 +67,7 @@ function initialize(){
     $$('.demo-option',nav).forEach((button,index)=>button.setAttribute('aria-pressed',String(index===active)));
     stage.replaceChildren();
     const heading=make('div',undefined,'demo-stage-header');heading.append(make('h2',tabs[active]),make('span','DATOS DE EJEMPLO','demo-tag'));stage.append(heading);
+    window.businessExperience.show(slug,active,tabs[active],cfg.mode,cfg.report,cfg.summary);
     if(cfg.mode==='stock')renderStock();
     else if(cfg.mode==='agenda')renderAgenda();
     else if(cfg.mode==='hotel')renderHotel();
@@ -150,3 +155,4 @@ function initialize(){
   render();
 }
 document.addEventListener('DOMContentLoaded',initialize);
+

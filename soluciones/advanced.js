@@ -21,7 +21,12 @@ if(root&&MODELS[root.dataset.sector]){
   };
   const key='rusbelt-portfolio-decisions-v1:'+slug;
   let state;
-  try{const saved=JSON.parse(localStorage.getItem(key));state=saved&&typeof saved==='object'&&!Array.isArray(saved)?Object.assign(structuredClone(defaults[slug]),saved):structuredClone(defaults[slug])}catch{state=structuredClone(defaults[slug])}
+  try{const saved=JSON.parse(localStorage.getItem(key));state=structuredClone(defaults[slug]);
+if(saved&&typeof saved==='object'&&!Array.isArray(saved)){
+ const allowed={contacted:['Socio 014','Socio 031'],ready:['Habitación 04','Habitación 12','Habitación 08'],reviewed:slug==='licorerias'?[0,1,2]:['Protector solar · lote A','Producto de higiene · lote B','Venda elástica · lote C']};
+ for(const k of Object.keys(state)){const v=saved[k];if(Array.isArray(state[k])&&Array.isArray(v))state[k]=[...new Set(v.filter(x=>allowed[k].includes(x)))];else if(typeof state[k]==='boolean'&&typeof v==='boolean')state[k]=v;else if(k==='peakMoved'&&Number.isInteger(v)&&v>=0&&v<=8)state[k]=v}
+ if(slug==='farmacias'&&Number.isInteger(saved.branchA)&&Number.isInteger(saved.branchB)&&saved.branchA>=2&&saved.branchB>=4&&saved.branchA+saved.branchB===18){state.branchA=saved.branchA;state.branchB=saved.branchB}
+}}catch{state=structuredClone(defaults[slug])}
   let active=0;
   const el=(tag,value,cls)=>{const n=document.createElement(tag);if(value!==undefined)n.textContent=String(value);if(cls)n.className=cls;return n};
   const money=n=>'$'+Number(n).toFixed(2);
@@ -41,7 +46,7 @@ if(root&&MODELS[root.dataset.sector]){
   }
   function box(title,big,detail){const b=el('div',undefined,'demo-result');b.append(el('span',title),el('strong',big),el('small',detail));stage.append(b);return b}
   function update(b,title,big,detail){b.replaceChildren(el('span',title),el('strong',big),el('small',detail))}
-  function number(input,min,max){const n=Number(input.value);return Number.isFinite(n)&&Number.isInteger(n)&&n>=min&&n<=max?n:null}
+  function number(input,min,max){if(!input.value.trim())return null;const n=Number(input.value);return Number.isFinite(n)&&Number.isInteger(n)&&n>=min&&n<=max?n:null}
   function line(title,detail,control){const row=el('div',undefined,'demo-list-row'),copy=el('div');copy.append(el('strong',title),el('small',detail));row.append(copy);if(control)row.append(control);return row}
   function list(){const node=el('div',undefined,'demo-list');stage.append(node);return node}
   function two(...fields){const g=el('div',undefined,'demo-fields');g.append(...fields);stage.append(g)}
@@ -50,6 +55,7 @@ if(root&&MODELS[root.dataset.sector]){
     [...nav.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===active)));
     stage.replaceChildren();
     const header=el('div',undefined,'demo-stage-header');header.append(el('h2',cfg.tabs[active]),el('span','DATOS FICTICIOS','demo-tag'));stage.append(header);
+    window.businessExperience.show(slug,active,cfg.tabs[active]);
     if(slug==='gimnasios')gym();if(slug==='licorerias')liquor();if(slug==='hoteles')hotel();if(slug==='farmacias')pharmacy();if(slug==='consultorios')services();
   }
   cfg.tabs.forEach((t,i)=>{const b=el('button',(i+1)+'. '+t,'demo-option');b.type='button';b.addEventListener('click',()=>{active=i;refresh()});nav.append(b)});
@@ -73,7 +79,7 @@ if(root&&MODELS[root.dataset.sector]){
     }
     const [a,attendance]=field('Asistentes por clase',8,0,30),[p,price]=field('Ingreso por asistente ($)',5,1,50),[c,cost]=field('Costo total de la clase ($)',37,0,500);two(a,p);stage.append(c);
     const b=box('Resultado por clase','', '');
-    const draw=()=>{const n=number(attendance,0,30),v=number(price,1,50),fixed=number(cost,0,500);if(n===null||v===null||fixed===null){update(b,'Resultado','Datos inválidos','Usa cantidades enteras dentro de los rangos.');return}update(b,'Ingreso − costo',money(n*v-fixed),`Ingreso: ${money(n*v)} · Costo: ${money(fixed)} · Punto de equilibrio: ${Math.ceil(fixed/v)} asistentes.`)};
+    const draw=()=>{const n=number(attendance,0,30),v=number(price,1,50),fixed=number(cost,0,500);if(n===null||v===null||fixed===null){update(b,'Resultado','Datos inválidos','Usa cantidades enteras dentro de los rangos.');return}update(b,'Ingreso − costo',money(n*v-fixed),`${n*v<fixed?'Esta clase no cubre el costo indicado.':n*v===fixed?'Esta clase cubre exactamente el costo indicado.':'Esta clase deja un excedente sobre el costo indicado.'} Ingreso: ${money(n*v)} · Costo: ${money(fixed)} · Punto de equilibrio: ${Math.ceil(fixed/v)} asistentes.`)};
     [attendance,price,cost].forEach(x=>x.addEventListener('input',draw));draw();note('Calculadora de escenario; no es una estimación de demanda real.');
   }
   function liquor(){
@@ -107,7 +113,7 @@ if(root&&MODELS[root.dataset.sector]){
     }
     const [a,packagePrice]=field('Precio total del paquete ($)',60,10,200),[b,breakfast]=field('Costo adicional de desayuno ($)',8,0,50),[c,other]=field('Otros costos adicionales ($)',5,0,80);two(a,b);stage.append(c);
     const result=box('Ingreso restante sobre la tarifa base','','');
-    const draw=()=>{const p=number(packagePrice,10,200),br=number(breakfast,0,50),ex=number(other,0,80);if(p===null||br===null||ex===null){update(result,'Paquete','Datos inválidos','Revisa los rangos.');return}update(result,'Precio − tarifa base ($35) − costos añadidos',money(p-35-br-ex),`Tarifa base de ejemplo: $35 · Desayuno: ${money(br)} · Otros: ${money(ex)}. No es utilidad neta.`)};
+    const draw=()=>{const p=number(packagePrice,10,200),br=number(breakfast,0,50),ex=number(other,0,80);if(p===null||br===null||ex===null){update(result,'Paquete','Datos inválidos','Revisa los rangos.');return}update(result,'Precio − tarifa base ($35) − costos añadidos',money(p-35-br-ex),`${p-35-br-ex<0?'El paquete no cubre la tarifa base y los extras.':'El paquete cubre la tarifa base y los extras indicados.'} Tarifa base de ejemplo: $35 · Desayuno: ${money(br)} · Otros: ${money(ex)}. No es utilidad neta.`)};
     [packagePrice,breakfast,other].forEach(x=>x.addEventListener('input',draw));draw();note('Ayuda a evaluar una noche libre sin suponer que un paquete siempre venderá.');
   }
   function pharmacy(){
@@ -148,3 +154,4 @@ if(root&&MODELS[root.dataset.sector]){
   }
   render();
 }
+
