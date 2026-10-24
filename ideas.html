@@ -148,7 +148,7 @@ body{background:#f7f7f8}
 #rusbelt-reference-preview .sector .open{left:15px;bottom:16px;font-size:12px}
 #rusbelt-reference-preview .bottom-nav{margin-top:22px}
 }
-</style>
+#rusbelt-reference-preview .bottom-nav{display:flex;align-items:center;justify-content:center}#rusbelt-reference-preview .bottom-nav .selected{margin:0;border:2px solid #111116;font:26px Arial,sans-serif;cursor:pointer} </style>
   <div class="poster" aria-label="Ideas para tu negocio">
     <div class="poster-back" aria-hidden="true">‹</div>
     <div class="device"><div class="screen" lang="es">
@@ -159,7 +159,7 @@ body{background:#f7f7f8}
       <div class="category-row" role="group" aria-label="Tipos de negocio"><button type="button" class="category" data-kind="comercios" aria-pressed="false"><em></em>Comercios<b>Tiendas</b></button><button type="button" class="category" data-kind="servicios" aria-pressed="true"><em></em>Servicios<b>Locales</b></button><button type="button" class="category" data-kind="comida" aria-pressed="false"><em></em>Comida<b>y hotel</b></button><button type="button" class="category" data-kind="salud" aria-pressed="false"><em></em>Salud<b>y centros</b></button></div>
       <div class="plan-heading"><strong>Elige tu negocio</strong><button type="button" id="ref-page" aria-label="Mostrar más negocios">1 de 2 ›</button></div>
       <div class="cards" id="ref-cards" aria-live="polite"></div>
-      <div class="bottom-nav" aria-label="Navegación del portafolio"><a class="selected" href="index.html" aria-label="Volver al portafolio">⌂</a><a href="ideas.html" aria-label="Ideas para tu negocio">▦</a><a href="ideas-casos.html" aria-label="Ver situaciones frecuentes">▥</a><a href="contacto.html" aria-label="Contacto">♙</a></div>
+      <div class="bottom-nav" aria-label="Volver al menú"><button type="button" class="selected" id="business-home" aria-label="Volver al menú de negocios">⌂</button></div>
       <div class="home-indicator" aria-hidden="true"></div>
     </div></div>
     <div class="poster-foot"><span class="mark">◌</span><small>rusbelt. · soluciones para negocios</small><span class="round">✦</span></div>
@@ -183,6 +183,7 @@ body{background:#f7f7f8}
       }
       root.querySelectorAll('.category').forEach(button=>button.addEventListener('click',()=>{kind=button.dataset.kind;page=0;paint()}));
       pageLabel.addEventListener('click',()=>{const max=Math.ceil(groups[kind].length/3);page=(page+1)%max;paint()});
+      root.querySelector("#business-home").addEventListener("click",()=>{kind="servicios";page=0;paint()});
       paint();
     })();
   </script>
